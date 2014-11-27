@@ -7,4 +7,5 @@
 /* Hash function */
 unsigned long sdmb (char*);
 
+
 #endif /* HASHT_H */
