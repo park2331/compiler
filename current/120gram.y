@@ -50,6 +50,7 @@
 #include "120lex.h"
 #include "token.h"
 #include "tree.h"
+#include "hasht.h"
 
 
 #define YYDEBUG 1
@@ -89,7 +90,9 @@ static void yyerror(char *s);
 %token <tptr> NAMESPACE_NAME TEMPLATE_NAME
 
 
-%type <tptr> explicit_instantiation explicit_specialization using_declaration
+ /*%type <tptr> explicit_instantiation explicit_specialization using_declaration*/
+%type <tptr> using_declaration
+
 %type <tptr> using_directive namespace_definition namespace_alias_definition
 %type <tptr> named_namespace_definition unnamed_namespace_definition
 %type <tptr> original_namespace_definition namespace_body qualified_namespace_specifier
@@ -133,13 +136,16 @@ static void yyerror(char *s);
 %type <tptr> enumerator_list_opt initializer_opt constant_expression_opt
 %type <tptr> abstract_declarator_opt  COMMA_opt 
 %type <tptr> type_specifier_seq_opt direct_abstract_declarator_opt ctor_initializer_opt
-%type <tptr> member_specification_opt SEMICOLON_opt conversion_declarator_opt EXPORT_opt 
+%type <tptr> member_specification_opt SEMICOLON_opt conversion_declarator_opt 
 %type <tptr> handler_seq_opt assignment_expression_opt type_id_list_opt operator
 
-%type <tptr> template_declaration template_parameter_list template_parameter 
-%type <tptr> type_parameter template_id template_argument_list template_argument 
+ /*
+%type <tptr> template_declaration template_parameter_list template_parameter EXPORT_opt 
+%type <tptr> type_parameter template_id template_argument_list template_argument template_name
+ */
+%type <tptr> namespace_name original_namespace_name
 
-%type <tptr> namespace_name original_namespace_name template_name
+
 
 
 %start translation_unit
@@ -167,17 +173,17 @@ original_namespace_name:
 
 class_name:
 	CLASS_NAME {$$ = $1;}
-	| template_id  {$$ = $1;}
+/*	| template_id  {$$ = $1;}*/
 	;
 
 enum_name:
 	ENUM_NAME { $$ = $1; }
 	;
-
+/*
 template_name:
 	TEMPLATE_NAME {$$ = $1;}
 	;
-
+*/
 
 /*----------------------------------------------------------------------
  * Lexical elements.
@@ -523,9 +529,9 @@ declaration_seq:
 declaration:
 	block_declaration {$$ = $1;}
 	| function_definition {$$ = $1;}
-        | template_declaration {$$ = $1;}
-	| explicit_instantiation {$$ = $1;}
-	| explicit_specialization {$$ = $1;}
+/*        | template_declaration {$$ = $1;}*/
+/*	| explicit_instantiation {$$ = $1;} */
+/*	| explicit_specialization {$$ = $1;} */
 	| linkage_specification {$$ = $1;}
         | namespace_definition {$$ = $1;}
 	;
@@ -608,7 +614,7 @@ elaborated_type_specifier:
 	| ENUM COLONCOLON identifier {$$ = alctree("elaborated_type_specifier_592", 588, 3, $1, $2, $3);}
 	| ENUM nested_name_specifier identifier {$$ = alctree("elaborated_type_specifier_593", 588, 3, $1, $2, $3);}
 	| TYPENAME COLONCOLON_opt nested_name_specifier identifier {$$ = alctree("elaborated_type_specifier_594", 588, 4, $1, $2, $3, $4);}
-	| TYPENAME COLONCOLON_opt nested_name_specifier identifier '<' template_argument_list '>' {$$ = alctree("elaborated_type_specifier_595", 588, 7, $1, $2, $3, $4, $5, $6, $7);} 
+/*	| TYPENAME COLONCOLON_opt nested_name_specifier identifier '<' template_argument_list '>' {$$ = alctree("elaborated_type_specifier_595", 588, 7, $1, $2, $3, $4, $5, $6, $7);} */
 	;
 
 /*
@@ -847,12 +853,13 @@ initializer_list:
  *----------------------------------------------------------------------*/
 
 class_specifier:
-        class_head '{' member_specification_opt '}'
+        class_head '{' member_specification_opt '}' { $$ = alctree("class_specifier_832", 831, 4, $1, $2, $3, $4); }
 	;
 
 class_head:
         /* Previously was a hashtable implementation; will reimplement */
-        class_key identifier { typenametable_insert($2, CLASS_NAME); /*printf("%s\n", ($2)->name);*/ }
+        /* class_key identifier { typenametable_insert($2, CLASS_NAME); } */
+        class_key identifier { $$ = alctree("class_head_836", 837, 2, $1, $2); } 
 	| class_key identifier base_clause {$$ = alctree("class_head_839", 837, 3, $1, $2, $3);}
 	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
 	| class_key nested_name_specifier identifier base_clause {$$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
@@ -885,7 +892,7 @@ member_declarator_list:
 	;
 
 member_declarator:
-        | declarator {$$ = $1;}
+        declarator {$$ = $1;}
 	| declarator pure_specifier {$$ = alctree("member_declarator_872", 870, 2, $1, $2);}
 	| declarator constant_initializer {$$ = alctree("member_declarator_873", 870, 2, $1, $2);}
 	| identifier ':' constant_expression {$$ = alctree("member_declarator_874", 870, 3, $1, $2, $3);}
@@ -1033,7 +1040,7 @@ operator:
 /*----------------------------------------------------------------------
  * Templates.
  *----------------------------------------------------------------------*/
-
+/*
 template_declaration:
 	EXPORT_opt TEMPLATE '<' template_parameter_list '>' declaration {$$ = alctree("template_declaration_1019", 1018, 6, $1, $2, $3, $4, $5, $6);}
 	;
@@ -1078,7 +1085,7 @@ explicit_instantiation:
 explicit_specialization:
 	TEMPLATE '<' '>' declaration {$$ = alctree("explicit_specialization_1060", 1059, 4, $1, $2, $3, $4);}
 	;
-
+*/
 /*----------------------------------------------------------------------
  * Exception handling.
  *----------------------------------------------------------------------*/
@@ -1227,11 +1234,12 @@ conversion_declarator_opt:
 	{$$ = NULL;}
 	| conversion_declarator {$$ = $1;}
 	;
-
+/*
 EXPORT_opt:
         EXPORT {$$ = $1;}
 	| {$$ = NULL;}
 	;
+*/
 
 handler_seq_opt:
 	{$$ = NULL;}

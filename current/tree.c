@@ -7,6 +7,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include "tree.h"
+#include "token.h"
 
 /* Allocates tree node with n children */
 treeptr alctree(char *gram_prod_name, int label, int nkids, ...)
@@ -42,9 +43,17 @@ void treeprint(struct tree *t, int depth)
   if (!t) {
     /* Do nothing */
   } else {
-    printf("%*s %s: %d children\n", depth*2, " ", t->name, t->num_of_children);
-    for(i=0; i<t->num_of_children; i++)
-      treeprint(t->child[i], depth+1);
+
+    if ( t->num_of_children == 0 ) {
+
+      printf("%*s LEAF: %s\n", depth*2, " ", t->leaf->text);
+      
+    } else {
+    
+      printf("%*s %s: %d children\n", depth*2, " ", t->name, t->num_of_children);
+      for(i=0; i<t->num_of_children; i++)
+	treeprint(t->child[i], depth+1);
+    }
   }
 }
 

@@ -271,7 +271,8 @@ int tokenize(int category) {
   yytoken = create_token(category, yytext, yylineno, filestack->filename);
 
   yylval.tptr = alctree(yytext, category, 0);
-
+  yylval.tptr->leaf = yytoken;
+  
   return category;
 };
 

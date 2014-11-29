@@ -14,42 +14,25 @@ unsigned long sdbm (char *str) {
   return hash;                                                                 
 };
 
-/* table struct */
-typedef struct table{
-  
 
-} * tableptr;
 
 /* union type */
-typedef union entry_type{
-  char *s;
-  int i;
-  tableptr t;
-}entype;
-
-bool is_entry (char *str) {
-  
-}
 
 int main() {
 
-  char *table[900];
-  char *str = "Damn";
+  char * table[900];
+  unsigned long key;
 
-  unsigned long result = 0;
+  char * value = "hello";
+
+  key = sdbm(value) % 900;
+  fprintf(stdout, "KEY: %lu\n", key);
+
+  table[key] = strdup(value);
+
+  fprintf(stdout, "VALUE: %s\n", table[key]);
+
   
-  result = sdbm(str) % 900;
-  fprintf(stdout, "%lu\n", result);
-  
-  table[result] = strdup(str);
-
-  fprintf(stdout, "%s\n", table[result]);
-  if (!table[0])
-    fprintf(stdout, "WAS NULL\n");
-  else
-    fprintf(stdout, "%s\n", table[0]);
-
-  return 0;
 }
 
 
