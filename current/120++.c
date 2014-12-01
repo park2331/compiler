@@ -40,12 +40,14 @@ int main(int argc, char **argv) {
 
   /* Push onto flex's convenient buffer */
   for (i = 0; i < argc; i++) {
-    yyin = fopen(filelist[i],"r");
+    //    yyin = fopen(filelist[i],"r");
+    yyin = fopen(argv[i],"r");
     if (yyin == NULL) {
       printf("%s is not a file!\n",filelist[i]);
       return 0;
     }
 
+    
     /* Push onto filestack as defined in token.c */
     push_node(&filestack, filelist[i]);
     yypush_buffer_state(yy_create_buffer(yyin, YY_BUF_SIZE));

@@ -268,22 +268,28 @@ postfix_expression:
 	primary_expression {$$ = $1;}
 	| postfix_expression '[' expression ']' {$$ = alctree("postfix_expression_247", 245, 4, $1, $2, $3, $4);}
 	| postfix_expression '(' expression_list_opt ')' {$$ = alctree("postfix_expression_248", 245, 4, $1, $2, $3, $4);}
+/*
 	| postfix_expression '.' TEMPLATE COLONCOLON id_expression  {$$ = alctree("postfix_expression_2480", 245, 4, $1, $2, $3, $4);}
 	| postfix_expression '.' TEMPLATE id_expression  {$$ = alctree("postfix_expression_2481", 245, 4, $1, $2, $3, $4);}
+*/
 	| postfix_expression '.' COLONCOLON id_expression {$$ = alctree("postfix_expression_251", 245, 4, $1, $2, $3, $4);}
 	| postfix_expression '.' id_expression {$$ = alctree("postfix_expression_252", 245, 3, $1, $2, $3);}
+/*
 	| postfix_expression ARROW TEMPLATE COLONCOLON id_expression  {$$ = alctree("postfix_expression_2482", 245, 4, $1, $2, $3, $4);}
 	| postfix_expression ARROW TEMPLATE id_expression  {$$ = alctree("postfix_expression_2560", 245, 3, $1, $2, $3);}
+*/
 	| postfix_expression ARROW COLONCOLON id_expression {$$ = alctree("postfix_expression_255", 245, 4, $1, $2, $3, $4);}
 	| postfix_expression ARROW id_expression {$$ = alctree("postfix_expression_256", 245, 3, $1, $2, $3);}
 	| postfix_expression PLUSPLUS {$$ = alctree("postfix_expression_257", 245, 2, $1, $2);}
 	| postfix_expression MINUSMINUS {$$ = alctree("postfix_expression_258", 245, 2, $1, $2);}
+/*
 	| DYNAMIC_CAST '<' type_id '>' '(' expression ')' {$$ = alctree("postfix_expression_259", 245, 7, $1, $2, $3, $4, $5, $6, $7);}
 	| STATIC_CAST '<' type_id '>' '(' expression ')' {$$ = alctree("postfix_expression_260", 245, 7, $1, $2, $3, $4, $5, $6, $7);}
 	| REINTERPRET_CAST '<' type_id '>' '(' expression ')' {$$ = alctree("postfix_expression_261", 245, 7, $1, $2, $3, $4, $5, $6, $7);}
 	| CONST_CAST '<' type_id '>' '(' expression ')' {$$ = alctree("postfix_expression_262", 245, 7, $1, $2, $3, $4, $5, $6, $7);}
 	| TYPEID '(' expression ')' {$$ = alctree("postfix_expression_263", 245, 4, $1, $2, $3, $4);}
 	| TYPEID '(' type_id ')' {$$ = alctree("postfix_expression_264", 245, 4, $1, $2, $3, $4);}
+*/
 	;
 
 expression_list:
