@@ -7,13 +7,4 @@
 /* Hash function */
 unsigned long sdmb (char*);
 
-typedef struct entry {
-
-  char *name;
-} entry;
-
-typedef struct table {
-
-  
-} *tableptr;
 #endif /* HASHT_H */

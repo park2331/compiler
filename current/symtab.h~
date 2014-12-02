@@ -1,0 +1,42 @@
+/* symtab.h
+ * Interface and function definition for implementation of symbol tables
+ * in the 120++ compiler.
+ */
+
+  
+#ifndef SYMTAB_H
+#define SYMTAB_H
+
+
+/* Include algorithm for hash function ...possibly reduce into one file */
+#include hasht.h
+
+/* A struct for holding type information - based on Jeffery's c_type  */
+
+struct ctype {
+
+  int base_type;
+  union {
+
+    struct arrayStuff {
+      int size;
+      struct entry *type;
+      /* some table */
+    } array;
+
+    struct funcStuff {
+      struct entry *type;
+      /* some table */
+    } function;
+
+    struct classStuff {
+      struct entryp *type;
+      /* some table */
+    }
+  }
+  
+};
+
+
+  
+#endif SYMTAB_H

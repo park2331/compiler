@@ -598,7 +598,7 @@ simple_type_specifier:
 	| WCHAR_T {$$ = $1;}
 	| BOOL {$$ = $1;}
 	| SHORT {$$ = $1;}
-        | INT 
+        | INT {$$ = $1;}
 	| LONG {$$ = $1;}
 	| SIGNED {$$ = $1;}
 	| UNSIGNED {$$ = $1;}
@@ -760,12 +760,12 @@ direct_declarator:
 
 ptr_operator:
 	'*' {$$ = $1;}
-	| '*' cv_qualifier_seq {$$ = alctree("ptr_operator_735", 733, 2, $1, $2);}
+//	| '*' cv_qualifier_seq {$$ = alctree("ptr_operator_735", 733, 2, $1, $2);}
 	| '&' {$$ = $1;}
 	| nested_name_specifier '*' {$$ = alctree("ptr_operator_737", 733, 2, $1, $2);}
-	| nested_name_specifier '*' cv_qualifier_seq {$$ = alctree("ptr_operator_738", 733, 3, $1, $2, $3);}
+//	| nested_name_specifier '*' cv_qualifier_seq {$$ = alctree("ptr_operator_738", 733, 3, $1, $2, $3);}
 	| COLONCOLON nested_name_specifier '*' {$$ = alctree("ptr_operator_739", 733, 3, $1, $2, $3);}
-	| COLONCOLON nested_name_specifier '*' cv_qualifier_seq {$$ = alctree("ptr_operator_740", 733, 4, $1, $2, $3, $4);}
+//	| COLONCOLON nested_name_specifier '*' cv_qualifier_seq {$$ = alctree("ptr_operator_740", 733, 4, $1, $2, $3, $4);}
 	;
 
 cv_qualifier_seq:
@@ -872,7 +872,7 @@ class_head:
 	;
 
 class_key:
-	CLASS {$$ = $1;}
+        CLASS {$$ = $1;} 
 	| STRUCT {$$ = $1;}
 	| UNION {$$ = $1;}
 	;

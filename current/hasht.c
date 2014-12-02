@@ -15,9 +15,8 @@ unsigned long sdbm (char *str) {
 };
 
 
-
 /* union type */
-
+/*
 int main() {
 
   char * table[900];
@@ -34,5 +33,4 @@ int main() {
 
   
 }
-
-
+*/

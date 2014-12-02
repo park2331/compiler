@@ -1,0 +1,11 @@
+#include <stdioh.h>
+#include <stdlib.h>
+#include "symtab.h"
+
+
+
+int main() {
+
+  tableptr p;
+  
+}

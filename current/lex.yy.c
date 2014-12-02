@@ -3040,6 +3040,7 @@ int typenametable_lookup(char *s)
    return IDENTIFIER;
 }
 
+
 int typenametable_insert(char *s, int cat)
 {
    struct typenametable_entry *tmp = head;
@@ -3063,4 +3064,5 @@ int typenametable_insert(char *s, int cat)
 static int check_identifier(char *s) {
 	return typenametable_lookup(s);
 }
+
 
