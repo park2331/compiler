@@ -35,17 +35,49 @@
 #include <ctype.h>
 #include <stdio.h>
 
-#include "parser.h"
+#include "120gram.tab.h"
+#include "token.h"
+#include "tlist.h"
+#include "tree.h"
 
 int lineno;
-int saw_iostream, saw_string, saw_std;
 
-static int yywrap(void);
-static int token(int);
 static void skip_until_eol(void);
 static void skip_comment(void);
 static int check_identifier(char *);
+
+int typenametable_insert(char*, int);
+
+/* extern */
+extern int yychar;
+extern FILE *yyin;
+extern nodeptr filestack;
+extern YYSTYPE yylval;
+
+/* Global variables */
+tokenptr yytoken;
+int errors = 0;
+
+/* #include flags */
+int ctime = 0;
+int iostream = 0;
+int iomanip = 0;
+int cmath = 0;
+int cstdlib = 0;
+int cstring = 0;
+int fstream = 0;
+int string = 0;
+int usingnamespacestd = 0;
+
+int tokenize(int);
+void handle_include();
 %}
+
+/* lexer options */
+%option yylineno
+%option noyywrap
+%option header-file="120lex.h"
+%option yylineno
 
 intsuffix				([uU][lL]?)|([lL][uU]?)
 fracconst				([0-9]*\.[0-9]+)|([0-9]+\.)
@@ -55,184 +87,201 @@ chartext				([^'])|(\\.)
 stringtext				([^"])|(\\.)
 
 %%
-
+"#include <iostream>"   { iostream = 1;}
+"#include <ctime>"      { ctime = 1; }
+"#include <iomanip>"    { iomanip = 1; }
+"#include <cmath>"      { cmath = 1; }
+"#include <cstdlib>"    { cstdlib = 1; }
+"#include <cstring>"    { cstring = 1; }
+"#include <fstream>"    { fstream = 1; }
+"#include <string>"     { string  = 1; }
+"#include"[ ]*\"[^\\"]+\" {handle_include(); }
+"using namespace std;"                   { usingnamespacestd = 1; }
 "\n"					{ ++lineno; }
 [\t\f\v\r ]+				{ /* Ignore whitespace. */ }
 
 "/*"					{ skip_comment(); }
 "//"					{ skip_until_eol(); }
 
-"{"					{ return token('{'); }
-"<%"					{ return token('{'); }
-"}"					{ return token('}'); }
-"%>"					{ return token('}'); }
-"["					{ return token('['); }
-"<:"					{ return token('['); }
-"]"					{ return token(']'); }
-":>"					{ return token(']'); }
-"("					{ return token('('); }
-")"					{ return token(')'); }
-";"					{ return token(';'); }
-":"					{ return token(':'); }
-"..."					{ return token(ELLIPSIS); }
-"?"					{ return token('?'); }
-"::"					{ return token(COLONCOLON); }
-"."					{ return token('.'); }
-".*"					{ return token(DOTSTAR); }
-"+"					{ return token('+'); }
-"-"					{ return token('-'); }
-"*"					{ return token('*'); }
-"/"					{ return token('/'); }
-"%"					{ return token('%'); }
-"^"					{ return token('^'); }
-"xor"					{ return token('^'); }
-"&"					{ return token('&'); }
-"bitand"				{ return token('&'); }
-"|"					{ return token('|'); }
-"bitor"					{ return token('|'); }
-"~"					{ return token('~'); }
-"compl"					{ return token('~'); }
-"!"					{ return token('!'); }
-"not"					{ return token('!'); }
-"="					{ return token('='); }
-"<"					{ return token('<'); }
-">"					{ return token('>'); }
-"+="					{ return token(ADDEQ); }
-"-="					{ return token(SUBEQ); }
-"*="					{ return token(MULEQ); }
-"/="					{ return token(DIVEQ); }
-"%="					{ return token(MODEQ); }
-"^="					{ return token(XOREQ); }
-"xor_eq"				{ return token(XOREQ); }
-"&="					{ return token(ANDEQ); }
-"and_eq"				{ return token(ANDEQ); }
-"|="					{ return token(OREQ); }
-"or_eq"					{ return token(OREQ); }
-"<<"					{ return token(SL); }
-">>"					{ return token(SR); }
-"<<="					{ return token(SLEQ); }
-">>="					{ return token(SREQ); }
-"=="					{ return token(EQ); }
-"!="					{ return token(NOTEQ); }
-"not_eq"				{ return token(NOTEQ); }
-"<="					{ return token(LTEQ); }
-">="					{ return token(GTEQ); }
-"&&"					{ return token(ANDAND); }
-"and"					{ return token(ANDAND); }
-"||"					{ return token(OROR); }
-"or"					{ return token(OROR); }
-"++"					{ return token(PLUSPLUS); }
-"--"					{ return token(MINUSMINUS); }
-","					{ return token(','); }
-"->*"					{ return token(ARROWSTAR); }
-"->"					{ return token(ARROW); }
+"{"					{ return tokenize('{'); }
+"<%"					{ return tokenize('{'); }
+"}"					{ return tokenize('}'); }
+"%>"					{ return tokenize('}'); }
+"["					{ return tokenize('['); }
+"<:"					{ return tokenize('['); }
+"]"					{ return tokenize(']'); }
+":>"					{ return tokenize(']'); }
+"("					{ return tokenize('('); }
+")"					{ return tokenize(')'); }
+";"					{ return tokenize(';'); }
+":"					{ return tokenize(':'); }
+"..."					{ return tokenize(ELLIPSIS); }
+"?"					{ return tokenize('?'); }
+"::"					{ return tokenize(COLONCOLON); }
+"."					{ return tokenize('.'); }
+".*"					{ return tokenize(DOTSTAR); }
+"+"					{ return tokenize('+'); }
+"-"					{ return tokenize('-'); }
+"*"					{ return tokenize('*'); }
+"/"					{ return tokenize('/'); }
+"%"					{ return tokenize('%'); }
+"^"					{ return tokenize('^'); }
+"xor"					{ return tokenize('^'); }
+"&"					{ return tokenize('&'); }
+"bitand"				{ return tokenize('&'); }
+"|"					{ return tokenize('|'); }
+"bitor"					{ return tokenize('|'); }
+"~"					{ return tokenize('~'); }
+"compl"					{ return tokenize('~'); }
+"!"					{ return tokenize('!'); }
+"not"					{ return tokenize('!'); }
+"="					{ return tokenize('='); }
+"<"					{ return tokenize('<'); }
+">"					{ return tokenize('>'); }
+"+="					{ return tokenize(ADDEQ); }
+"-="					{ return tokenize(SUBEQ); }
+"*="					{ return tokenize(MULEQ); }
+"/="					{ return tokenize(DIVEQ); }
+"%="					{ return tokenize(MODEQ); }
+"^="					{ return tokenize(XOREQ); }
+"xor_eq"				{ return tokenize(XOREQ); }
+"&="					{ return tokenize(ANDEQ); }
+"and_eq"				{ return tokenize(ANDEQ); }
+"|="					{ return tokenize(OREQ); }
+"or_eq"					{ return tokenize(OREQ); }
+"<<"					{ return tokenize(SL); }
+">>"					{ return tokenize(SR); }
+"<<="					{ return tokenize(SLEQ); }
+">>="					{ return tokenize(SREQ); }
+"=="					{ return tokenize(EQ); }
+"!="					{ return tokenize(NOTEQ); }
+"not_eq"				{ return tokenize(NOTEQ); }
+"<="					{ return tokenize(LTEQ); }
+">="					{ return tokenize(GTEQ); }
+"&&"					{ return tokenize(ANDAND); }
+"and"					{ return tokenize(ANDAND); }
+"||"					{ return tokenize(OROR); }
+"or"					{ return tokenize(OROR); }
+"++"					{ return tokenize(PLUSPLUS); }
+"--"					{ return tokenize(MINUSMINUS); }
+","					{ return tokenize(','); }
+"->*"					{ return tokenize(ARROWSTAR); }
+"->"					{ return tokenize(ARROW); }
 
-"asm"					{ return token(ASM); }
-"auto"					{ return token(AUTO); }
-"bool"					{ return token(BOOL); }
-"break"					{ return token(BREAK); }
-"case"					{ return token(CASE); }
-"catch"					{ return token(CATCH); }
-"char"					{ return token(CHAR); }
-"class"					{ return token(CLASS); }
-"const"					{ return token(CONST); }
-"const_cast"				{ return token(CONST_CAST); }
-"continue"				{ return token(CONTINUE); }
-"default"				{ return token(DEFAULT); }
-"delete"				{ return token(DELETE); }
-"do"					{ return token(DO); }
-"double"				{ return token(DOUBLE); }
-"dynamic_cast"				{ return token(DYNAMIC_CAST); }
-"else"					{ return token(ELSE); }
-"enum"					{ return token(ENUM); }
-"explicit"				{ return token(EXPLICIT); }
-"export"				{ return token(EXPORT); }
-"extern"				{ return token(EXTERN); }
-"false"					{ return token(FALSE); }
-"float"					{ return token(FLOAT); }
-"for"					{ return token(FOR); }
-"friend"				{ return token(FRIEND); }
-"goto"					{ return token(GOTO); }
-"if"					{ return token(IF); }
-"inline"				{ return token(INLINE); }
-"int"					{ return token(INT); }
-"long"					{ return token(LONG); }
-"mutable"				{ return token(MUTABLE); }
-"namespace"				{ return token(NAMESPACE); }
-"new"					{ return token(NEW); }
-"operator"				{ return token(OPERATOR); }
-"private"				{ return token(PRIVATE); }
-"protected"				{ return token(PROTECTED); }
-"public"				{ return token(PUBLIC); }
-"register"				{ return token(REGISTER); }
-"reinterpret_cast"			{ return token(REINTERPRET_CAST); }
-"return"				{ return token(RETURN); }
-"short"					{ return token(SHORT); }
-"signed"				{ return token(SIGNED); }
-"sizeof"				{ return token(SIZEOF); }
-"static"				{ return token(STATIC); }
-"static_cast"				{ return token(STATIC_CAST); }
-"struct"				{ return token(STRUCT); }
-"switch"				{ return token(SWITCH); }
-"template"				{ return token(TEMPLATE); }
-"this"					{ return token(THIS); }
-"throw"					{ return token(THROW); }
-"true"					{ return token(TRUE); }
-"try"					{ return token(TRY); }
-"typedef"				{ return token(TYPEDEF); }
-"typeid"				{ return token(TYPEID); }
-"typename"				{ return token(TYPENAME); }
-"union"					{ return token(UNION); }
-"unsigned"				{ return token(UNSIGNED); }
-"using"					{ return token(USING); }
-"virtual"				{ return token(VIRTUAL); }
-"void"					{ return token(VOID); }
-"volatile"				{ return token(VOLATILE); }
-"wchar_t"				{ return token(WCHAR_T); }
-"while"					{ return token(WHILE); }
+"asm"					{ return tokenize(ASM); }
+"auto"					{ return tokenize(AUTO); }
+"bool"					{ return tokenize(BOOL); }
+"break"					{ return tokenize(BREAK); }
+"case"					{ return tokenize(CASE); }
+"catch"					{ return tokenize(CATCH); }
+"char"					{ return tokenize(CHAR); }
+"class"					{ return tokenize(CLASS); }
+"const"					{ return tokenize(CONST); }
+"const_cast"				{ return tokenize(CONST_CAST); }
+"continue"				{ return tokenize(CONTINUE); }
+"default"				{ return tokenize(DEFAULT); }
+"delete"				{ return tokenize(DELETE); }
+"do"					{ return tokenize(DO); }
+"double"				{ return tokenize(DOUBLE); }
+"dynamic_cast"				{ return tokenize(DYNAMIC_CAST); }
+"else"					{ return tokenize(ELSE); }
+"enum"					{ return tokenize(ENUM); }
+"explicit"				{ return tokenize(EXPLICIT); }
+"export"				{ return tokenize(EXPORT); }
+"extern"				{ return tokenize(EXTERN); }
+"false"					{ return tokenize(FALSE); }
+"float"					{ return tokenize(FLOAT); }
+"for"					{ return tokenize(FOR); }
+"friend"				{ return tokenize(FRIEND); }
+"goto"					{ return tokenize(GOTO); }
+"if"					{ return tokenize(IF); }
+"inline"				{ return tokenize(INLINE); }
+"int"					{ return tokenize(INT); }
+"long"					{ return tokenize(LONG); }
+"mutable"				{ return tokenize(MUTABLE); }
+"namespace"				{ return tokenize(NAMESPACE); }
+"new"					{ return tokenize(NEW); }
+"operator"				{ return tokenize(OPERATOR); }
+"private"				{ return tokenize(PRIVATE); }
+"protected"				{ return tokenize(PROTECTED); }
+"public"				{ return tokenize(PUBLIC); }
+"register"				{ return tokenize(REGISTER); }
+"reinterpret_cast"			{ return tokenize(REINTERPRET_CAST); }
+"return"				{ return tokenize(RETURN); }
+"short"					{ return tokenize(SHORT); }
+"signed"				{ return tokenize(SIGNED); }
+"sizeof"				{ return tokenize(SIZEOF); }
+"static"				{ return tokenize(STATIC); }
+"static_cast"				{ return tokenize(STATIC_CAST); }
+"struct"				{ return tokenize(STRUCT); }
+"switch"				{ return tokenize(SWITCH); }
+"template"				{ return tokenize(TEMPLATE); }
+"this"					{ return tokenize(THIS); }
+"throw"					{ return tokenize(THROW); }
+"true"					{ return tokenize(TRUE); }
+"try"					{ return tokenize(TRY); }
+"typedef"				{ return tokenize(TYPEDEF); }
+"typeid"				{ return tokenize(TYPEID); }
+"typename"				{ return tokenize(TYPENAME); }
+"union"					{ return tokenize(UNION); }
+"unsigned"				{ return tokenize(UNSIGNED); }
+"using"					{ return tokenize(USING); }
+"virtual"				{ return tokenize(VIRTUAL); }
+"void"					{ return tokenize(VOID); }
+"volatile"				{ return tokenize(VOLATILE); }
+"wchar_t"				{ return tokenize(WCHAR_T); }
+"while"					{ return tokenize(WHILE); }
 
-[a-zA-Z_][a-zA-Z_0-9]*			{ return check_identifier(yytext); }
+[a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize(check_identifier(yytext)); }
 
-"0"[xX][0-9a-fA-F]+{intsuffix}?		{ return token(INTEGER); }
-"0"[0-7]+{intsuffix}?			{ return token(INTEGER); }
-[0-9]+{intsuffix}?			{ return token(INTEGER); }
+"0"[xX][0-9a-fA-F]+{intsuffix}?		{ return tokenize(INTEGER); }
+"0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
+[0-9]+{intsuffix}?			{ return tokenize(INTEGER); }
 
-{fracconst}{exppart}?{floatsuffix}?	{ return token(FLOATING); }
-[0-9]+{exppart}{floatsuffix}?		{ return token(FLOATING); }
+{fracconst}{exppart}?{floatsuffix}?	{ return tokenize(FLOATING); }
+[0-9]+{exppart}{floatsuffix}?		{ return tokenize(FLOATING); }
 
-"'"{chartext}*"'"			{ return token(CHARACTER); }
-"L'"{chartext}*"'"			{ return token(CHARACTER); }
+"'"{chartext}*"'"			{ return tokenize(CHARACTER); }
+"L'"{chartext}*"'"			{ return tokenize(CHARACTER); }
 
-"\""{stringtext}*"\""			{ return token(STRING); }
-"L\""{stringtext}*"\""			{ return token(STRING); }
-"#include <iostream>"			{ saw_iostream = 1; }
-"#include <string>"			{ saw_string = 1; }
-"using namespace std;"			{ saw_std = 1;
-		if (saw_string) typenametable_insert("string", CLASS_NAME);
-		if (saw_iostream) {
-			typenametable_insert("ifstream", CLASS_NAME);
-			typenametable_insert("ofstream", CLASS_NAME);
-			}
-		}
-
+"\""{stringtext}*"\""			{ return tokenize(STRING); }
+"L\""{stringtext}*"\""			{ return tokenize(STRING); }
 
 .					{ fprintf(stderr, "%d: unexpected character `%c'\n", lineno, yytext[0]); }
 
+<<EOF>>                 { 
+
+  yypop_buffer_state();
+  pop_node(&filestack);
+  if (filestack == NULL) {
+    yyterminate();    
+    printf("ALL FILES PARSED!\n");
+  }
+
+  yylineno = 1;
+  if (!YY_CURRENT_BUFFER) {
+    printf("NO MORE BUFFERS!\n");
+    yyterminate();
+  } 
+}
+
 %%
 
-static int
-yywrap(void)
-{
-	return 1;
-}
+int tokenize(int category) {
+  yytoken = create_token(category, yytext, yylineno, filestack->filename);
+
+  yylval.tptr = alctree(yytext, category, 0);
+  yylval.tptr->leaf = yytoken;
+  
+  return category;
+};
 
 /*
  * We use this routine instead a lex pattern because we don't need
  * to save the matched comment in the `yytext' buffer.
  */
-static void
-skip_comment(void)
-{
+
+static void skip_comment(void) {
 	int c1, c2;
 
 	c1 = input();
@@ -244,25 +293,34 @@ skip_comment(void)
 		c1 = c2;
 		c2 = input();
 	}
-}
+};
 
-/*
- * See the previous comment for an explanation.
- */
-static void
-skip_until_eol(void)
-{
+static void skip_until_eol(void) {
 	int c;
 
 	while ((c = input()) != EOF && c != '\n')
 		;
 	++lineno;
-}
+};
+
+/* Handles includes using built-in yybuffer */
+void handle_include() {
+
+  char *fname = malloc(strlen(yytext)+1-strlen("#include \"\""));
+  fname = strchr(yytext, '\"')+1;
+  fname[strlen(fname)-1] = '\0';
+  printf("%s\n",fname);
+  yyin = fopen(fname,"r");
+  push_node(&filestack, fname);
+  yypush_buffer_state(yy_create_buffer(yyin, YY_BUF_SIZE));
+
+};
 
 /*
  * Type name table.
  * Replace this with a hash table, when you get a chance.
  */
+
 struct typenametable_entry {
    char *name;
    int category;
@@ -278,6 +336,7 @@ int typenametable_lookup(char *s)
    }
    return IDENTIFIER;
 }
+
 
 int typenametable_insert(char *s, int cat)
 {
@@ -299,13 +358,7 @@ int typenametable_insert(char *s, int cat)
    head = tmp;
 }
 
-static int
-check_identifier(char *s)
-{
+static int check_identifier(char *s) {
 	return typenametable_lookup(s);
 }
 
-static int token(int cat)
-{
-   return cat;
-}

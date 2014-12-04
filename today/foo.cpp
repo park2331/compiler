@@ -1,8 +1,7 @@
 class foo {
 
   int x;
-  
-  
+    
 };
 
 
