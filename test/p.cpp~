@@ -1,0 +1,16 @@
+#include <iostream>
+
+int foo();
+
+int main() {
+
+  int x = foo();
+  
+};
+
+int foo {
+
+  cout << "DAMN" << endl;
+
+  return 0;
+};

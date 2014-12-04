@@ -2,7 +2,10 @@ CC=gcc
 CFLAGS=-c -g
 
 120++: 120++.o token.o tlist.o tree.o 120gram.tab.o lex.yy.o 
-	$(CC) -o 120 120++.o lex.yy.o token.o tlist.o 120gram.tab.o tree.o 
+	$(CC) -o 120 120++.o lex.yy.o token.o tlist.o 120gram.tab.o tree.o
+
+#symtab.o: symtab.c
+#	$(CC) $(CFLAGS) symtab.c
 
 token.o: token.c
 	$(CC) $(CFLAGS) token.c

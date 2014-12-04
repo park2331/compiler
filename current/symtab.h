@@ -11,29 +11,32 @@
 #include "hasht.h"
 
 
-
 /* Forward declaration */
 struct entry;
 struct type;
 struct table;
 
 
+/* An entry can be a type entry or table entry.
+ * Table entry is for storing scopes.
+ */
 
-/* An entry consists of a name and type info struct  */
 typedef struct entry {
 
   char *name;
-  struct type *typedata;
   
+  struct type *typedata;
+  struct table *scopetable;
+
 } * entryptr;
 
 
 
-/* Hash table struct that holds name and type data */
+/* Hash table struct that holds scope name and type data */
 typedef struct table {
 
   char *name;
-  entryptr symentry[900];
+  entryptr entry[900];
     
 } * tableptr;
 
@@ -42,6 +45,7 @@ typedef struct table {
 typedef struct type {
 
   int basetype;
+  int code;
   
   union {
     
@@ -60,7 +64,7 @@ typedef struct type {
 
     } f;
 
-    struct classtypea {
+    struct classtype {
       struct entry *type;
       /* some table */
 
@@ -70,6 +74,11 @@ typedef struct type {
 
 } * typeptr;
 
-
+/* Prototype declarations */
+tableptr new_table( char* );
+entryptr new_entry( char* );
+entryptr new_scope( char* );
+void insert( entryptr, tableptr );
+bool lookup( char *, tableptr );
   
 #endif /* SYMTAB_H */
