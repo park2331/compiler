@@ -111,7 +111,7 @@ bool lookup(char *n, tableptr t) {
     
   } else {
 
-    fprintf(stdout, "Entry: \"%s\" found in table \"%s\"\n", n, t->name );
+    fprintf(stdout, "Entry: \"%s\" NOT found in table \"%s\"\n", n, t->name );
     return false;
     
   }
