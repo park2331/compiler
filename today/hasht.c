@@ -14,6 +14,14 @@ unsigned long sdbm (char *str) {
   return hash;                                                                 
 };
 
+/* wrapper */
+int get_key(char* str) {
+  unsigned long k;
+  k = sdbm( str ) % 900;
+
+  return k;
+};
+
 
 /* union type */
 /*

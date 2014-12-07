@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "symtab.h"
+#include "hasht.h"
 
 int main() {
 
@@ -9,10 +10,10 @@ int main() {
   tableptr temp0;
   tableptr temp1;
   tableptr temp2;
-  unsigned long key0;
-  unsigned long key1;
+  int key0;
+  int key1;
   
-  globalscope = new_scope("global");
+  globalscope = new_table("global");
 
   /* insert functions; main */
   insert_scope( "funcFOO", globalscope );
@@ -24,7 +25,7 @@ int main() {
   insert_entry( "param1", temp0 );
 
 
-  key0 = sdbm("funcFOO") % 900;
+  key0 = get_key("funcFOO");
 
   temp1 = globalscope->entry[key0]->scopetable;
 	     
@@ -45,4 +46,3 @@ int main() {
     
   return 0;
 }
-

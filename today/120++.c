@@ -9,6 +9,8 @@
 #include "120lex.h"
 #include "tree.h"
 #include "120gram.tab.h"
+#include "hasht.h"
+#include "symtab.h"
 
 extern FILE *yyin;
 extern char *yytext;
@@ -17,7 +19,10 @@ extern int yyparse();
 extern YYSTYPE yylval;
 extern treeptr t_unit;
 
+
 nodeptr filestack = NULL;
+tableptr classtable = NULL;
+tableptr globaltable = NULL;
 
 int main(int argc, char **argv) {
 
@@ -27,6 +32,9 @@ int main(int argc, char **argv) {
   int code = -1;
   const char *filelist[argc];
 
+  globaltable = new_table( "globaltable" );
+  classtable = new_table( "classtable " );
+  
   if(argc == 1) {
     printf("No files to (F)lex!\n");
     return 0;

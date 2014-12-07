@@ -51,17 +51,21 @@
 #include "token.h"
 #include "tree.h"
 #include "hasht.h"
+#include "symtab.h"
 
 
 #define YYDEBUG 1
 extern int yylineno;
 extern char *yytext;
+extern tableptr classtable;
 
 /* extern in 120++.c 
  * Head pointer to start of program (translation unit).
  */
+ 
 treeptr t_unit;
 
+ 
 int yydebug=0;
 
 static void yyerror(char *s);
@@ -242,12 +246,12 @@ primary_expression:
 	;
 
 id_expression:
-	unqualified_id {$$ = $1;}
-	| qualified_id {$$ = $1;}
+        unqualified_id { $$ = $1; } 
+	| qualified_id { $$ = $1; }
 	;
 
 unqualified_id:
-	identifier {$$ = $1;}
+        identifier { $$ = $1; }
 	| operator_function_id {$$ = $1;}
 	| conversion_function_id {$$ = $1;}
 	| '~' class_name {$$ = alctree("unqualified_id_232", 228, 2, $1, $2);}
@@ -741,12 +745,12 @@ init_declarator:
 	;
 
 declarator:
-	direct_declarator {$$ = $1;}
+        direct_declarator {$$ = $1;}
 	| ptr_operator declarator {$$ = alctree("declarator_717", 715, 2, $1, $2);}
 	;
 
 direct_declarator:
-	declarator_id {$$ = $1;}
+        declarator_id { $$ = $1; }
 	| direct_declarator '('parameter_declaration_clause ')' cv_qualifier_seq exception_specification {$$ = alctree("direct_declarator_722", 720, 5, $1, $2, $3, $4, $5);}
 	| direct_declarator '('parameter_declaration_clause ')' cv_qualifier_seq {$$ = alctree("direct_declarator_723", 720, 4, $1, $2, $3, $4);}
 	| direct_declarator '('parameter_declaration_clause ')' exception_specification {$$ = alctree("direct_declarator_724", 720, 4, $1, $2, $3, $4);}
@@ -865,10 +869,10 @@ class_specifier:
 class_head:
         /* Previously was a hashtable implementation; will reimplement */
         /* class_key identifier { typenametable_insert($2, CLASS_NAME); } */
-        class_key identifier { $$ = alctree("class_head_836", 837, 2, $1, $2); } 
+        class_key identifier { classnametable_insert( $2, classtable ); $$ = alctree("class_head_836", 837, 2, $1, $2); } 
 	| class_key identifier base_clause {$$ = alctree("class_head_839", 837, 3, $1, $2, $3);}
 	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
-	| class_key nested_name_specifier identifier base_clause {$$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
+        | class_key nested_name_specifier identifier base_clause { classnametable_insert( $3, classtable ) ; $$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
 	;
 
 class_key:
@@ -889,16 +893,16 @@ member_declaration:
 	| ';' {$$ = $1;}
 	| function_definition SEMICOLON_opt {$$ = alctree("member_declaration_860", 855, 2, $1, $2);}
 	| qualified_id ';' {$$ = alctree("member_declaration_861", 855, 2, $1, $2);}
-	| using_declaration 
+        | using_declaration { $$ = $1; }
 	;
 
 member_declarator_list:
-	member_declarator {$$ = $1;}
+        member_declarator {$$ = $1;}
 	| member_declarator_list ',' member_declarator {$$ = alctree("member_declarator_list_867", 865, 3, $1, $2, $3);}
 	;
 
 member_declarator:
-        declarator {$$ = $1;}
+	declarator { $$ = $1; }
 	| declarator pure_specifier {$$ = alctree("member_declarator_872", 870, 2, $1, $2);}
 	| declarator constant_initializer {$$ = alctree("member_declarator_873", 870, 2, $1, $2);}
 	| identifier ':' constant_expression {$$ = alctree("member_declarator_874", 870, 3, $1, $2, $3);}
@@ -1266,4 +1270,5 @@ type_id_list_opt:
 
 static void yyerror(char *s) {
 	fprintf(stderr, "line %d: %s\n", yylineno, s);
+	fprintf(stderr, "%s\n", yytext);
 }

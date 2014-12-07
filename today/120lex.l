@@ -34,27 +34,31 @@
 %{
 #include <ctype.h>
 #include <stdio.h>
-
+#include <stdbool.h>
 #include "120gram.tab.h"
 #include "token.h"
 #include "tlist.h"
 #include "tree.h"
+#include "symtab.h"
 
 int lineno;
 
 static void skip_until_eol(void);
 static void skip_comment(void);
-static int check_identifier(char *);
+static int check_identifier( char * , tableptr );
 
-int typenametable_insert(char*, int);
+//int typenametable_insert(char*, int);
+void typenametable_insert( treeptr, tableptr );
 
 /* extern */
 extern int yychar;
 extern FILE *yyin;
 extern nodeptr filestack;
 extern YYSTYPE yylval;
+extern tableptr classtable;
 
 /* Global variables */
+
 tokenptr yytoken;
 int errors = 0;
 
@@ -96,7 +100,7 @@ stringtext				([^"])|(\\.)
 "#include <fstream>"    { fstream = 1; }
 "#include <string>"     { string  = 1; }
 "#include"[ ]*\"[^\\"]+\" {handle_include(); }
-"using namespace std;"                   { usingnamespacestd = 1; }
+"using namespace std;"                  { usingnamespacestd = 1; }
 "\n"					{ ++lineno; }
 [\t\f\v\r ]+				{ /* Ignore whitespace. */ }
 
@@ -232,10 +236,10 @@ stringtext				([^"])|(\\.)
 "wchar_t"				{ return tokenize(WCHAR_T); }
 "while"					{ return tokenize(WHILE); }
 
-[a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize(check_identifier(yytext)); }
+[a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize( check_identifier(yytext, classtable) ); }
 
 "0"[xX][0-9a-fA-F]+{intsuffix}?		{ return tokenize(INTEGER); }
-"0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
+n"0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
 [0-9]+{intsuffix}?			{ return tokenize(INTEGER); }
 
 {fracconst}{exppart}?{floatsuffix}?	{ return tokenize(FLOATING); }
@@ -272,8 +276,8 @@ int tokenize(int category) {
 
   yylval.tptr = alctree(yytext, category, 0);
   yylval.tptr->leaf = yytoken;
-  
   return category;
+  
 };
 
 /*
@@ -327,6 +331,8 @@ struct typenametable_entry {
    struct typenametable_entry *next;
    } *head;
 
+
+/*
 int typenametable_lookup(char *s)
 {
    struct typenametable_entry *tmp = head;
@@ -336,8 +342,9 @@ int typenametable_lookup(char *s)
    }
    return IDENTIFIER;
 }
+*/
 
-
+/*
 int typenametable_insert(char *s, int cat)
 {
    struct typenametable_entry *tmp = head;
@@ -356,9 +363,37 @@ int typenametable_insert(char *s, int cat)
    tmp->category = cat;
    tmp->next = head;
    head = tmp;
-}
+};
+*/
 
-static int check_identifier(char *s) {
-	return typenametable_lookup(s);
-}
+void classnametable_insert(treeptr tp, tableptr t) {
 
+   /* Checkit */
+   if ( lookup( tp->leaf->text , t ) == true) {
+        fprintf(stderr,
+	    "warning, %s is already in the typename table as a %d\n",
+            tp->leaf->text, tp->leaf->category );
+   } else {
+
+     insert_entry( tp->leaf->text , t );
+     tp->leaf->category = CLASS_NAME;
+
+   }
+};
+
+
+static int check_identifier( char *s , tableptr t ) {
+
+
+        if ( lookup( s , t ) == true ) {
+ 
+        printf( "\"%s\" is a class member\n", s );
+            
+            return CLASS_NAME;
+
+         } else {
+
+            return IDENTIFIER;
+
+        }
+};

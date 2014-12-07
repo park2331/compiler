@@ -6,18 +6,8 @@
 #include "hasht.h"
 
 
-/* Initialize new table for use */
-tableptr new_table(char* n) {
 
-  tableptr t = calloc(1, sizeof(tableptr));
-  t->name = strdup(n);
-
-  return t;
-}
-
-
-
-/* Creates 'type' entry  */
+/* Creates 'type' entry; init memory and store name */
 entryptr new_entry(char* n) {
 
   entryptr e = calloc(1, sizeof(entryptr));
@@ -26,46 +16,61 @@ entryptr new_entry(char* n) {
   e->name = strdup(n);
 
   /* Initialize type */
-  e->typedata = t;
+  e->entrytype = t;
   
   return e;
-}
+};
 
 
-/* Creates 'table' entry */
+/* Initialize new table for use; init mem and store name. */
+tableptr new_table(char* n) {
+
+  tableptr t = calloc(1, sizeof(tableptr));
+  t->name = strdup(n);
+
+  return t;
+};
+
+
+/* Init mem for entry, stores name, inits table field of entry struct. 
+ * Returns entry pointer.
+ */
 entryptr new_scope(char *n) {
 
   entryptr e = new_entry(n);
   
   e->name = strdup(n);
-  e->scopetable = new_table(n);
+  e->entrytable = new_table(n);
 
   /* not needed, as this is a scope table entry */
-  free(e->typedata);
+  free(e->entrytype);
 
   return e;
  
 };
 
 
-/* Insert entry */
+/* Insert entry; takes entry struct as param */
 void insert(entryptr e, tableptr t) {
 
-  unsigned long key = sdbm(e->name) % 900;
+  //unsigned long key = sdbm(e->name) % 900;
+  int key = get_key(e->name);
 
   t->entry[key] = e;
 
-  //  printf("%s\n",t->entry[key]->name);
+  fprintf( stdout , "%s was INSERTED into %s at location %d.\n" , e->name , t->name , key );
   
 };
 
 
-/* Function inserts entry by name */
+/* Inserts entry by name */
 void insert_entry(char* n, tableptr t) {
 
   entryptr e = new_entry(n);
 
   insert(e, t);
+
+
   
 };
 
@@ -78,79 +83,38 @@ void insert_scope(char* n, tableptr t) {
   
 };
 
+entryptr get_entry( char *n , tableptr t ) {
 
-/* Return scope table by name */
-tableptr get_scope(char* n, tableptr t) {
+  return t->entry[get_key(n)];
+}
+
+
+/* Return entry */
+tableptr get_scope(char *n, tableptr t) {
   
-  unsigned long key = sdbm(n) % 900;
-
-  return t->entry[key]->scopetable;
+  //unsigned long key = sdbm(n) % 900;
+  int key = get_key(n);
+  
+  return t->entry[key]->entrytable;
   
 };
 
 bool lookup(char *n, tableptr t) {
 
-  unsigned long key = sdbm(n) % 900;  
-
+  //  unsigned long key = sdbm(n) % 900;  
+  int key = get_key(n);
 
   if (t->entry[key]) {
     
-    fprintf(stdout, "Entry: \"%s\" found!\n", n);
+    fprintf(stdout, "Entry: \"%s\" found in table \"%s\" at location %d\n", n, t->name , key );
     return true;
     
   } else {
 
-    fprintf(stdout, "Entry: \"%s\" not found.\n", n);
+    fprintf(stdout, "Entry: \"%s\" found in table \"%s\"\n", n, t->name );
     return false;
     
   }
   
 };
 
-
-
-/*
-int main() {
-
-  /* declare and init global scope table 
-  tableptr globalscope;
-  tableptr temp0;
-  tableptr temp1;
-  tableptr temp2;
-  unsigned long key0;
-  unsigned long key1;
-  
-  globalscope = new_scope("global");
-
-  /* insert functions; main 
-  insert_scope( "funcFOO", globalscope );
-
-  /* get function scope from global scope
-  temp0 = get_scope( "funcFOO", globalscope );
-
-  /* insert entry 
-  insert_entry( "param1", temp0 );
-
-
-  key0 = sdbm("funcFOO") % 900;
-
-  temp1 = globalscope->entry[key0]->scopetable;
-	     
-  lookup( "param1", temp1 );
-  */
-  
-  /*
-    
-  insert_scope( "funcBAR", globalscope );
-  insert_scope( "funcBAZ", globalscope );
-  insert_scope( "main", globalscope );
-
-  lookup( "funcFOO", globalscope );
-  lookup( "funcBAR", globalscope );
-  lookup( "funcBAZ", globalscope );
-  lookup( "main", globalscope );
-
-    
-  return 0;
-}
-*/

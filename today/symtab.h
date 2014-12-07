@@ -8,7 +8,10 @@
 #define SYMTAB_H
 
 /* Include algorithm for hash function ...possibly reduce into one file */
+#include <stdbool.h>
+#include <stdio.h>
 #include "hasht.h"
+#include "tree.h"
 
 
 /* Forward declaration */
@@ -25,8 +28,8 @@ typedef struct entry {
 
   char *name;
   
-  struct type *typedata;
-  struct table *scopetable;
+  struct type *entrytype;
+  struct table *entrytable;
 
 } * entryptr;
 
@@ -79,6 +82,8 @@ tableptr new_table( char* );
 entryptr new_entry( char* );
 entryptr new_scope( char* );
 void insert( entryptr, tableptr );
+void insert_entry( char* , tableptr );
+tableptr get_scope(char* , tableptr );
 bool lookup( char *, tableptr );
   
 #endif /* SYMTAB_H */
