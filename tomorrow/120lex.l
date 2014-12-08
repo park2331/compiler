@@ -239,7 +239,7 @@ stringtext				([^"])|(\\.)
 [a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize( IDENTIFIER ); }
 
 "0"[xX][0-9a-fA-F]+{intsuffix}?		{ return tokenize(INTEGER); }
-n"0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
+"0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
 [0-9]+{intsuffix}?			{ return tokenize(INTEGER); }
 
 {fracconst}{exppart}?{floatsuffix}?	{ return tokenize(FLOATING); }

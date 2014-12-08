@@ -48,7 +48,7 @@ void treeprint(struct tree *t, int depth)
 
     if ( t->num_of_children == 0 ) {
 
-      printf("%*s SYM: \"%s\: CODE: %d\n", depth*2, " ", t->leaf->text, t->leaf->category);
+      printf("%*s SYM: \"%s\": CODE: %d\n", depth*2, " ", t->leaf->text, t->leaf->category);
       
     } else {
     

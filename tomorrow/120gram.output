@@ -1,4 +1,4 @@
-Terminals which are not used
+Terminals unused in grammar
 
    CONST_CAST
    DYNAMIC_CAST
@@ -432,7 +432,7 @@ Grammar
   281                             | parameter_declaration_list ELLIPSIS
   282                             | ELLIPSIS
   283                             | parameter_declaration_list ',' ELLIPSIS
-  284                             | /* empty */
+  284                             | %empty
 
   285 parameter_declaration_list: parameter_declaration
   286                           | parameter_declaration_list ',' parameter_declaration
@@ -599,76 +599,76 @@ Grammar
   411 type_id_list: type_id
   412             | type_id_list ',' type_id
 
-  413 declaration_seq_opt: /* empty */
+  413 declaration_seq_opt: %empty
   414                    | declaration_seq
 
-  415 nested_name_specifier_opt: /* empty */
+  415 nested_name_specifier_opt: %empty
   416                          | nested_name_specifier
 
-  417 expression_list_opt: /* empty */
+  417 expression_list_opt: %empty
   418                    | expression_list
 
-  419 COLONCOLON_opt: /* empty */
+  419 COLONCOLON_opt: %empty
   420               | COLONCOLON
 
-  421 new_placement_opt: /* empty */
+  421 new_placement_opt: %empty
   422                  | new_placement
 
-  423 new_initializer_opt: /* empty */
+  423 new_initializer_opt: %empty
   424                    | new_initializer
 
-  425 new_declarator_opt: /* empty */
+  425 new_declarator_opt: %empty
   426                   | new_declarator
 
-  427 expression_opt: /* empty */
+  427 expression_opt: %empty
   428               | expression
 
-  429 statement_seq_opt: /* empty */
+  429 statement_seq_opt: %empty
   430                  | statement_seq
 
-  431 condition_opt: /* empty */
+  431 condition_opt: %empty
   432              | condition
 
-  433 enumerator_list_opt: /* empty */
+  433 enumerator_list_opt: %empty
   434                    | enumerator_list
 
-  435 initializer_opt: /* empty */
+  435 initializer_opt: %empty
   436                | initializer
 
-  437 constant_expression_opt: /* empty */
+  437 constant_expression_opt: %empty
   438                        | constant_expression
 
-  439 abstract_declarator_opt: /* empty */
+  439 abstract_declarator_opt: %empty
   440                        | abstract_declarator
 
-  441 type_specifier_seq_opt: /* empty */
+  441 type_specifier_seq_opt: %empty
   442                       | type_specifier_seq
 
-  443 direct_abstract_declarator_opt: /* empty */
+  443 direct_abstract_declarator_opt: %empty
   444                               | direct_abstract_declarator
 
-  445 ctor_initializer_opt: /* empty */
+  445 ctor_initializer_opt: %empty
   446                     | ctor_initializer
 
-  447 COMMA_opt: /* empty */
+  447 COMMA_opt: %empty
   448          | ','
 
-  449 member_specification_opt: /* empty */
+  449 member_specification_opt: %empty
   450                         | member_specification
 
-  451 SEMICOLON_opt: /* empty */
+  451 SEMICOLON_opt: %empty
   452              | ';'
 
-  453 conversion_declarator_opt: /* empty */
+  453 conversion_declarator_opt: %empty
   454                          | conversion_declarator
 
-  455 handler_seq_opt: /* empty */
+  455 handler_seq_opt: %empty
   456                | handler_seq
 
-  457 assignment_expression_opt: /* empty */
+  457 assignment_expression_opt: %empty
   458                          | assignment_expression
 
-  459 type_id_list_opt: /* empty */
+  459 type_id_list_opt: %empty
   460                 | type_id_list
 
 
@@ -904,8 +904,8 @@ assignment_expression (170)
     on left: 109 110 111, on right: 43 44 108 110 123 124 145 288 290
     298 458
 assignment_operator (171)
-    on left: 112 113 114 115 116 117 118 119 120 121 122,
-    on right: 110
+    on left: 112 113 114 115 116 117 118 119 120 121 122, on right:
+    110
 expression (172)
     on left: 123 124, on right: 21 35 67 108 124 144 147 428
 constant_expression (173)
@@ -953,8 +953,8 @@ function_specifier (192)
 type_specifier (193)
     on left: 184 185 186 187 188, on right: 170 271
 simple_type_specifier (194)
-    on left: 189 190 191 192 193 194 195 196 197 198 199 200 201 202
-   , on right: 184
+    on left: 189 190 191 192 193 194 195 196 197 198 199 200 201 202,
+    on right: 184
 type_name (195)
     on left: 203 204 205, on right: 189 190 191 268 269
 elaborated_type_specifier (196)
@@ -999,8 +999,8 @@ declarator (215)
     on left: 246 247, on right: 145 245 247 257 287 288 291 292 293
     294 322 323 324 405
 direct_declarator (216)
-    on left: 248 249 250 251 252 253 254 255 256 257,
-    on right: 246 249 250 251 252 256
+    on left: 248 249 250 251 252 253 254 255 256 257, on right: 246
+    249 250 251 252 256
 ptr_operator (217)
     on left: 258 259 260 261, on right: 65 247 272 348
 cv_qualifier_seq (218)
@@ -1057,8 +1057,8 @@ base_clause (242)
 base_specifier_list (243)
     on left: 329 330, on right: 328 330
 base_specifier (244)
-    on left: 331 332 333 334 335 336 337 338 339 340 341 342,
-    on right: 329 330
+    on left: 331 332 333 334 335 336 337 338 339 340 341 342, on right:
+    329 330
 access_specifier (245)
     on left: 343 344 345, on right: 312 335 336 339 340 341 342
 conversion_function_id (246)
@@ -1080,8 +1080,7 @@ operator_function_id (253)
 operator (254)
     on left: 359 360 361 362 363 364 365 366 367 368 369 370 371 372
     373 374 375 376 377 378 379 380 381 382 383 384 385 386 387 388
-    389 390 391 392 393 394 395 396 397 398 399 400,
-    on right: 358
+    389 390 391 392 393 394 395 396 397 398 399 400, on right: 358
 try_block (255)
     on left: 401, on right: 133
 function_try_block (256)
@@ -1148,7 +1147,7 @@ type_id_list_opt (286)
     on left: 459 460, on right: 410
 
 
-state 0
+State 0
 
     0 $accept: . translation_unit $end
 
@@ -1245,21 +1244,21 @@ state 0
     declaration_seq_opt             go to state 88
 
 
-state 1
+State 1
 
     6 identifier: IDENTIFIER .
 
     $default  reduce using rule 6 (identifier)
 
 
-state 2
+State 2
 
     1 typedef_name: TYPEDEF_NAME .
 
     $default  reduce using rule 1 (typedef_name)
 
 
-state 3
+State 3
 
     4 class_name: CLASS_NAME .
   253 direct_declarator: CLASS_NAME . '(' parameter_declaration_clause ')'
@@ -1274,14 +1273,14 @@ state 3
     $default    reduce using rule 4 (class_name)
 
 
-state 4
+State 4
 
     5 enum_name: ENUM_NAME .
 
     $default  reduce using rule 5 (enum_name)
 
 
-state 5
+State 5
 
   191 simple_type_specifier: COLONCOLON . nested_name_specifier_opt type_name
   261 ptr_operator: COLONCOLON . nested_name_specifier '*'
@@ -1317,56 +1316,56 @@ state 5
     nested_name_specifier_opt  go to state 95
 
 
-state 6
+State 6
 
   240 asm_definition: ASM . '(' string_literal ')' ';'
 
     '('  shift, and go to state 96
 
 
-state 7
+State 7
 
   176 storage_class_specifier: AUTO .
 
     $default  reduce using rule 176 (storage_class_specifier)
 
 
-state 8
+State 8
 
   194 simple_type_specifier: BOOL .
 
     $default  reduce using rule 194 (simple_type_specifier)
 
 
-state 9
+State 9
 
   192 simple_type_specifier: CHAR .
 
     $default  reduce using rule 192 (simple_type_specifier)
 
 
-state 10
+State 10
 
   308 class_key: CLASS .
 
     $default  reduce using rule 308 (class_key)
 
 
-state 11
+State 11
 
   264 cv_qualifier: CONST .
 
     $default  reduce using rule 264 (cv_qualifier)
 
 
-state 12
+State 12
 
   201 simple_type_specifier: DOUBLE .
 
     $default  reduce using rule 201 (simple_type_specifier)
 
 
-state 13
+State 13
 
   208 elaborated_type_specifier: ENUM . COLONCOLON nested_name_specifier identifier
   209                          | ENUM . COLONCOLON identifier
@@ -1385,14 +1384,14 @@ state 13
     nested_name_specifier    go to state 100
 
 
-state 14
+State 14
 
   183 function_specifier: EXPLICIT .
 
     $default  reduce using rule 183 (function_specifier)
 
 
-state 15
+State 15
 
   179 storage_class_specifier: EXTERN .
   241 linkage_specification: EXTERN . string_literal '{' declaration_seq_opt '}'
@@ -1405,49 +1404,49 @@ state 15
     string_literal  go to state 102
 
 
-state 16
+State 16
 
   200 simple_type_specifier: FLOAT .
 
     $default  reduce using rule 200 (simple_type_specifier)
 
 
-state 17
+State 17
 
   172 decl_specifier: FRIEND .
 
     $default  reduce using rule 172 (decl_specifier)
 
 
-state 18
+State 18
 
   181 function_specifier: INLINE .
 
     $default  reduce using rule 181 (function_specifier)
 
 
-state 19
+State 19
 
   196 simple_type_specifier: INT .
 
     $default  reduce using rule 196 (simple_type_specifier)
 
 
-state 20
+State 20
 
   197 simple_type_specifier: LONG .
 
     $default  reduce using rule 197 (simple_type_specifier)
 
 
-state 21
+State 21
 
   180 storage_class_specifier: MUTABLE .
 
     $default  reduce using rule 180 (storage_class_specifier)
 
 
-state 22
+State 22
 
   222 original_namespace_definition: NAMESPACE . identifier '{' namespace_body '}'
   223 extension_namespace_definition: NAMESPACE . original_namespace_name '{' namespace_body '}'
@@ -1462,7 +1461,7 @@ state 22
     identifier               go to state 105
 
 
-state 23
+State 23
 
   346 conversion_function_id: OPERATOR . conversion_type_id
   358 operator_function_id: OPERATOR . operator
@@ -1551,49 +1550,49 @@ state 23
     operator                   go to state 151
 
 
-state 24
+State 24
 
   177 storage_class_specifier: REGISTER .
 
     $default  reduce using rule 177 (storage_class_specifier)
 
 
-state 25
+State 25
 
   195 simple_type_specifier: SHORT .
 
     $default  reduce using rule 195 (simple_type_specifier)
 
 
-state 26
+State 26
 
   198 simple_type_specifier: SIGNED .
 
     $default  reduce using rule 198 (simple_type_specifier)
 
 
-state 27
+State 27
 
   178 storage_class_specifier: STATIC .
 
     $default  reduce using rule 178 (storage_class_specifier)
 
 
-state 28
+State 28
 
   309 class_key: STRUCT .
 
     $default  reduce using rule 309 (class_key)
 
 
-state 29
+State 29
 
   173 decl_specifier: TYPEDEF .
 
     $default  reduce using rule 173 (decl_specifier)
 
 
-state 30
+State 30
 
   211 elaborated_type_specifier: TYPENAME . COLONCOLON_opt nested_name_specifier identifier
 
@@ -1604,21 +1603,21 @@ state 30
     COLONCOLON_opt  go to state 153
 
 
-state 31
+State 31
 
   310 class_key: UNION .
 
     $default  reduce using rule 310 (class_key)
 
 
-state 32
+State 32
 
   199 simple_type_specifier: UNSIGNED .
 
     $default  reduce using rule 199 (simple_type_specifier)
 
 
-state 33
+State 33
 
   231 using_declaration: USING . TYPENAME COLONCOLON nested_name_specifier unqualified_id ';'
   232                  | USING . TYPENAME nested_name_specifier unqualified_id ';'
@@ -1642,35 +1641,35 @@ state 33
     nested_name_specifier    go to state 157
 
 
-state 34
+State 34
 
   182 function_specifier: VIRTUAL .
 
     $default  reduce using rule 182 (function_specifier)
 
 
-state 35
+State 35
 
   202 simple_type_specifier: VOID .
 
     $default  reduce using rule 202 (simple_type_specifier)
 
 
-state 36
+State 36
 
   265 cv_qualifier: VOLATILE .
 
     $default  reduce using rule 265 (cv_qualifier)
 
 
-state 37
+State 37
 
   193 simple_type_specifier: WCHAR_T .
 
     $default  reduce using rule 193 (simple_type_specifier)
 
 
-state 38
+State 38
 
   257 direct_declarator: '(' . declarator ')'
 
@@ -1700,21 +1699,21 @@ state 38
     operator_function_id     go to state 87
 
 
-state 39
+State 39
 
   259 ptr_operator: '&' .
 
     $default  reduce using rule 259 (ptr_operator)
 
 
-state 40
+State 40
 
   258 ptr_operator: '*' .
 
     $default  reduce using rule 258 (ptr_operator)
 
 
-state 41
+State 41
 
    28 unqualified_id: '~' . class_name
 
@@ -1723,35 +1722,35 @@ state 41
     class_name  go to state 161
 
 
-state 42
+State 42
 
     3 original_namespace_name: NAMESPACE_NAME .
 
     $default  reduce using rule 3 (original_namespace_name)
 
 
-state 43
+State 43
 
   205 type_name: typedef_name .
 
     $default  reduce using rule 205 (type_name)
 
 
-state 44
+State 44
 
    32 nested_name_specifier: namespace_name . COLONCOLON nested_name_specifier
 
     COLONCOLON  shift, and go to state 162
 
 
-state 45
+State 45
 
     2 namespace_name: original_namespace_name .
 
     $default  reduce using rule 2 (namespace_name)
 
 
-state 46
+State 46
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -1763,49 +1762,49 @@ state 46
     $default    reduce using rule 203 (type_name)
 
 
-state 47
+State 47
 
   204 type_name: enum_name .
 
     $default  reduce using rule 204 (type_name)
 
 
-state 48
+State 48
 
    25 unqualified_id: identifier .
 
     $default  reduce using rule 25 (unqualified_id)
 
 
-state 49
+State 49
 
     0 $accept: translation_unit . $end
 
     $end  shift, and go to state 164
 
 
-state 50
+State 50
 
   266 declarator_id: id_expression .
 
     $default  reduce using rule 266 (declarator_id)
 
 
-state 51
+State 51
 
    23 id_expression: unqualified_id .
 
     $default  reduce using rule 23 (id_expression)
 
 
-state 52
+State 52
 
    24 id_expression: qualified_id .
 
     $default  reduce using rule 24 (id_expression)
 
 
-state 53
+State 53
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -1831,7 +1830,7 @@ state 53
     operator_function_id    go to state 87
 
 
-state 54
+State 54
 
   157 declaration_seq: declaration_seq . declaration
   414 declaration_seq_opt: declaration_seq .
@@ -1926,35 +1925,35 @@ state 54
     operator_function_id            go to state 87
 
 
-state 55
+State 55
 
   156 declaration_seq: declaration .
 
     $default  reduce using rule 156 (declaration_seq)
 
 
-state 56
+State 56
 
   158 declaration: block_declaration .
 
     $default  reduce using rule 158 (declaration)
 
 
-state 57
+State 57
 
   162 block_declaration: simple_declaration .
 
     $default  reduce using rule 162 (block_declaration)
 
 
-state 58
+State 58
 
   174 decl_specifier_seq: decl_specifier .
 
     $default  reduce using rule 174 (decl_specifier_seq)
 
 
-state 59
+State 59
 
   167 simple_declaration: decl_specifier_seq . init_declarator_list ';'
   168                   | decl_specifier_seq . ';'
@@ -2035,126 +2034,126 @@ state 59
     operator_function_id       go to state 87
 
 
-state 60
+State 60
 
   169 decl_specifier: storage_class_specifier .
 
     $default  reduce using rule 169 (decl_specifier)
 
 
-state 61
+State 61
 
   171 decl_specifier: function_specifier .
 
     $default  reduce using rule 171 (decl_specifier)
 
 
-state 62
+State 62
 
   170 decl_specifier: type_specifier .
 
     $default  reduce using rule 170 (decl_specifier)
 
 
-state 63
+State 63
 
   184 type_specifier: simple_type_specifier .
 
     $default  reduce using rule 184 (type_specifier)
 
 
-state 64
+State 64
 
   189 simple_type_specifier: type_name .
 
     $default  reduce using rule 189 (simple_type_specifier)
 
 
-state 65
+State 65
 
   187 type_specifier: elaborated_type_specifier .
 
     $default  reduce using rule 187 (type_specifier)
 
 
-state 66
+State 66
 
   186 type_specifier: enum_specifier .
 
     $default  reduce using rule 186 (type_specifier)
 
 
-state 67
+State 67
 
   161 declaration: namespace_definition .
 
     $default  reduce using rule 161 (declaration)
 
 
-state 68
+State 68
 
   218 namespace_definition: named_namespace_definition .
 
     $default  reduce using rule 218 (namespace_definition)
 
 
-state 69
+State 69
 
   220 named_namespace_definition: original_namespace_definition .
 
     $default  reduce using rule 220 (named_namespace_definition)
 
 
-state 70
+State 70
 
   221 named_namespace_definition: extension_namespace_definition .
 
     $default  reduce using rule 221 (named_namespace_definition)
 
 
-state 71
+State 71
 
   219 namespace_definition: unnamed_namespace_definition .
 
     $default  reduce using rule 219 (namespace_definition)
 
 
-state 72
+State 72
 
   164 block_declaration: namespace_alias_definition .
 
     $default  reduce using rule 164 (block_declaration)
 
 
-state 73
+State 73
 
   165 block_declaration: using_declaration .
 
     $default  reduce using rule 165 (block_declaration)
 
 
-state 74
+State 74
 
   166 block_declaration: using_directive .
 
     $default  reduce using rule 166 (block_declaration)
 
 
-state 75
+State 75
 
   163 block_declaration: asm_definition .
 
     $default  reduce using rule 163 (block_declaration)
 
 
-state 76
+State 76
 
   160 declaration: linkage_specification .
 
     $default  reduce using rule 160 (declaration)
 
 
-state 77
+State 77
 
   291 function_definition: declarator . ctor_initializer_opt function_body
   293                    | declarator . function_try_block
@@ -2169,7 +2168,7 @@ state 77
     ctor_initializer_opt  go to state 181
 
 
-state 78
+State 78
 
   246 declarator: direct_declarator .
   249 direct_declarator: direct_declarator . '(' parameter_declaration_clause ')' cv_qualifier_seq exception_specification
@@ -2185,7 +2184,7 @@ state 78
     $default  reduce using rule 246 (declarator)
 
 
-state 79
+State 79
 
   247 declarator: ptr_operator . declarator
 
@@ -2215,42 +2214,42 @@ state 79
     operator_function_id     go to state 87
 
 
-state 80
+State 80
 
   188 type_specifier: cv_qualifier .
 
     $default  reduce using rule 188 (type_specifier)
 
 
-state 81
+State 81
 
   248 direct_declarator: declarator_id .
 
     $default  reduce using rule 248 (direct_declarator)
 
 
-state 82
+State 82
 
   159 declaration: function_definition .
 
     $default  reduce using rule 159 (declaration)
 
 
-state 83
+State 83
 
   185 type_specifier: class_specifier .
 
     $default  reduce using rule 185 (type_specifier)
 
 
-state 84
+State 84
 
   303 class_specifier: class_head . '{' member_specification_opt '}'
 
     '{'  shift, and go to state 185
 
 
-state 85
+State 85
 
   206 elaborated_type_specifier: class_key . COLONCOLON nested_name_specifier identifier
   207                          | class_key . COLONCOLON identifier
@@ -2271,28 +2270,28 @@ state 85
     nested_name_specifier    go to state 188
 
 
-state 86
+State 86
 
    27 unqualified_id: conversion_function_id .
 
     $default  reduce using rule 27 (unqualified_id)
 
 
-state 87
+State 87
 
    26 unqualified_id: operator_function_id .
 
     $default  reduce using rule 26 (unqualified_id)
 
 
-state 88
+State 88
 
    18 translation_unit: declaration_seq_opt .
 
     $default  reduce using rule 18 (translation_unit)
 
 
-state 89
+State 89
 
   254 direct_declarator: CLASS_NAME COLONCOLON . declarator_id '(' parameter_declaration_clause ')'
   255                  | CLASS_NAME COLONCOLON . CLASS_NAME '(' parameter_declaration_clause ')'
@@ -2317,7 +2316,7 @@ state 89
     operator_function_id     go to state 87
 
 
-state 90
+State 90
 
   253 direct_declarator: CLASS_NAME '(' . parameter_declaration_clause ')'
 
@@ -2382,21 +2381,21 @@ state 90
     class_key                     go to state 85
 
 
-state 91
+State 91
 
     4 class_name: CLASS_NAME .
 
     $default  reduce using rule 4 (class_name)
 
 
-state 92
+State 92
 
   267 declarator_id: COLONCOLON id_expression .
 
     $default  reduce using rule 267 (declarator_id)
 
 
-state 93
+State 93
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -2427,14 +2426,14 @@ state 93
     operator_function_id    go to state 87
 
 
-state 94
+State 94
 
   269 declarator_id: COLONCOLON type_name .
 
     $default  reduce using rule 269 (declarator_id)
 
 
-state 95
+State 95
 
   191 simple_type_specifier: COLONCOLON nested_name_specifier_opt . type_name
 
@@ -2448,7 +2447,7 @@ state 95
     type_name     go to state 200
 
 
-state 96
+State 96
 
   240 asm_definition: ASM '(' . string_literal ')' ';'
 
@@ -2457,7 +2456,7 @@ state 96
     string_literal  go to state 201
 
 
-state 97
+State 97
 
   208 elaborated_type_specifier: ENUM COLONCOLON . nested_name_specifier identifier
   209                          | ENUM COLONCOLON . identifier
@@ -2473,7 +2472,7 @@ state 97
     nested_name_specifier    go to state 203
 
 
-state 98
+State 98
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -2481,14 +2480,14 @@ state 98
     COLONCOLON  shift, and go to state 163
 
 
-state 99
+State 99
 
   212 enum_specifier: ENUM identifier . '{' enumerator_list_opt '}'
 
     '{'  shift, and go to state 204
 
 
-state 100
+State 100
 
   210 elaborated_type_specifier: ENUM nested_name_specifier . identifier
 
@@ -2497,14 +2496,14 @@ state 100
     identifier  go to state 205
 
 
-state 101
+State 101
 
    15 string_literal: STRING .
 
     $default  reduce using rule 15 (string_literal)
 
 
-state 102
+State 102
 
   241 linkage_specification: EXTERN string_literal . '{' declaration_seq_opt '}'
   242                      | EXTERN string_literal . declaration
@@ -2598,7 +2597,7 @@ state 102
     operator_function_id            go to state 87
 
 
-state 103
+State 103
 
   224 unnamed_namespace_definition: NAMESPACE '{' . namespace_body '}'
 
@@ -2695,14 +2694,14 @@ state 103
     declaration_seq_opt             go to state 209
 
 
-state 104
+State 104
 
   223 extension_namespace_definition: NAMESPACE original_namespace_name . '{' namespace_body '}'
 
     '{'  shift, and go to state 210
 
 
-state 105
+State 105
 
   222 original_namespace_definition: NAMESPACE identifier . '{' namespace_body '}'
   226 namespace_alias_definition: NAMESPACE identifier . '=' qualified_namespace_specifier ';'
@@ -2711,7 +2710,7 @@ state 105
     '='  shift, and go to state 212
 
 
-state 106
+State 106
 
   191 simple_type_specifier: COLONCOLON . nested_name_specifier_opt type_name
 
@@ -2728,161 +2727,161 @@ state 106
     nested_name_specifier_opt  go to state 95
 
 
-state 107
+State 107
 
   376 operator: ADDEQ .
 
     $default  reduce using rule 376 (operator)
 
 
-state 108
+State 108
 
   377 operator: SUBEQ .
 
     $default  reduce using rule 377 (operator)
 
 
-state 109
+State 109
 
   378 operator: MULEQ .
 
     $default  reduce using rule 378 (operator)
 
 
-state 110
+State 110
 
   379 operator: DIVEQ .
 
     $default  reduce using rule 379 (operator)
 
 
-state 111
+State 111
 
   380 operator: MODEQ .
 
     $default  reduce using rule 380 (operator)
 
 
-state 112
+State 112
 
   381 operator: XOREQ .
 
     $default  reduce using rule 381 (operator)
 
 
-state 113
+State 113
 
   382 operator: ANDEQ .
 
     $default  reduce using rule 382 (operator)
 
 
-state 114
+State 114
 
   383 operator: OREQ .
 
     $default  reduce using rule 383 (operator)
 
 
-state 115
+State 115
 
   384 operator: SL .
 
     $default  reduce using rule 384 (operator)
 
 
-state 116
+State 116
 
   385 operator: SR .
 
     $default  reduce using rule 385 (operator)
 
 
-state 117
+State 117
 
   386 operator: SREQ .
 
     $default  reduce using rule 386 (operator)
 
 
-state 118
+State 118
 
   387 operator: SLEQ .
 
     $default  reduce using rule 387 (operator)
 
 
-state 119
+State 119
 
   388 operator: EQ .
 
     $default  reduce using rule 388 (operator)
 
 
-state 120
+State 120
 
   389 operator: NOTEQ .
 
     $default  reduce using rule 389 (operator)
 
 
-state 121
+State 121
 
   390 operator: LTEQ .
 
     $default  reduce using rule 390 (operator)
 
 
-state 122
+State 122
 
   391 operator: GTEQ .
 
     $default  reduce using rule 391 (operator)
 
 
-state 123
+State 123
 
   392 operator: ANDAND .
 
     $default  reduce using rule 392 (operator)
 
 
-state 124
+State 124
 
   393 operator: OROR .
 
     $default  reduce using rule 393 (operator)
 
 
-state 125
+State 125
 
   394 operator: PLUSPLUS .
 
     $default  reduce using rule 394 (operator)
 
 
-state 126
+State 126
 
   395 operator: MINUSMINUS .
 
     $default  reduce using rule 395 (operator)
 
 
-state 127
+State 127
 
   397 operator: ARROWSTAR .
 
     $default  reduce using rule 397 (operator)
 
 
-state 128
+State 128
 
   398 operator: ARROW .
 
     $default  reduce using rule 398 (operator)
 
 
-state 129
+State 129
 
   360 operator: DELETE .
   362         | DELETE . '[' ']'
@@ -2893,7 +2892,7 @@ state 129
     $default  reduce using rule 360 (operator)
 
 
-state 130
+State 130
 
   359 operator: NEW .
   361         | NEW . '[' ']'
@@ -2904,119 +2903,119 @@ state 130
     $default  reduce using rule 359 (operator)
 
 
-state 131
+State 131
 
   399 operator: '(' . ')'
 
     ')'  shift, and go to state 216
 
 
-state 132
+State 132
 
   396 operator: ',' .
 
     $default  reduce using rule 396 (operator)
 
 
-state 133
+State 133
 
   400 operator: '[' . ']'
 
     ']'  shift, and go to state 217
 
 
-state 134
+State 134
 
   369 operator: '&' .
 
     $default  reduce using rule 369 (operator)
 
 
-state 135
+State 135
 
   374 operator: '<' .
 
     $default  reduce using rule 374 (operator)
 
 
-state 136
+State 136
 
   375 operator: '>' .
 
     $default  reduce using rule 375 (operator)
 
 
-state 137
+State 137
 
   364 operator: '_' .
 
     $default  reduce using rule 364 (operator)
 
 
-state 138
+State 138
 
   363 operator: '+' .
 
     $default  reduce using rule 363 (operator)
 
 
-state 139
+State 139
 
   373 operator: '=' .
 
     $default  reduce using rule 373 (operator)
 
 
-state 140
+State 140
 
   367 operator: '%' .
 
     $default  reduce using rule 367 (operator)
 
 
-state 141
+State 141
 
   365 operator: '*' .
 
     $default  reduce using rule 365 (operator)
 
 
-state 142
+State 142
 
   366 operator: '/' .
 
     $default  reduce using rule 366 (operator)
 
 
-state 143
+State 143
 
   370 operator: '|' .
 
     $default  reduce using rule 370 (operator)
 
 
-state 144
+State 144
 
   368 operator: '^' .
 
     $default  reduce using rule 368 (operator)
 
 
-state 145
+State 145
 
   372 operator: '!' .
 
     $default  reduce using rule 372 (operator)
 
 
-state 146
+State 146
 
   371 operator: '~' .
 
     $default  reduce using rule 371 (operator)
 
 
-state 147
+State 147
 
   190 simple_type_specifier: nested_name_specifier . type_name
 
@@ -3030,7 +3029,7 @@ state 147
     type_name     go to state 169
 
 
-state 148
+State 148
 
   271 type_specifier_seq: type_specifier . type_specifier_seq_opt
 
@@ -3082,7 +3081,7 @@ state 148
     type_specifier_seq_opt     go to state 219
 
 
-state 149
+State 149
 
   347 conversion_type_id: type_specifier_seq . conversion_declarator_opt
 
@@ -3105,28 +3104,28 @@ state 149
     conversion_declarator_opt  go to state 224
 
 
-state 150
+State 150
 
   346 conversion_function_id: OPERATOR conversion_type_id .
 
     $default  reduce using rule 346 (conversion_function_id)
 
 
-state 151
+State 151
 
   358 operator_function_id: OPERATOR operator .
 
     $default  reduce using rule 358 (operator_function_id)
 
 
-state 152
+State 152
 
   420 COLONCOLON_opt: COLONCOLON .
 
     $default  reduce using rule 420 (COLONCOLON_opt)
 
 
-state 153
+State 153
 
   211 elaborated_type_specifier: TYPENAME COLONCOLON_opt . nested_name_specifier identifier
 
@@ -3139,7 +3138,7 @@ state 153
     nested_name_specifier    go to state 225
 
 
-state 154
+State 154
 
   233 using_declaration: USING COLONCOLON . nested_name_specifier unqualified_id ';'
   235                  | USING COLONCOLON . unqualified_id ';'
@@ -3160,7 +3159,7 @@ state 154
     operator_function_id     go to state 87
 
 
-state 155
+State 155
 
   236 using_directive: USING NAMESPACE . COLONCOLON nested_name_specifier namespace_name ';'
   237                | USING NAMESPACE . COLONCOLON namespace_name ';'
@@ -3177,7 +3176,7 @@ state 155
     nested_name_specifier    go to state 230
 
 
-state 156
+State 156
 
   231 using_declaration: USING TYPENAME . COLONCOLON nested_name_specifier unqualified_id ';'
   232                  | USING TYPENAME . nested_name_specifier unqualified_id ';'
@@ -3192,7 +3191,7 @@ state 156
     nested_name_specifier    go to state 232
 
 
-state 157
+State 157
 
   234 using_declaration: USING nested_name_specifier . unqualified_id ';'
 
@@ -3206,7 +3205,7 @@ state 157
     operator_function_id    go to state 87
 
 
-state 158
+State 158
 
   261 ptr_operator: COLONCOLON . nested_name_specifier '*'
   267 declarator_id: COLONCOLON . id_expression
@@ -3236,7 +3235,7 @@ state 158
     operator_function_id     go to state 87
 
 
-state 159
+State 159
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -3254,21 +3253,21 @@ state 159
     operator_function_id    go to state 87
 
 
-state 160
+State 160
 
   257 direct_declarator: '(' declarator . ')'
 
     ')'  shift, and go to state 235
 
 
-state 161
+State 161
 
    28 unqualified_id: '~' class_name .
 
     $default  reduce using rule 28 (unqualified_id)
 
 
-state 162
+State 162
 
    32 nested_name_specifier: namespace_name COLONCOLON . nested_name_specifier
 
@@ -3281,7 +3280,7 @@ state 162
     nested_name_specifier    go to state 236
 
 
-state 163
+State 163
 
    31 nested_name_specifier: class_name COLONCOLON . nested_name_specifier
    33                      | class_name COLONCOLON .
@@ -3299,14 +3298,14 @@ state 163
     nested_name_specifier    go to state 237
 
 
-state 164
+State 164
 
     0 $accept: translation_unit $end .
 
     $default  accept
 
 
-state 165
+State 165
 
    30 qualified_id: nested_name_specifier TEMPLATE . unqualified_id
 
@@ -3320,63 +3319,63 @@ state 165
     operator_function_id    go to state 87
 
 
-state 166
+State 166
 
   260 ptr_operator: nested_name_specifier '*' .
 
     $default  reduce using rule 260 (ptr_operator)
 
 
-state 167
+State 167
 
   203 type_name: class_name .
 
     $default  reduce using rule 203 (type_name)
 
 
-state 168
+State 168
 
    29 qualified_id: nested_name_specifier unqualified_id .
 
     $default  reduce using rule 29 (qualified_id)
 
 
-state 169
+State 169
 
   190 simple_type_specifier: nested_name_specifier type_name .
 
     $default  reduce using rule 190 (simple_type_specifier)
 
 
-state 170
+State 170
 
   157 declaration_seq: declaration_seq declaration .
 
     $default  reduce using rule 157 (declaration_seq)
 
 
-state 171
+State 171
 
   179 storage_class_specifier: EXTERN .
 
     $default  reduce using rule 179 (storage_class_specifier)
 
 
-state 172
+State 172
 
   168 simple_declaration: decl_specifier_seq ';' .
 
     $default  reduce using rule 168 (simple_declaration)
 
 
-state 173
+State 173
 
   175 decl_specifier_seq: decl_specifier_seq decl_specifier .
 
     $default  reduce using rule 175 (decl_specifier_seq)
 
 
-state 174
+State 174
 
   167 simple_declaration: decl_specifier_seq init_declarator_list . ';'
   244 init_declarator_list: init_declarator_list . ',' init_declarator
@@ -3385,14 +3384,14 @@ state 174
     ','  shift, and go to state 240
 
 
-state 175
+State 175
 
   243 init_declarator_list: init_declarator .
 
     $default  reduce using rule 243 (init_declarator_list)
 
 
-state 176
+State 176
 
   245 init_declarator: declarator . initializer_opt
   292 function_definition: decl_specifier_seq declarator . ctor_initializer_opt function_body
@@ -3413,7 +3412,7 @@ state 176
     ctor_initializer_opt  go to state 246
 
 
-state 177
+State 177
 
   402 function_try_block: TRY . ctor_initializer_opt function_body handler_seq
 
@@ -3425,7 +3424,7 @@ state 177
     ctor_initializer_opt  go to state 247
 
 
-state 178
+State 178
 
   349 ctor_initializer: ':' . mem_initializer_list
 
@@ -3444,21 +3443,21 @@ state 178
     mem_initializer_id       go to state 254
 
 
-state 179
+State 179
 
   446 ctor_initializer_opt: ctor_initializer .
 
     $default  reduce using rule 446 (ctor_initializer_opt)
 
 
-state 180
+State 180
 
   293 function_definition: declarator function_try_block .
 
     $default  reduce using rule 293 (function_definition)
 
 
-state 181
+State 181
 
   291 function_definition: declarator ctor_initializer_opt . function_body
 
@@ -3468,7 +3467,7 @@ state 181
     function_body       go to state 257
 
 
-state 182
+State 182
 
   249 direct_declarator: direct_declarator '(' . parameter_declaration_clause ')' cv_qualifier_seq exception_specification
   250                  | direct_declarator '(' . parameter_declaration_clause ')' cv_qualifier_seq
@@ -3536,7 +3535,7 @@ state 182
     class_key                     go to state 85
 
 
-state 183
+State 183
 
   256 direct_declarator: direct_declarator '[' . constant_expression_opt ']'
 
@@ -3606,14 +3605,14 @@ state 183
     constant_expression_opt    go to state 305
 
 
-state 184
+State 184
 
   247 declarator: ptr_operator declarator .
 
     $default  reduce using rule 247 (declarator)
 
 
-state 185
+State 185
 
   303 class_specifier: class_head '{' . member_specification_opt '}'
 
@@ -3703,7 +3702,7 @@ state 185
     member_specification_opt   go to state 322
 
 
-state 186
+State 186
 
   206 elaborated_type_specifier: class_key COLONCOLON . nested_name_specifier identifier
   207                          | class_key COLONCOLON . identifier
@@ -3719,7 +3718,7 @@ state 186
     nested_name_specifier    go to state 324
 
 
-state 187
+State 187
 
   304 class_head: class_key identifier .
   305           | class_key identifier . base_clause
@@ -3731,7 +3730,7 @@ state 187
     base_clause  go to state 326
 
 
-state 188
+State 188
 
   306 class_head: class_key nested_name_specifier . identifier
   307           | class_key nested_name_specifier . identifier base_clause
@@ -3741,7 +3740,7 @@ state 188
     identifier  go to state 327
 
 
-state 189
+State 189
 
     4 class_name: CLASS_NAME .
   255 direct_declarator: CLASS_NAME COLONCOLON CLASS_NAME . '(' parameter_declaration_clause ')'
@@ -3751,7 +3750,7 @@ state 189
     $default  reduce using rule 4 (class_name)
 
 
-state 190
+State 190
 
   267 declarator_id: COLONCOLON . id_expression
   268              | COLONCOLON . nested_name_specifier type_name
@@ -3780,7 +3779,7 @@ state 190
     operator_function_id     go to state 87
 
 
-state 191
+State 191
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -3796,21 +3795,21 @@ state 191
     operator_function_id    go to state 87
 
 
-state 192
+State 192
 
   254 direct_declarator: CLASS_NAME COLONCOLON declarator_id . '(' parameter_declaration_clause ')'
 
     '('  shift, and go to state 330
 
 
-state 193
+State 193
 
   282 parameter_declaration_clause: ELLIPSIS .
 
     $default  reduce using rule 282 (parameter_declaration_clause)
 
 
-state 194
+State 194
 
   175 decl_specifier_seq: decl_specifier_seq . decl_specifier
   287 parameter_declaration: decl_specifier_seq . declarator
@@ -3896,14 +3895,14 @@ state 194
     direct_abstract_declarator_opt  go to state 337
 
 
-state 195
+State 195
 
   253 direct_declarator: CLASS_NAME '(' parameter_declaration_clause . ')'
 
     ')'  shift, and go to state 338
 
 
-state 196
+State 196
 
   280 parameter_declaration_clause: parameter_declaration_list .
   281                             | parameter_declaration_list . ELLIPSIS
@@ -3916,49 +3915,49 @@ state 196
     $default  reduce using rule 280 (parameter_declaration_clause)
 
 
-state 197
+State 197
 
   285 parameter_declaration_list: parameter_declaration .
 
     $default  reduce using rule 285 (parameter_declaration_list)
 
 
-state 198
+State 198
 
   261 ptr_operator: COLONCOLON nested_name_specifier '*' .
 
     $default  reduce using rule 261 (ptr_operator)
 
 
-state 199
+State 199
 
   268 declarator_id: COLONCOLON nested_name_specifier type_name .
 
     $default  reduce using rule 268 (declarator_id)
 
 
-state 200
+State 200
 
   191 simple_type_specifier: COLONCOLON nested_name_specifier_opt type_name .
 
     $default  reduce using rule 191 (simple_type_specifier)
 
 
-state 201
+State 201
 
   240 asm_definition: ASM '(' string_literal . ')' ';'
 
     ')'  shift, and go to state 341
 
 
-state 202
+State 202
 
   209 elaborated_type_specifier: ENUM COLONCOLON identifier .
 
     $default  reduce using rule 209 (elaborated_type_specifier)
 
 
-state 203
+State 203
 
   208 elaborated_type_specifier: ENUM COLONCOLON nested_name_specifier . identifier
 
@@ -3967,7 +3966,7 @@ state 203
     identifier  go to state 342
 
 
-state 204
+State 204
 
   212 enum_specifier: ENUM identifier '{' . enumerator_list_opt '}'
 
@@ -3982,14 +3981,14 @@ state 204
     enumerator_list_opt    go to state 347
 
 
-state 205
+State 205
 
   210 elaborated_type_specifier: ENUM nested_name_specifier identifier .
 
     $default  reduce using rule 210 (elaborated_type_specifier)
 
 
-state 206
+State 206
 
   241 linkage_specification: EXTERN string_literal '{' . declaration_seq_opt '}'
 
@@ -4085,28 +4084,28 @@ state 206
     declaration_seq_opt             go to state 348
 
 
-state 207
+State 207
 
   242 linkage_specification: EXTERN string_literal declaration .
 
     $default  reduce using rule 242 (linkage_specification)
 
 
-state 208
+State 208
 
   224 unnamed_namespace_definition: NAMESPACE '{' namespace_body . '}'
 
     '}'  shift, and go to state 349
 
 
-state 209
+State 209
 
   225 namespace_body: declaration_seq_opt .
 
     $default  reduce using rule 225 (namespace_body)
 
 
-state 210
+State 210
 
   223 extension_namespace_definition: NAMESPACE original_namespace_name '{' . namespace_body '}'
 
@@ -4203,7 +4202,7 @@ state 210
     declaration_seq_opt             go to state 209
 
 
-state 211
+State 211
 
   222 original_namespace_definition: NAMESPACE identifier '{' . namespace_body '}'
 
@@ -4300,7 +4299,7 @@ state 211
     declaration_seq_opt             go to state 209
 
 
-state 212
+State 212
 
   226 namespace_alias_definition: NAMESPACE identifier '=' . qualified_namespace_specifier ';'
 
@@ -4315,56 +4314,56 @@ state 212
     qualified_namespace_specifier  go to state 355
 
 
-state 213
+State 213
 
   416 nested_name_specifier_opt: nested_name_specifier .
 
     $default  reduce using rule 416 (nested_name_specifier_opt)
 
 
-state 214
+State 214
 
   362 operator: DELETE '[' . ']'
 
     ']'  shift, and go to state 356
 
 
-state 215
+State 215
 
   361 operator: NEW '[' . ']'
 
     ']'  shift, and go to state 357
 
 
-state 216
+State 216
 
   399 operator: '(' ')' .
 
     $default  reduce using rule 399 (operator)
 
 
-state 217
+State 217
 
   400 operator: '[' ']' .
 
     $default  reduce using rule 400 (operator)
 
 
-state 218
+State 218
 
   442 type_specifier_seq_opt: type_specifier_seq .
 
     $default  reduce using rule 442 (type_specifier_seq_opt)
 
 
-state 219
+State 219
 
   271 type_specifier_seq: type_specifier type_specifier_seq_opt .
 
     $default  reduce using rule 271 (type_specifier_seq)
 
 
-state 220
+State 220
 
   261 ptr_operator: COLONCOLON . nested_name_specifier '*'
 
@@ -4377,14 +4376,14 @@ state 220
     nested_name_specifier    go to state 358
 
 
-state 221
+State 221
 
   260 ptr_operator: nested_name_specifier . '*'
 
     '*'  shift, and go to state 166
 
 
-state 222
+State 222
 
   348 conversion_declarator: ptr_operator . conversion_declarator_opt
 
@@ -4407,21 +4406,21 @@ state 222
     conversion_declarator_opt  go to state 359
 
 
-state 223
+State 223
 
   454 conversion_declarator_opt: conversion_declarator .
 
     $default  reduce using rule 454 (conversion_declarator_opt)
 
 
-state 224
+State 224
 
   347 conversion_type_id: type_specifier_seq conversion_declarator_opt .
 
     $default  reduce using rule 347 (conversion_type_id)
 
 
-state 225
+State 225
 
   211 elaborated_type_specifier: TYPENAME COLONCOLON_opt nested_name_specifier . identifier
 
@@ -4430,14 +4429,14 @@ state 225
     identifier  go to state 360
 
 
-state 226
+State 226
 
   235 using_declaration: USING COLONCOLON unqualified_id . ';'
 
     ';'  shift, and go to state 361
 
 
-state 227
+State 227
 
   233 using_declaration: USING COLONCOLON nested_name_specifier . unqualified_id ';'
 
@@ -4451,7 +4450,7 @@ state 227
     operator_function_id    go to state 87
 
 
-state 228
+State 228
 
   236 using_directive: USING NAMESPACE COLONCOLON . nested_name_specifier namespace_name ';'
   237                | USING NAMESPACE COLONCOLON . namespace_name ';'
@@ -4465,7 +4464,7 @@ state 228
     nested_name_specifier    go to state 364
 
 
-state 229
+State 229
 
    32 nested_name_specifier: namespace_name . COLONCOLON nested_name_specifier
   239 using_directive: USING NAMESPACE namespace_name . ';'
@@ -4474,7 +4473,7 @@ state 229
     ';'         shift, and go to state 365
 
 
-state 230
+State 230
 
   238 using_directive: USING NAMESPACE nested_name_specifier . namespace_name ';'
 
@@ -4484,7 +4483,7 @@ state 230
     original_namespace_name  go to state 45
 
 
-state 231
+State 231
 
   231 using_declaration: USING TYPENAME COLONCOLON . nested_name_specifier unqualified_id ';'
 
@@ -4497,7 +4496,7 @@ state 231
     nested_name_specifier    go to state 367
 
 
-state 232
+State 232
 
   232 using_declaration: USING TYPENAME nested_name_specifier . unqualified_id ';'
 
@@ -4511,14 +4510,14 @@ state 232
     operator_function_id    go to state 87
 
 
-state 233
+State 233
 
   234 using_declaration: USING nested_name_specifier unqualified_id . ';'
 
     ';'  shift, and go to state 369
 
 
-state 234
+State 234
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -4544,42 +4543,42 @@ state 234
     operator_function_id    go to state 87
 
 
-state 235
+State 235
 
   257 direct_declarator: '(' declarator ')' .
 
     $default  reduce using rule 257 (direct_declarator)
 
 
-state 236
+State 236
 
    32 nested_name_specifier: namespace_name COLONCOLON nested_name_specifier .
 
     $default  reduce using rule 32 (nested_name_specifier)
 
 
-state 237
+State 237
 
    31 nested_name_specifier: class_name COLONCOLON nested_name_specifier .
 
     $default  reduce using rule 31 (nested_name_specifier)
 
 
-state 238
+State 238
 
    30 qualified_id: nested_name_specifier TEMPLATE unqualified_id .
 
     $default  reduce using rule 30 (qualified_id)
 
 
-state 239
+State 239
 
   167 simple_declaration: decl_specifier_seq init_declarator_list ';' .
 
     $default  reduce using rule 167 (simple_declaration)
 
 
-state 240
+State 240
 
   244 init_declarator_list: init_declarator_list ',' . init_declarator
 
@@ -4610,7 +4609,7 @@ state 240
     operator_function_id     go to state 87
 
 
-state 241
+State 241
 
   297 initializer: '(' . expression_list ')'
 
@@ -4680,7 +4679,7 @@ state 241
     throw_expression           go to state 377
 
 
-state 242
+State 242
 
   296 initializer: '=' . initializer_clause
 
@@ -4751,28 +4750,28 @@ state 242
     throw_expression           go to state 377
 
 
-state 243
+State 243
 
   436 initializer_opt: initializer .
 
     $default  reduce using rule 436 (initializer_opt)
 
 
-state 244
+State 244
 
   294 function_definition: decl_specifier_seq declarator function_try_block .
 
     $default  reduce using rule 294 (function_definition)
 
 
-state 245
+State 245
 
   245 init_declarator: declarator initializer_opt .
 
     $default  reduce using rule 245 (init_declarator)
 
 
-state 246
+State 246
 
   292 function_definition: decl_specifier_seq declarator ctor_initializer_opt . function_body
 
@@ -4782,7 +4781,7 @@ state 246
     function_body       go to state 381
 
 
-state 247
+State 247
 
   402 function_try_block: TRY ctor_initializer_opt . function_body handler_seq
 
@@ -4792,7 +4791,7 @@ state 247
     function_body       go to state 382
 
 
-state 248
+State 248
 
   353 mem_initializer_id: COLONCOLON . nested_name_specifier class_name
   354                   | COLONCOLON . class_name
@@ -4806,7 +4805,7 @@ state 248
     nested_name_specifier    go to state 384
 
 
-state 249
+State 249
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -4817,14 +4816,14 @@ state 249
     $default  reduce using rule 356 (mem_initializer_id)
 
 
-state 250
+State 250
 
   357 mem_initializer_id: identifier .
 
     $default  reduce using rule 357 (mem_initializer_id)
 
 
-state 251
+State 251
 
   355 mem_initializer_id: nested_name_specifier . class_name
 
@@ -4833,14 +4832,14 @@ state 251
     class_name  go to state 385
 
 
-state 252
+State 252
 
   349 ctor_initializer: ':' mem_initializer_list .
 
     $default  reduce using rule 349 (ctor_initializer)
 
 
-state 253
+State 253
 
   350 mem_initializer_list: mem_initializer .
   351                     | mem_initializer . ',' mem_initializer_list
@@ -4850,14 +4849,14 @@ state 253
     $default  reduce using rule 350 (mem_initializer_list)
 
 
-state 254
+State 254
 
   352 mem_initializer: mem_initializer_id . '(' expression_list_opt ')'
 
     '('  shift, and go to state 387
 
 
-state 255
+State 255
 
   138 compound_statement: '{' . statement_seq_opt '}'
 
@@ -5009,21 +5008,21 @@ state 255
     statement_seq_opt           go to state 419
 
 
-state 256
+State 256
 
   295 function_body: compound_statement .
 
     $default  reduce using rule 295 (function_body)
 
 
-state 257
+State 257
 
   291 function_definition: declarator ctor_initializer_opt function_body .
 
     $default  reduce using rule 291 (function_definition)
 
 
-state 258
+State 258
 
   249 direct_declarator: direct_declarator '(' parameter_declaration_clause . ')' cv_qualifier_seq exception_specification
   250                  | direct_declarator '(' parameter_declaration_clause . ')' cv_qualifier_seq
@@ -5033,28 +5032,28 @@ state 258
     ')'  shift, and go to state 420
 
 
-state 259
+State 259
 
    12 integer_literal: INTEGER .
 
     $default  reduce using rule 12 (integer_literal)
 
 
-state 260
+State 260
 
    14 floating_literal: FLOATING .
 
     $default  reduce using rule 14 (floating_literal)
 
 
-state 261
+State 261
 
    13 character_literal: CHARACTER .
 
     $default  reduce using rule 13 (character_literal)
 
 
-state 262
+State 262
 
    60 new_expression: COLONCOLON . NEW new_placement_opt new_type_id new_initializer_opt
    62               | COLONCOLON . NEW new_placement_opt '(' type_id ')' new_initializer_opt
@@ -5065,7 +5064,7 @@ state 262
     NEW     shift, and go to state 422
 
 
-state 263
+State 263
 
    46 unary_expression: PLUSPLUS . cast_expression
 
@@ -5119,7 +5118,7 @@ state 263
     operator_function_id     go to state 87
 
 
-state 264
+State 264
 
    47 unary_expression: MINUSMINUS . cast_expression
 
@@ -5173,7 +5172,7 @@ state 264
     operator_function_id     go to state 87
 
 
-state 265
+State 265
 
    70 delete_expression: DELETE . cast_expression
    72                  | DELETE . '[' ']' cast_expression
@@ -5229,14 +5228,14 @@ state 265
     operator_function_id     go to state 87
 
 
-state 266
+State 266
 
    17 boolean_literal: FALSE .
 
     $default  reduce using rule 17 (boolean_literal)
 
 
-state 267
+State 267
 
    59 new_expression: NEW . new_placement_opt new_type_id new_initializer_opt
    61               | NEW . new_placement_opt '(' type_id ')' new_initializer_opt
@@ -5250,7 +5249,7 @@ state 267
     new_placement_opt  go to state 429
 
 
-state 268
+State 268
 
    51 unary_expression: SIZEOF . unary_expression
    52                 | SIZEOF . '(' type_id ')'
@@ -5304,21 +5303,21 @@ state 268
     operator_function_id     go to state 87
 
 
-state 269
+State 269
 
    20 primary_expression: THIS .
 
     $default  reduce using rule 20 (primary_expression)
 
 
-state 270
+State 270
 
    16 boolean_literal: TRUE .
 
     $default  reduce using rule 16 (boolean_literal)
 
 
-state 271
+State 271
 
    21 primary_expression: '(' . expression ')'
    75 cast_expression: '(' . type_id ')' cast_expression
@@ -5422,7 +5421,7 @@ state 271
     throw_expression           go to state 377
 
 
-state 272
+State 272
 
    49 unary_expression: '&' . cast_expression
 
@@ -5476,21 +5475,21 @@ state 272
     operator_function_id     go to state 87
 
 
-state 273
+State 273
 
    55 unary_operator: '+' .
 
     $default  reduce using rule 55 (unary_operator)
 
 
-state 274
+State 274
 
    56 unary_operator: '-' .
 
     $default  reduce using rule 56 (unary_operator)
 
 
-state 275
+State 275
 
    48 unary_expression: '*' . cast_expression
 
@@ -5544,14 +5543,14 @@ state 275
     operator_function_id     go to state 87
 
 
-state 276
+State 276
 
    57 unary_operator: '!' .
 
     $default  reduce using rule 57 (unary_operator)
 
 
-state 277
+State 277
 
    28 unqualified_id: '~' . class_name
    58 unary_operator: '~' .
@@ -5564,63 +5563,63 @@ state 277
     class_name  go to state 161
 
 
-state 278
+State 278
 
    19 primary_expression: literal .
 
     $default  reduce using rule 19 (primary_expression)
 
 
-state 279
+State 279
 
     7 literal: integer_literal .
 
     $default  reduce using rule 7 (literal)
 
 
-state 280
+State 280
 
     8 literal: character_literal .
 
     $default  reduce using rule 8 (literal)
 
 
-state 281
+State 281
 
     9 literal: floating_literal .
 
     $default  reduce using rule 9 (literal)
 
 
-state 282
+State 282
 
    10 literal: string_literal .
 
     $default  reduce using rule 10 (literal)
 
 
-state 283
+State 283
 
    11 literal: boolean_literal .
 
     $default  reduce using rule 11 (literal)
 
 
-state 284
+State 284
 
    34 postfix_expression: primary_expression .
 
     $default  reduce using rule 34 (postfix_expression)
 
 
-state 285
+State 285
 
    22 primary_expression: id_expression .
 
     $default  reduce using rule 22 (primary_expression)
 
 
-state 286
+State 286
 
    35 postfix_expression: postfix_expression . '[' expression ']'
    36                   | postfix_expression . '(' expression_list_opt ')'
@@ -5642,14 +5641,14 @@ state 286
     $default  reduce using rule 45 (unary_expression)
 
 
-state 287
+State 287
 
    74 cast_expression: unary_expression .
 
     $default  reduce using rule 74 (cast_expression)
 
 
-state 288
+State 288
 
    50 unary_expression: unary_operator . cast_expression
 
@@ -5703,28 +5702,28 @@ state 288
     operator_function_id     go to state 87
 
 
-state 289
+State 289
 
    53 unary_expression: new_expression .
 
     $default  reduce using rule 53 (unary_expression)
 
 
-state 290
+State 290
 
    54 unary_expression: delete_expression .
 
     $default  reduce using rule 54 (unary_expression)
 
 
-state 291
+State 291
 
    76 pm_expression: cast_expression .
 
     $default  reduce using rule 76 (pm_expression)
 
 
-state 292
+State 292
 
    77 pm_expression: pm_expression . DOTSTAR cast_expression
    78              | pm_expression . ARROWSTAR cast_expression
@@ -5736,7 +5735,7 @@ state 292
     $default  reduce using rule 79 (multiplicative_expression)
 
 
-state 293
+State 293
 
    80 multiplicative_expression: multiplicative_expression . '*' pm_expression
    81                          | multiplicative_expression . '/' pm_expression
@@ -5750,7 +5749,7 @@ state 293
     $default  reduce using rule 83 (additive_expression)
 
 
-state 294
+State 294
 
    84 additive_expression: additive_expression . '+' multiplicative_expression
    85                    | additive_expression . '-' multiplicative_expression
@@ -5762,7 +5761,7 @@ state 294
     $default  reduce using rule 86 (shift_expression)
 
 
-state 295
+State 295
 
    87 shift_expression: shift_expression . SL additive_expression
    88                 | shift_expression . SR additive_expression
@@ -5774,7 +5773,7 @@ state 295
     $default  reduce using rule 89 (relational_expression)
 
 
-state 296
+State 296
 
    90 relational_expression: relational_expression . '<' shift_expression
    91                      | relational_expression . '>' shift_expression
@@ -5790,7 +5789,7 @@ state 296
     $default  reduce using rule 94 (equality_expression)
 
 
-state 297
+State 297
 
    95 equality_expression: equality_expression . EQ relational_expression
    96                    | equality_expression . NOTEQ relational_expression
@@ -5802,7 +5801,7 @@ state 297
     $default  reduce using rule 97 (and_expression)
 
 
-state 298
+State 298
 
    98 and_expression: and_expression . '&' equality_expression
    99 exclusive_or_expression: and_expression .
@@ -5812,7 +5811,7 @@ state 298
     $default  reduce using rule 99 (exclusive_or_expression)
 
 
-state 299
+State 299
 
   100 exclusive_or_expression: exclusive_or_expression . '^' and_expression
   101 inclusive_or_expression: exclusive_or_expression .
@@ -5822,7 +5821,7 @@ state 299
     $default  reduce using rule 101 (inclusive_or_expression)
 
 
-state 300
+State 300
 
   102 inclusive_or_expression: inclusive_or_expression . '|' exclusive_or_expression
   103 logical_and_expression: inclusive_or_expression .
@@ -5832,7 +5831,7 @@ state 300
     $default  reduce using rule 103 (logical_and_expression)
 
 
-state 301
+State 301
 
   104 logical_and_expression: logical_and_expression . ANDAND inclusive_or_expression
   105 logical_or_expression: logical_and_expression .
@@ -5842,7 +5841,7 @@ state 301
     $default  reduce using rule 105 (logical_or_expression)
 
 
-state 302
+State 302
 
   106 logical_or_expression: logical_or_expression . OROR logical_and_expression
   107 conditional_expression: logical_or_expression .
@@ -5854,49 +5853,49 @@ state 302
     $default  reduce using rule 107 (conditional_expression)
 
 
-state 303
+State 303
 
   125 constant_expression: conditional_expression .
 
     $default  reduce using rule 125 (constant_expression)
 
 
-state 304
+State 304
 
   438 constant_expression_opt: constant_expression .
 
     $default  reduce using rule 438 (constant_expression_opt)
 
 
-state 305
+State 305
 
   256 direct_declarator: direct_declarator '[' constant_expression_opt . ']'
 
     ']'  shift, and go to state 465
 
 
-state 306
+State 306
 
   343 access_specifier: PRIVATE .
 
     $default  reduce using rule 343 (access_specifier)
 
 
-state 307
+State 307
 
   344 access_specifier: PROTECTED .
 
     $default  reduce using rule 344 (access_specifier)
 
 
-state 308
+State 308
 
   345 access_specifier: PUBLIC .
 
     $default  reduce using rule 345 (access_specifier)
 
 
-state 309
+State 309
 
   231 using_declaration: USING . TYPENAME COLONCOLON nested_name_specifier unqualified_id ';'
   232                  | USING . TYPENAME nested_name_specifier unqualified_id ';'
@@ -5915,14 +5914,14 @@ state 309
     nested_name_specifier    go to state 157
 
 
-state 310
+State 310
 
   316 member_declaration: ';' .
 
     $default  reduce using rule 316 (member_declaration)
 
 
-state 311
+State 311
 
    25 unqualified_id: identifier .
   325 member_declarator: identifier . ':' constant_expression
@@ -5933,7 +5932,7 @@ state 311
     $default  reduce using rule 25 (unqualified_id)
 
 
-state 312
+State 312
 
    24 id_expression: qualified_id .
   318 member_declaration: qualified_id . ';'
@@ -5944,7 +5943,7 @@ state 312
     $default  reduce using rule 24 (id_expression)
 
 
-state 313
+State 313
 
   175 decl_specifier_seq: decl_specifier_seq . decl_specifier
   292 function_definition: decl_specifier_seq . declarator ctor_initializer_opt function_body
@@ -6025,14 +6024,14 @@ state 313
     operator_function_id       go to state 87
 
 
-state 314
+State 314
 
   319 member_declaration: using_declaration .
 
     $default  reduce using rule 319 (member_declaration)
 
 
-state 315
+State 315
 
   291 function_definition: declarator . ctor_initializer_opt function_body
   293                    | declarator . function_try_block
@@ -6054,7 +6053,7 @@ state 315
     ctor_initializer_opt  go to state 181
 
 
-state 316
+State 316
 
   317 member_declaration: function_definition . SEMICOLON_opt
 
@@ -6066,14 +6065,14 @@ state 316
     SEMICOLON_opt  go to state 475
 
 
-state 317
+State 317
 
   450 member_specification_opt: member_specification .
 
     $default  reduce using rule 450 (member_specification_opt)
 
 
-state 318
+State 318
 
   311 member_specification: member_declaration . member_specification_opt
 
@@ -6163,7 +6162,7 @@ state 318
     member_specification_opt   go to state 476
 
 
-state 319
+State 319
 
   315 member_declaration: member_declarator_list . ';'
   321 member_declarator_list: member_declarator_list . ',' member_declarator
@@ -6172,35 +6171,35 @@ state 319
     ','  shift, and go to state 478
 
 
-state 320
+State 320
 
   320 member_declarator_list: member_declarator .
 
     $default  reduce using rule 320 (member_declarator_list)
 
 
-state 321
+State 321
 
   312 member_specification: access_specifier . ':' member_specification_opt
 
     ':'  shift, and go to state 479
 
 
-state 322
+State 322
 
   303 class_specifier: class_head '{' member_specification_opt . '}'
 
     '}'  shift, and go to state 480
 
 
-state 323
+State 323
 
   207 elaborated_type_specifier: class_key COLONCOLON identifier .
 
     $default  reduce using rule 207 (elaborated_type_specifier)
 
 
-state 324
+State 324
 
   206 elaborated_type_specifier: class_key COLONCOLON nested_name_specifier . identifier
 
@@ -6209,7 +6208,7 @@ state 324
     identifier  go to state 481
 
 
-state 325
+State 325
 
   328 base_clause: ':' . base_specifier_list
 
@@ -6230,14 +6229,14 @@ state 325
     access_specifier         go to state 488
 
 
-state 326
+State 326
 
   305 class_head: class_key identifier base_clause .
 
     $default  reduce using rule 305 (class_head)
 
 
-state 327
+State 327
 
   306 class_head: class_key nested_name_specifier identifier .
   307           | class_key nested_name_specifier identifier . base_clause
@@ -6249,7 +6248,7 @@ state 327
     base_clause  go to state 489
 
 
-state 328
+State 328
 
   255 direct_declarator: CLASS_NAME COLONCOLON CLASS_NAME '(' . parameter_declaration_clause ')'
 
@@ -6314,7 +6313,7 @@ state 328
     class_key                     go to state 85
 
 
-state 329
+State 329
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -6338,7 +6337,7 @@ state 329
     operator_function_id    go to state 87
 
 
-state 330
+State 330
 
   254 direct_declarator: CLASS_NAME COLONCOLON declarator_id '(' . parameter_declaration_clause ')'
 
@@ -6403,7 +6402,7 @@ state 330
     class_key                     go to state 85
 
 
-state 331
+State 331
 
   257 direct_declarator: '(' . declarator ')'
   279 direct_abstract_declarator: '(' . abstract_declarator ')'
@@ -6440,7 +6439,7 @@ state 331
     direct_abstract_declarator_opt  go to state 337
 
 
-state 332
+State 332
 
   287 parameter_declaration: decl_specifier_seq declarator .
   288                      | decl_specifier_seq declarator . '=' assignment_expression
@@ -6450,7 +6449,7 @@ state 332
     $default  reduce using rule 287 (parameter_declaration)
 
 
-state 333
+State 333
 
   247 declarator: ptr_operator . declarator
   272 abstract_declarator: ptr_operator . abstract_declarator_opt
@@ -6489,14 +6488,14 @@ state 333
     direct_abstract_declarator_opt  go to state 337
 
 
-state 334
+State 334
 
   440 abstract_declarator_opt: abstract_declarator .
 
     $default  reduce using rule 440 (abstract_declarator_opt)
 
 
-state 335
+State 335
 
   273 abstract_declarator: direct_abstract_declarator .
   444 direct_abstract_declarator_opt: direct_abstract_declarator .
@@ -6506,7 +6505,7 @@ state 335
     $default  reduce using rule 273 (abstract_declarator)
 
 
-state 336
+State 336
 
   289 parameter_declaration: decl_specifier_seq abstract_declarator_opt .
   290                      | decl_specifier_seq abstract_declarator_opt . '=' assignment_expression
@@ -6516,7 +6515,7 @@ state 336
     $default  reduce using rule 289 (parameter_declaration)
 
 
-state 337
+State 337
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt . '(' parameter_declaration_clause ')' cv_qualifier_seq exception_specification
   275                           | direct_abstract_declarator_opt . '(' parameter_declaration_clause ')' cv_qualifier_seq
@@ -6528,21 +6527,21 @@ state 337
     '['  shift, and go to state 497
 
 
-state 338
+State 338
 
   253 direct_declarator: CLASS_NAME '(' parameter_declaration_clause ')' .
 
     $default  reduce using rule 253 (direct_declarator)
 
 
-state 339
+State 339
 
   281 parameter_declaration_clause: parameter_declaration_list ELLIPSIS .
 
     $default  reduce using rule 281 (parameter_declaration_clause)
 
 
-state 340
+State 340
 
   283 parameter_declaration_clause: parameter_declaration_list ',' . ELLIPSIS
   286 parameter_declaration_list: parameter_declaration_list ',' . parameter_declaration
@@ -6604,28 +6603,28 @@ state 340
     class_key                  go to state 85
 
 
-state 341
+State 341
 
   240 asm_definition: ASM '(' string_literal ')' . ';'
 
     ';'  shift, and go to state 500
 
 
-state 342
+State 342
 
   208 elaborated_type_specifier: ENUM COLONCOLON nested_name_specifier identifier .
 
     $default  reduce using rule 208 (elaborated_type_specifier)
 
 
-state 343
+State 343
 
   217 enumerator: identifier .
 
     $default  reduce using rule 217 (enumerator)
 
 
-state 344
+State 344
 
   214 enumerator_list: enumerator_list . ',' enumerator_definition
   434 enumerator_list_opt: enumerator_list .
@@ -6635,14 +6634,14 @@ state 344
     $default  reduce using rule 434 (enumerator_list_opt)
 
 
-state 345
+State 345
 
   213 enumerator_list: enumerator_definition .
 
     $default  reduce using rule 213 (enumerator_list)
 
 
-state 346
+State 346
 
   215 enumerator_definition: enumerator .
   216                      | enumerator . '=' constant_expression
@@ -6652,42 +6651,42 @@ state 346
     $default  reduce using rule 215 (enumerator_definition)
 
 
-state 347
+State 347
 
   212 enum_specifier: ENUM identifier '{' enumerator_list_opt . '}'
 
     '}'  shift, and go to state 503
 
 
-state 348
+State 348
 
   241 linkage_specification: EXTERN string_literal '{' declaration_seq_opt . '}'
 
     '}'  shift, and go to state 504
 
 
-state 349
+State 349
 
   224 unnamed_namespace_definition: NAMESPACE '{' namespace_body '}' .
 
     $default  reduce using rule 224 (unnamed_namespace_definition)
 
 
-state 350
+State 350
 
   223 extension_namespace_definition: NAMESPACE original_namespace_name '{' namespace_body . '}'
 
     '}'  shift, and go to state 505
 
 
-state 351
+State 351
 
   222 original_namespace_definition: NAMESPACE identifier '{' namespace_body . '}'
 
     '}'  shift, and go to state 506
 
 
-state 352
+State 352
 
   227 qualified_namespace_specifier: COLONCOLON . nested_name_specifier namespace_name
   228                              | COLONCOLON . namespace_name
@@ -6701,7 +6700,7 @@ state 352
     nested_name_specifier    go to state 508
 
 
-state 353
+State 353
 
    32 nested_name_specifier: namespace_name . COLONCOLON nested_name_specifier
   230 qualified_namespace_specifier: namespace_name .
@@ -6711,7 +6710,7 @@ state 353
     $default  reduce using rule 230 (qualified_namespace_specifier)
 
 
-state 354
+State 354
 
   229 qualified_namespace_specifier: nested_name_specifier . namespace_name
 
@@ -6721,63 +6720,63 @@ state 354
     original_namespace_name  go to state 45
 
 
-state 355
+State 355
 
   226 namespace_alias_definition: NAMESPACE identifier '=' qualified_namespace_specifier . ';'
 
     ';'  shift, and go to state 510
 
 
-state 356
+State 356
 
   362 operator: DELETE '[' ']' .
 
     $default  reduce using rule 362 (operator)
 
 
-state 357
+State 357
 
   361 operator: NEW '[' ']' .
 
     $default  reduce using rule 361 (operator)
 
 
-state 358
+State 358
 
   261 ptr_operator: COLONCOLON nested_name_specifier . '*'
 
     '*'  shift, and go to state 198
 
 
-state 359
+State 359
 
   348 conversion_declarator: ptr_operator conversion_declarator_opt .
 
     $default  reduce using rule 348 (conversion_declarator)
 
 
-state 360
+State 360
 
   211 elaborated_type_specifier: TYPENAME COLONCOLON_opt nested_name_specifier identifier .
 
     $default  reduce using rule 211 (elaborated_type_specifier)
 
 
-state 361
+State 361
 
   235 using_declaration: USING COLONCOLON unqualified_id ';' .
 
     $default  reduce using rule 235 (using_declaration)
 
 
-state 362
+State 362
 
   233 using_declaration: USING COLONCOLON nested_name_specifier unqualified_id . ';'
 
     ';'  shift, and go to state 511
 
 
-state 363
+State 363
 
    32 nested_name_specifier: namespace_name . COLONCOLON nested_name_specifier
   237 using_directive: USING NAMESPACE COLONCOLON namespace_name . ';'
@@ -6786,7 +6785,7 @@ state 363
     ';'         shift, and go to state 512
 
 
-state 364
+State 364
 
   236 using_directive: USING NAMESPACE COLONCOLON nested_name_specifier . namespace_name ';'
 
@@ -6796,21 +6795,21 @@ state 364
     original_namespace_name  go to state 45
 
 
-state 365
+State 365
 
   239 using_directive: USING NAMESPACE namespace_name ';' .
 
     $default  reduce using rule 239 (using_directive)
 
 
-state 366
+State 366
 
   238 using_directive: USING NAMESPACE nested_name_specifier namespace_name . ';'
 
     ';'  shift, and go to state 514
 
 
-state 367
+State 367
 
   231 using_declaration: USING TYPENAME COLONCOLON nested_name_specifier . unqualified_id ';'
 
@@ -6824,28 +6823,28 @@ state 367
     operator_function_id    go to state 87
 
 
-state 368
+State 368
 
   232 using_declaration: USING TYPENAME nested_name_specifier unqualified_id . ';'
 
     ';'  shift, and go to state 516
 
 
-state 369
+State 369
 
   234 using_declaration: USING nested_name_specifier unqualified_id ';' .
 
     $default  reduce using rule 234 (using_declaration)
 
 
-state 370
+State 370
 
   244 init_declarator_list: init_declarator_list ',' init_declarator .
 
     $default  reduce using rule 244 (init_declarator_list)
 
 
-state 371
+State 371
 
   245 init_declarator: declarator . initializer_opt
 
@@ -6858,7 +6857,7 @@ state 371
     initializer_opt  go to state 245
 
 
-state 372
+State 372
 
   409 throw_expression: THROW . assignment_expression_opt
 
@@ -6930,7 +6929,7 @@ state 372
     assignment_expression_opt  go to state 518
 
 
-state 373
+State 373
 
    44 expression_list: expression_list . ',' assignment_expression
   297 initializer: '(' expression_list . ')'
@@ -6939,7 +6938,7 @@ state 373
     ','  shift, and go to state 520
 
 
-state 374
+State 374
 
   106 logical_or_expression: logical_or_expression . OROR logical_and_expression
   107 conditional_expression: logical_or_expression .
@@ -6965,28 +6964,28 @@ state 374
     assignment_operator  go to state 532
 
 
-state 375
+State 375
 
   109 assignment_expression: conditional_expression .
 
     $default  reduce using rule 109 (assignment_expression)
 
 
-state 376
+State 376
 
    43 expression_list: assignment_expression .
 
     $default  reduce using rule 43 (expression_list)
 
 
-state 377
+State 377
 
   111 assignment_expression: throw_expression .
 
     $default  reduce using rule 111 (assignment_expression)
 
 
-state 378
+State 378
 
   299 initializer_clause: '{' . initializer_list COMMA_opt '}'
   300                   | '{' . '}'
@@ -7060,28 +7059,28 @@ state 378
     throw_expression           go to state 377
 
 
-state 379
+State 379
 
   298 initializer_clause: assignment_expression .
 
     $default  reduce using rule 298 (initializer_clause)
 
 
-state 380
+State 380
 
   296 initializer: '=' initializer_clause .
 
     $default  reduce using rule 296 (initializer)
 
 
-state 381
+State 381
 
   292 function_definition: decl_specifier_seq declarator ctor_initializer_opt function_body .
 
     $default  reduce using rule 292 (function_definition)
 
 
-state 382
+State 382
 
   402 function_try_block: TRY ctor_initializer_opt function_body . handler_seq
 
@@ -7091,7 +7090,7 @@ state 382
     handler      go to state 538
 
 
-state 383
+State 383
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -7102,7 +7101,7 @@ state 383
     $default  reduce using rule 354 (mem_initializer_id)
 
 
-state 384
+State 384
 
   353 mem_initializer_id: COLONCOLON nested_name_specifier . class_name
 
@@ -7111,14 +7110,14 @@ state 384
     class_name  go to state 539
 
 
-state 385
+State 385
 
   355 mem_initializer_id: nested_name_specifier class_name .
 
     $default  reduce using rule 355 (mem_initializer_id)
 
 
-state 386
+State 386
 
   351 mem_initializer_list: mem_initializer ',' . mem_initializer_list
 
@@ -7137,7 +7136,7 @@ state 386
     mem_initializer_id       go to state 254
 
 
-state 387
+State 387
 
   352 mem_initializer: mem_initializer_id '(' . expression_list_opt ')'
 
@@ -7210,7 +7209,7 @@ state 387
     expression_list_opt        go to state 542
 
 
-state 388
+State 388
 
    60 new_expression: COLONCOLON . NEW new_placement_opt new_type_id new_initializer_opt
    62               | COLONCOLON . NEW new_placement_opt '(' type_id ')' new_initializer_opt
@@ -7233,14 +7232,14 @@ state 388
     nested_name_specifier_opt  go to state 95
 
 
-state 389
+State 389
 
   151 jump_statement: BREAK . ';'
 
     ';'  shift, and go to state 543
 
 
-state 390
+State 390
 
   135 labeled_statement: CASE . constant_expression ':' statement
 
@@ -7307,21 +7306,21 @@ state 390
     operator_function_id       go to state 87
 
 
-state 391
+State 391
 
   152 jump_statement: CONTINUE . ';'
 
     ';'  shift, and go to state 545
 
 
-state 392
+State 392
 
   136 labeled_statement: DEFAULT . ':' statement
 
     ':'  shift, and go to state 546
 
 
-state 393
+State 393
 
   147 iteration_statement: DO . statement WHILE '(' expression ')' ';'
 
@@ -7470,14 +7469,14 @@ state 393
     expression_opt              go to state 418
 
 
-state 394
+State 394
 
   148 iteration_statement: FOR . '(' for_init_statement condition_opt ';' expression_opt ')' statement
 
     '('  shift, and go to state 548
 
 
-state 395
+State 395
 
   154 jump_statement: GOTO . identifier ';'
 
@@ -7486,7 +7485,7 @@ state 395
     identifier  go to state 549
 
 
-state 396
+State 396
 
   141 selection_statement: IF . '(' condition ')' statement
   142                    | IF . '(' condition ')' statement ELSE statement
@@ -7494,7 +7493,7 @@ state 396
     '('  shift, and go to state 550
 
 
-state 397
+State 397
 
   226 namespace_alias_definition: NAMESPACE . identifier '=' qualified_namespace_specifier ';'
 
@@ -7503,7 +7502,7 @@ state 397
     identifier  go to state 551
 
 
-state 398
+State 398
 
   153 jump_statement: RETURN . expression_opt ';'
 
@@ -7576,14 +7575,14 @@ state 398
     expression_opt             go to state 552
 
 
-state 399
+State 399
 
   143 selection_statement: SWITCH . '(' condition ')' statement
 
     '('  shift, and go to state 553
 
 
-state 400
+State 400
 
   401 try_block: TRY . compound_statement handler_seq
 
@@ -7592,14 +7591,14 @@ state 400
     compound_statement  go to state 554
 
 
-state 401
+State 401
 
   146 iteration_statement: WHILE . '(' condition ')' statement
 
     '('  shift, and go to state 555
 
 
-state 402
+State 402
 
    25 unqualified_id: identifier .
   134 labeled_statement: identifier . ':' statement
@@ -7609,7 +7608,7 @@ state 402
     $default  reduce using rule 25 (unqualified_id)
 
 
-state 403
+State 403
 
    29 qualified_id: nested_name_specifier . unqualified_id
    30             | nested_name_specifier . TEMPLATE unqualified_id
@@ -7633,14 +7632,14 @@ state 403
     operator_function_id    go to state 87
 
 
-state 404
+State 404
 
   123 expression: assignment_expression .
 
     $default  reduce using rule 123 (expression)
 
 
-state 405
+State 405
 
   124 expression: expression . ',' assignment_expression
   428 expression_opt: expression .
@@ -7650,35 +7649,35 @@ state 405
     $default  reduce using rule 428 (expression_opt)
 
 
-state 406
+State 406
 
   139 statement_seq: statement .
 
     $default  reduce using rule 139 (statement_seq)
 
 
-state 407
+State 407
 
   126 statement: labeled_statement .
 
     $default  reduce using rule 126 (statement)
 
 
-state 408
+State 408
 
   127 statement: expression_statement .
 
     $default  reduce using rule 127 (statement)
 
 
-state 409
+State 409
 
   128 statement: compound_statement .
 
     $default  reduce using rule 128 (statement)
 
 
-state 410
+State 410
 
   140 statement_seq: statement_seq . statement
   430 statement_seq_opt: statement_seq .
@@ -7829,42 +7828,42 @@ state 410
     expression_opt              go to state 418
 
 
-state 411
+State 411
 
   129 statement: selection_statement .
 
     $default  reduce using rule 129 (statement)
 
 
-state 412
+State 412
 
   130 statement: iteration_statement .
 
     $default  reduce using rule 130 (statement)
 
 
-state 413
+State 413
 
   131 statement: jump_statement .
 
     $default  reduce using rule 131 (statement)
 
 
-state 414
+State 414
 
   132 statement: declaration_statement .
 
     $default  reduce using rule 132 (statement)
 
 
-state 415
+State 415
 
   155 declaration_statement: block_declaration .
 
     $default  reduce using rule 155 (declaration_statement)
 
 
-state 416
+State 416
 
   167 simple_declaration: decl_specifier_seq . init_declarator_list ';'
   168                   | decl_specifier_seq . ';'
@@ -7943,28 +7942,28 @@ state 416
     operator_function_id       go to state 87
 
 
-state 417
+State 417
 
   133 statement: try_block .
 
     $default  reduce using rule 133 (statement)
 
 
-state 418
+State 418
 
   137 expression_statement: expression_opt . ';'
 
     ';'  shift, and go to state 559
 
 
-state 419
+State 419
 
   138 compound_statement: '{' statement_seq_opt . '}'
 
     '}'  shift, and go to state 560
 
 
-state 420
+State 420
 
   249 direct_declarator: direct_declarator '(' parameter_declaration_clause ')' . cv_qualifier_seq exception_specification
   250                  | direct_declarator '(' parameter_declaration_clause ')' . cv_qualifier_seq
@@ -7982,7 +7981,7 @@ state 420
     exception_specification  go to state 564
 
 
-state 421
+State 421
 
    71 delete_expression: COLONCOLON DELETE . cast_expression
    73                  | COLONCOLON DELETE . '[' ']' cast_expression
@@ -8038,7 +8037,7 @@ state 421
     operator_function_id     go to state 87
 
 
-state 422
+State 422
 
    60 new_expression: COLONCOLON NEW . new_placement_opt new_type_id new_initializer_opt
    62               | COLONCOLON NEW . new_placement_opt '(' type_id ')' new_initializer_opt
@@ -8052,35 +8051,35 @@ state 422
     new_placement_opt  go to state 567
 
 
-state 423
+State 423
 
    46 unary_expression: PLUSPLUS cast_expression .
 
     $default  reduce using rule 46 (unary_expression)
 
 
-state 424
+State 424
 
    47 unary_expression: MINUSMINUS cast_expression .
 
     $default  reduce using rule 47 (unary_expression)
 
 
-state 425
+State 425
 
    72 delete_expression: DELETE '[' . ']' cast_expression
 
     ']'  shift, and go to state 568
 
 
-state 426
+State 426
 
    70 delete_expression: DELETE cast_expression .
 
     $default  reduce using rule 70 (delete_expression)
 
 
-state 427
+State 427
 
    63 new_placement: '(' . expression_list ')'
 
@@ -8150,14 +8149,14 @@ state 427
     throw_expression           go to state 377
 
 
-state 428
+State 428
 
   422 new_placement_opt: new_placement .
 
     $default  reduce using rule 422 (new_placement_opt)
 
 
-state 429
+State 429
 
    59 new_expression: NEW new_placement_opt . new_type_id new_initializer_opt
    61               | NEW new_placement_opt . '(' type_id ')' new_initializer_opt
@@ -8206,7 +8205,7 @@ state 429
     class_key                  go to state 85
 
 
-state 430
+State 430
 
    21 primary_expression: '(' . expression ')'
    52 unary_expression: SIZEOF '(' . type_id ')'
@@ -8310,14 +8309,14 @@ state 430
     throw_expression           go to state 377
 
 
-state 431
+State 431
 
    51 unary_expression: SIZEOF unary_expression .
 
     $default  reduce using rule 51 (unary_expression)
 
 
-state 432
+State 432
 
    21 primary_expression: '(' expression . ')'
   124 expression: expression . ',' assignment_expression
@@ -8326,14 +8325,14 @@ state 432
     ','  shift, and go to state 557
 
 
-state 433
+State 433
 
    75 cast_expression: '(' type_id . ')' cast_expression
 
     ')'  shift, and go to state 575
 
 
-state 434
+State 434
 
   270 type_id: type_specifier_seq . abstract_declarator_opt
 
@@ -8359,35 +8358,35 @@ state 434
     direct_abstract_declarator_opt  go to state 337
 
 
-state 435
+State 435
 
    49 unary_expression: '&' cast_expression .
 
     $default  reduce using rule 49 (unary_expression)
 
 
-state 436
+State 436
 
    48 unary_expression: '*' cast_expression .
 
     $default  reduce using rule 48 (unary_expression)
 
 
-state 437
+State 437
 
    41 postfix_expression: postfix_expression PLUSPLUS .
 
     $default  reduce using rule 41 (postfix_expression)
 
 
-state 438
+State 438
 
    42 postfix_expression: postfix_expression MINUSMINUS .
 
     $default  reduce using rule 42 (postfix_expression)
 
 
-state 439
+State 439
 
    39 postfix_expression: postfix_expression ARROW . COLONCOLON id_expression
    40                   | postfix_expression ARROW . id_expression
@@ -8411,7 +8410,7 @@ state 439
     operator_function_id     go to state 87
 
 
-state 440
+State 440
 
    36 postfix_expression: postfix_expression '(' . expression_list_opt ')'
 
@@ -8484,7 +8483,7 @@ state 440
     expression_list_opt        go to state 581
 
 
-state 441
+State 441
 
    35 postfix_expression: postfix_expression '[' . expression ']'
 
@@ -8554,7 +8553,7 @@ state 441
     throw_expression           go to state 377
 
 
-state 442
+State 442
 
    37 postfix_expression: postfix_expression '.' . COLONCOLON id_expression
    38                   | postfix_expression '.' . id_expression
@@ -8578,14 +8577,14 @@ state 442
     operator_function_id     go to state 87
 
 
-state 443
+State 443
 
    50 unary_expression: unary_operator cast_expression .
 
     $default  reduce using rule 50 (unary_expression)
 
 
-state 444
+State 444
 
    77 pm_expression: pm_expression DOTSTAR . cast_expression
 
@@ -8639,7 +8638,7 @@ state 444
     operator_function_id     go to state 87
 
 
-state 445
+State 445
 
    78 pm_expression: pm_expression ARROWSTAR . cast_expression
 
@@ -8693,7 +8692,7 @@ state 445
     operator_function_id     go to state 87
 
 
-state 446
+State 446
 
    82 multiplicative_expression: multiplicative_expression '%' . pm_expression
 
@@ -8748,7 +8747,7 @@ state 446
     operator_function_id     go to state 87
 
 
-state 447
+State 447
 
    80 multiplicative_expression: multiplicative_expression '*' . pm_expression
 
@@ -8803,7 +8802,7 @@ state 447
     operator_function_id     go to state 87
 
 
-state 448
+State 448
 
    81 multiplicative_expression: multiplicative_expression '/' . pm_expression
 
@@ -8858,7 +8857,7 @@ state 448
     operator_function_id     go to state 87
 
 
-state 449
+State 449
 
    84 additive_expression: additive_expression '+' . multiplicative_expression
 
@@ -8914,7 +8913,7 @@ state 449
     operator_function_id       go to state 87
 
 
-state 450
+State 450
 
    85 additive_expression: additive_expression '-' . multiplicative_expression
 
@@ -8970,7 +8969,7 @@ state 450
     operator_function_id       go to state 87
 
 
-state 451
+State 451
 
    87 shift_expression: shift_expression SL . additive_expression
 
@@ -9027,7 +9026,7 @@ state 451
     operator_function_id       go to state 87
 
 
-state 452
+State 452
 
    88 shift_expression: shift_expression SR . additive_expression
 
@@ -9084,7 +9083,7 @@ state 452
     operator_function_id       go to state 87
 
 
-state 453
+State 453
 
    92 relational_expression: relational_expression LTEQ . shift_expression
 
@@ -9142,7 +9141,7 @@ state 453
     operator_function_id       go to state 87
 
 
-state 454
+State 454
 
    93 relational_expression: relational_expression GTEQ . shift_expression
 
@@ -9200,7 +9199,7 @@ state 454
     operator_function_id       go to state 87
 
 
-state 455
+State 455
 
    90 relational_expression: relational_expression '<' . shift_expression
 
@@ -9258,7 +9257,7 @@ state 455
     operator_function_id       go to state 87
 
 
-state 456
+State 456
 
    91 relational_expression: relational_expression '>' . shift_expression
 
@@ -9316,7 +9315,7 @@ state 456
     operator_function_id       go to state 87
 
 
-state 457
+State 457
 
    95 equality_expression: equality_expression EQ . relational_expression
 
@@ -9375,7 +9374,7 @@ state 457
     operator_function_id       go to state 87
 
 
-state 458
+State 458
 
    96 equality_expression: equality_expression NOTEQ . relational_expression
 
@@ -9434,7 +9433,7 @@ state 458
     operator_function_id       go to state 87
 
 
-state 459
+State 459
 
    98 and_expression: and_expression '&' . equality_expression
 
@@ -9494,7 +9493,7 @@ state 459
     operator_function_id       go to state 87
 
 
-state 460
+State 460
 
   100 exclusive_or_expression: exclusive_or_expression '^' . and_expression
 
@@ -9555,7 +9554,7 @@ state 460
     operator_function_id       go to state 87
 
 
-state 461
+State 461
 
   102 inclusive_or_expression: inclusive_or_expression '|' . exclusive_or_expression
 
@@ -9617,7 +9616,7 @@ state 461
     operator_function_id       go to state 87
 
 
-state 462
+State 462
 
   104 logical_and_expression: logical_and_expression ANDAND . inclusive_or_expression
 
@@ -9680,7 +9679,7 @@ state 462
     operator_function_id       go to state 87
 
 
-state 463
+State 463
 
   106 logical_or_expression: logical_or_expression OROR . logical_and_expression
 
@@ -9744,7 +9743,7 @@ state 463
     operator_function_id       go to state 87
 
 
-state 464
+State 464
 
   108 conditional_expression: logical_or_expression '?' . expression ':' assignment_expression
 
@@ -9814,14 +9813,14 @@ state 464
     throw_expression           go to state 377
 
 
-state 465
+State 465
 
   256 direct_declarator: direct_declarator '[' constant_expression_opt ']' .
 
     $default  reduce using rule 256 (direct_declarator)
 
 
-state 466
+State 466
 
   325 member_declarator: identifier ':' . constant_expression
 
@@ -9888,21 +9887,21 @@ state 466
     operator_function_id       go to state 87
 
 
-state 467
+State 467
 
   318 member_declaration: qualified_id ';' .
 
     $default  reduce using rule 318 (member_declaration)
 
 
-state 468
+State 468
 
   314 member_declaration: decl_specifier_seq ';' .
 
     $default  reduce using rule 314 (member_declaration)
 
 
-state 469
+State 469
 
   292 function_definition: decl_specifier_seq declarator . ctor_initializer_opt function_body
   294                    | decl_specifier_seq declarator . function_try_block
@@ -9924,7 +9923,7 @@ state 469
     ctor_initializer_opt  go to state 246
 
 
-state 470
+State 470
 
   313 member_declaration: decl_specifier_seq member_declarator_list . ';'
   321 member_declarator_list: member_declarator_list . ',' member_declarator
@@ -9933,7 +9932,7 @@ state 470
     ','  shift, and go to state 478
 
 
-state 471
+State 471
 
   326 pure_specifier: '=' . '0'
   327 constant_initializer: '=' . constant_expression
@@ -10002,49 +10001,49 @@ state 471
     operator_function_id       go to state 87
 
 
-state 472
+State 472
 
   323 member_declarator: declarator pure_specifier .
 
     $default  reduce using rule 323 (member_declarator)
 
 
-state 473
+State 473
 
   324 member_declarator: declarator constant_initializer .
 
     $default  reduce using rule 324 (member_declarator)
 
 
-state 474
+State 474
 
   452 SEMICOLON_opt: ';' .
 
     $default  reduce using rule 452 (SEMICOLON_opt)
 
 
-state 475
+State 475
 
   317 member_declaration: function_definition SEMICOLON_opt .
 
     $default  reduce using rule 317 (member_declaration)
 
 
-state 476
+State 476
 
   311 member_specification: member_declaration member_specification_opt .
 
     $default  reduce using rule 311 (member_specification)
 
 
-state 477
+State 477
 
   315 member_declaration: member_declarator_list ';' .
 
     $default  reduce using rule 315 (member_declaration)
 
 
-state 478
+State 478
 
   321 member_declarator_list: member_declarator_list ',' . member_declarator
 
@@ -10075,7 +10074,7 @@ state 478
     operator_function_id     go to state 87
 
 
-state 479
+State 479
 
   312 member_specification: access_specifier ':' . member_specification_opt
 
@@ -10165,21 +10164,21 @@ state 479
     member_specification_opt   go to state 612
 
 
-state 480
+State 480
 
   303 class_specifier: class_head '{' member_specification_opt '}' .
 
     $default  reduce using rule 303 (class_specifier)
 
 
-state 481
+State 481
 
   206 elaborated_type_specifier: class_key COLONCOLON nested_name_specifier identifier .
 
     $default  reduce using rule 206 (elaborated_type_specifier)
 
 
-state 482
+State 482
 
   331 base_specifier: COLONCOLON . nested_name_specifier class_name
   332               | COLONCOLON . class_name
@@ -10193,7 +10192,7 @@ state 482
     nested_name_specifier    go to state 614
 
 
-state 483
+State 483
 
   335 base_specifier: VIRTUAL . access_specifier COLONCOLON nested_name_specifier_opt class_name
   336               | VIRTUAL . access_specifier nested_name_specifier_opt class_name
@@ -10217,7 +10216,7 @@ state 483
     nested_name_specifier_opt  go to state 617
 
 
-state 484
+State 484
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -10228,7 +10227,7 @@ state 484
     $default  reduce using rule 334 (base_specifier)
 
 
-state 485
+State 485
 
   333 base_specifier: nested_name_specifier . class_name
 
@@ -10237,7 +10236,7 @@ state 485
     class_name  go to state 618
 
 
-state 486
+State 486
 
   328 base_clause: ':' base_specifier_list .
   330 base_specifier_list: base_specifier_list . ',' base_specifier
@@ -10247,14 +10246,14 @@ state 486
     $default  reduce using rule 328 (base_clause)
 
 
-state 487
+State 487
 
   329 base_specifier_list: base_specifier .
 
     $default  reduce using rule 329 (base_specifier_list)
 
 
-state 488
+State 488
 
   339 base_specifier: access_specifier . VIRTUAL COLONCOLON nested_name_specifier_opt class_name
   340               | access_specifier . VIRTUAL nested_name_specifier_opt class_name
@@ -10275,35 +10274,35 @@ state 488
     nested_name_specifier_opt  go to state 622
 
 
-state 489
+State 489
 
   307 class_head: class_key nested_name_specifier identifier base_clause .
 
     $default  reduce using rule 307 (class_head)
 
 
-state 490
+State 490
 
   255 direct_declarator: CLASS_NAME COLONCOLON CLASS_NAME '(' parameter_declaration_clause . ')'
 
     ')'  shift, and go to state 623
 
 
-state 491
+State 491
 
   254 direct_declarator: CLASS_NAME COLONCOLON declarator_id '(' parameter_declaration_clause . ')'
 
     ')'  shift, and go to state 624
 
 
-state 492
+State 492
 
   279 direct_abstract_declarator: '(' abstract_declarator . ')'
 
     ')'  shift, and go to state 625
 
 
-state 493
+State 493
 
   288 parameter_declaration: decl_specifier_seq declarator '=' . assignment_expression
 
@@ -10372,14 +10371,14 @@ state 493
     throw_expression           go to state 377
 
 
-state 494
+State 494
 
   272 abstract_declarator: ptr_operator abstract_declarator_opt .
 
     $default  reduce using rule 272 (abstract_declarator)
 
 
-state 495
+State 495
 
   290 parameter_declaration: decl_specifier_seq abstract_declarator_opt '=' . assignment_expression
 
@@ -10448,7 +10447,7 @@ state 495
     throw_expression           go to state 377
 
 
-state 496
+State 496
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt '(' . parameter_declaration_clause ')' cv_qualifier_seq exception_specification
   275                           | direct_abstract_declarator_opt '(' . parameter_declaration_clause ')' cv_qualifier_seq
@@ -10516,7 +10515,7 @@ state 496
     class_key                     go to state 85
 
 
-state 497
+State 497
 
   278 direct_abstract_declarator: direct_abstract_declarator_opt '[' . constant_expression_opt ']'
 
@@ -10586,28 +10585,28 @@ state 497
     constant_expression_opt    go to state 629
 
 
-state 498
+State 498
 
   283 parameter_declaration_clause: parameter_declaration_list ',' ELLIPSIS .
 
     $default  reduce using rule 283 (parameter_declaration_clause)
 
 
-state 499
+State 499
 
   286 parameter_declaration_list: parameter_declaration_list ',' parameter_declaration .
 
     $default  reduce using rule 286 (parameter_declaration_list)
 
 
-state 500
+State 500
 
   240 asm_definition: ASM '(' string_literal ')' ';' .
 
     $default  reduce using rule 240 (asm_definition)
 
 
-state 501
+State 501
 
   214 enumerator_list: enumerator_list ',' . enumerator_definition
 
@@ -10618,7 +10617,7 @@ state 501
     enumerator             go to state 346
 
 
-state 502
+State 502
 
   216 enumerator_definition: enumerator '=' . constant_expression
 
@@ -10685,35 +10684,35 @@ state 502
     operator_function_id       go to state 87
 
 
-state 503
+State 503
 
   212 enum_specifier: ENUM identifier '{' enumerator_list_opt '}' .
 
     $default  reduce using rule 212 (enum_specifier)
 
 
-state 504
+State 504
 
   241 linkage_specification: EXTERN string_literal '{' declaration_seq_opt '}' .
 
     $default  reduce using rule 241 (linkage_specification)
 
 
-state 505
+State 505
 
   223 extension_namespace_definition: NAMESPACE original_namespace_name '{' namespace_body '}' .
 
     $default  reduce using rule 223 (extension_namespace_definition)
 
 
-state 506
+State 506
 
   222 original_namespace_definition: NAMESPACE identifier '{' namespace_body '}' .
 
     $default  reduce using rule 222 (original_namespace_definition)
 
 
-state 507
+State 507
 
    32 nested_name_specifier: namespace_name . COLONCOLON nested_name_specifier
   228 qualified_namespace_specifier: COLONCOLON namespace_name .
@@ -10723,7 +10722,7 @@ state 507
     $default  reduce using rule 228 (qualified_namespace_specifier)
 
 
-state 508
+State 508
 
   227 qualified_namespace_specifier: COLONCOLON nested_name_specifier . namespace_name
 
@@ -10733,84 +10732,84 @@ state 508
     original_namespace_name  go to state 45
 
 
-state 509
+State 509
 
   229 qualified_namespace_specifier: nested_name_specifier namespace_name .
 
     $default  reduce using rule 229 (qualified_namespace_specifier)
 
 
-state 510
+State 510
 
   226 namespace_alias_definition: NAMESPACE identifier '=' qualified_namespace_specifier ';' .
 
     $default  reduce using rule 226 (namespace_alias_definition)
 
 
-state 511
+State 511
 
   233 using_declaration: USING COLONCOLON nested_name_specifier unqualified_id ';' .
 
     $default  reduce using rule 233 (using_declaration)
 
 
-state 512
+State 512
 
   237 using_directive: USING NAMESPACE COLONCOLON namespace_name ';' .
 
     $default  reduce using rule 237 (using_directive)
 
 
-state 513
+State 513
 
   236 using_directive: USING NAMESPACE COLONCOLON nested_name_specifier namespace_name . ';'
 
     ';'  shift, and go to state 633
 
 
-state 514
+State 514
 
   238 using_directive: USING NAMESPACE nested_name_specifier namespace_name ';' .
 
     $default  reduce using rule 238 (using_directive)
 
 
-state 515
+State 515
 
   231 using_declaration: USING TYPENAME COLONCOLON nested_name_specifier unqualified_id . ';'
 
     ';'  shift, and go to state 634
 
 
-state 516
+State 516
 
   232 using_declaration: USING TYPENAME nested_name_specifier unqualified_id ';' .
 
     $default  reduce using rule 232 (using_declaration)
 
 
-state 517
+State 517
 
   458 assignment_expression_opt: assignment_expression .
 
     $default  reduce using rule 458 (assignment_expression_opt)
 
 
-state 518
+State 518
 
   409 throw_expression: THROW assignment_expression_opt .
 
     $default  reduce using rule 409 (throw_expression)
 
 
-state 519
+State 519
 
   297 initializer: '(' expression_list ')' .
 
     $default  reduce using rule 297 (initializer)
 
 
-state 520
+State 520
 
    44 expression_list: expression_list ',' . assignment_expression
 
@@ -10879,84 +10878,84 @@ state 520
     throw_expression           go to state 377
 
 
-state 521
+State 521
 
   116 assignment_operator: ADDEQ .
 
     $default  reduce using rule 116 (assignment_operator)
 
 
-state 522
+State 522
 
   117 assignment_operator: SUBEQ .
 
     $default  reduce using rule 117 (assignment_operator)
 
 
-state 523
+State 523
 
   113 assignment_operator: MULEQ .
 
     $default  reduce using rule 113 (assignment_operator)
 
 
-state 524
+State 524
 
   114 assignment_operator: DIVEQ .
 
     $default  reduce using rule 114 (assignment_operator)
 
 
-state 525
+State 525
 
   115 assignment_operator: MODEQ .
 
     $default  reduce using rule 115 (assignment_operator)
 
 
-state 526
+State 526
 
   121 assignment_operator: XOREQ .
 
     $default  reduce using rule 121 (assignment_operator)
 
 
-state 527
+State 527
 
   120 assignment_operator: ANDEQ .
 
     $default  reduce using rule 120 (assignment_operator)
 
 
-state 528
+State 528
 
   122 assignment_operator: OREQ .
 
     $default  reduce using rule 122 (assignment_operator)
 
 
-state 529
+State 529
 
   118 assignment_operator: SREQ .
 
     $default  reduce using rule 118 (assignment_operator)
 
 
-state 530
+State 530
 
   119 assignment_operator: SLEQ .
 
     $default  reduce using rule 119 (assignment_operator)
 
 
-state 531
+State 531
 
   112 assignment_operator: '=' .
 
     $default  reduce using rule 112 (assignment_operator)
 
 
-state 532
+State 532
 
   110 assignment_expression: logical_or_expression assignment_operator . assignment_expression
 
@@ -11025,21 +11024,21 @@ state 532
     throw_expression           go to state 377
 
 
-state 533
+State 533
 
   300 initializer_clause: '{' '}' .
 
     $default  reduce using rule 300 (initializer_clause)
 
 
-state 534
+State 534
 
   301 initializer_list: initializer_clause .
 
     $default  reduce using rule 301 (initializer_list)
 
 
-state 535
+State 535
 
   299 initializer_clause: '{' initializer_list . COMMA_opt '}'
   302 initializer_list: initializer_list . ',' initializer_clause
@@ -11051,21 +11050,21 @@ state 535
     COMMA_opt  go to state 638
 
 
-state 536
+State 536
 
   404 handler: CATCH . '(' exception_declaration ')' compound_statement
 
     '('  shift, and go to state 639
 
 
-state 537
+State 537
 
   402 function_try_block: TRY ctor_initializer_opt function_body handler_seq .
 
     $default  reduce using rule 402 (function_try_block)
 
 
-state 538
+State 538
 
   403 handler_seq: handler . handler_seq_opt
 
@@ -11078,21 +11077,21 @@ state 538
     handler_seq_opt  go to state 641
 
 
-state 539
+State 539
 
   353 mem_initializer_id: COLONCOLON nested_name_specifier class_name .
 
     $default  reduce using rule 353 (mem_initializer_id)
 
 
-state 540
+State 540
 
   351 mem_initializer_list: mem_initializer ',' mem_initializer_list .
 
     $default  reduce using rule 351 (mem_initializer_list)
 
 
-state 541
+State 541
 
    44 expression_list: expression_list . ',' assignment_expression
   418 expression_list_opt: expression_list .
@@ -11102,35 +11101,35 @@ state 541
     $default  reduce using rule 418 (expression_list_opt)
 
 
-state 542
+State 542
 
   352 mem_initializer: mem_initializer_id '(' expression_list_opt . ')'
 
     ')'  shift, and go to state 642
 
 
-state 543
+State 543
 
   151 jump_statement: BREAK ';' .
 
     $default  reduce using rule 151 (jump_statement)
 
 
-state 544
+State 544
 
   135 labeled_statement: CASE constant_expression . ':' statement
 
     ':'  shift, and go to state 643
 
 
-state 545
+State 545
 
   152 jump_statement: CONTINUE ';' .
 
     $default  reduce using rule 152 (jump_statement)
 
 
-state 546
+State 546
 
   136 labeled_statement: DEFAULT ':' . statement
 
@@ -11279,14 +11278,14 @@ state 546
     expression_opt              go to state 418
 
 
-state 547
+State 547
 
   147 iteration_statement: DO statement . WHILE '(' expression ')' ';'
 
     WHILE  shift, and go to state 645
 
 
-state 548
+State 548
 
   148 iteration_statement: FOR '(' . for_init_statement condition_opt ';' expression_opt ')' statement
 
@@ -11407,14 +11406,14 @@ state 548
     expression_opt             go to state 418
 
 
-state 549
+State 549
 
   154 jump_statement: GOTO identifier . ';'
 
     ';'  shift, and go to state 649
 
 
-state 550
+State 550
 
   141 selection_statement: IF '(' . condition ')' statement
   142                    | IF '(' . condition ')' statement ELSE statement
@@ -11518,21 +11517,21 @@ state 550
     throw_expression           go to state 377
 
 
-state 551
+State 551
 
   226 namespace_alias_definition: NAMESPACE identifier . '=' qualified_namespace_specifier ';'
 
     '='  shift, and go to state 212
 
 
-state 552
+State 552
 
   153 jump_statement: RETURN expression_opt . ';'
 
     ';'  shift, and go to state 653
 
 
-state 553
+State 553
 
   143 selection_statement: SWITCH '(' . condition ')' statement
 
@@ -11635,7 +11634,7 @@ state 553
     throw_expression           go to state 377
 
 
-state 554
+State 554
 
   401 try_block: TRY compound_statement . handler_seq
 
@@ -11645,7 +11644,7 @@ state 554
     handler      go to state 538
 
 
-state 555
+State 555
 
   146 iteration_statement: WHILE '(' . condition ')' statement
 
@@ -11748,7 +11747,7 @@ state 555
     throw_expression           go to state 377
 
 
-state 556
+State 556
 
   134 labeled_statement: identifier ':' . statement
 
@@ -11897,7 +11896,7 @@ state 556
     expression_opt              go to state 418
 
 
-state 557
+State 557
 
   124 expression: expression ',' . assignment_expression
 
@@ -11966,35 +11965,35 @@ state 557
     throw_expression           go to state 377
 
 
-state 558
+State 558
 
   140 statement_seq: statement_seq statement .
 
     $default  reduce using rule 140 (statement_seq)
 
 
-state 559
+State 559
 
   137 expression_statement: expression_opt ';' .
 
     $default  reduce using rule 137 (expression_statement)
 
 
-state 560
+State 560
 
   138 compound_statement: '{' statement_seq_opt '}' .
 
     $default  reduce using rule 138 (compound_statement)
 
 
-state 561
+State 561
 
   410 exception_specification: THROW . '(' type_id_list_opt ')'
 
     '('  shift, and go to state 659
 
 
-state 562
+State 562
 
   249 direct_declarator: direct_declarator '(' parameter_declaration_clause ')' cv_qualifier_seq . exception_specification
   250                  | direct_declarator '(' parameter_declaration_clause ')' cv_qualifier_seq .
@@ -12006,7 +12005,7 @@ state 562
     exception_specification  go to state 660
 
 
-state 563
+State 563
 
   262 cv_qualifier_seq: cv_qualifier .
   263                 | cv_qualifier . cv_qualifier_seq
@@ -12020,28 +12019,28 @@ state 563
     cv_qualifier      go to state 563
 
 
-state 564
+State 564
 
   251 direct_declarator: direct_declarator '(' parameter_declaration_clause ')' exception_specification .
 
     $default  reduce using rule 251 (direct_declarator)
 
 
-state 565
+State 565
 
    73 delete_expression: COLONCOLON DELETE '[' . ']' cast_expression
 
     ']'  shift, and go to state 662
 
 
-state 566
+State 566
 
    71 delete_expression: COLONCOLON DELETE cast_expression .
 
     $default  reduce using rule 71 (delete_expression)
 
 
-state 567
+State 567
 
    60 new_expression: COLONCOLON NEW new_placement_opt . new_type_id new_initializer_opt
    62               | COLONCOLON NEW new_placement_opt . '(' type_id ')' new_initializer_opt
@@ -12090,7 +12089,7 @@ state 567
     class_key                  go to state 85
 
 
-state 568
+State 568
 
    72 delete_expression: DELETE '[' ']' . cast_expression
 
@@ -12144,7 +12143,7 @@ state 568
     operator_function_id     go to state 87
 
 
-state 569
+State 569
 
    44 expression_list: expression_list . ',' assignment_expression
    63 new_placement: '(' expression_list . ')'
@@ -12153,7 +12152,7 @@ state 569
     ','  shift, and go to state 520
 
 
-state 570
+State 570
 
    61 new_expression: NEW new_placement_opt '(' . type_id ')' new_initializer_opt
 
@@ -12200,7 +12199,7 @@ state 570
     class_key                  go to state 85
 
 
-state 571
+State 571
 
    59 new_expression: NEW new_placement_opt new_type_id . new_initializer_opt
 
@@ -12212,7 +12211,7 @@ state 571
     new_initializer_opt  go to state 670
 
 
-state 572
+State 572
 
    64 new_type_id: type_specifier_seq . new_declarator_opt
 
@@ -12237,21 +12236,21 @@ state 572
     new_declarator_opt       go to state 675
 
 
-state 573
+State 573
 
    52 unary_expression: SIZEOF '(' type_id . ')'
 
     ')'  shift, and go to state 676
 
 
-state 574
+State 574
 
    21 primary_expression: '(' expression ')' .
 
     $default  reduce using rule 21 (primary_expression)
 
 
-state 575
+State 575
 
    75 cast_expression: '(' type_id ')' . cast_expression
 
@@ -12305,7 +12304,7 @@ state 575
     operator_function_id     go to state 87
 
 
-state 576
+State 576
 
   279 direct_abstract_declarator: '(' . abstract_declarator ')'
 
@@ -12329,7 +12328,7 @@ state 576
     direct_abstract_declarator_opt  go to state 337
 
 
-state 577
+State 577
 
   272 abstract_declarator: ptr_operator . abstract_declarator_opt
 
@@ -12355,14 +12354,14 @@ state 577
     direct_abstract_declarator_opt  go to state 337
 
 
-state 578
+State 578
 
   270 type_id: type_specifier_seq abstract_declarator_opt .
 
     $default  reduce using rule 270 (type_id)
 
 
-state 579
+State 579
 
    39 postfix_expression: postfix_expression ARROW COLONCOLON . id_expression
 
@@ -12384,21 +12383,21 @@ state 579
     operator_function_id     go to state 87
 
 
-state 580
+State 580
 
    40 postfix_expression: postfix_expression ARROW id_expression .
 
     $default  reduce using rule 40 (postfix_expression)
 
 
-state 581
+State 581
 
    36 postfix_expression: postfix_expression '(' expression_list_opt . ')'
 
     ')'  shift, and go to state 679
 
 
-state 582
+State 582
 
    35 postfix_expression: postfix_expression '[' expression . ']'
   124 expression: expression . ',' assignment_expression
@@ -12407,7 +12406,7 @@ state 582
     ']'  shift, and go to state 680
 
 
-state 583
+State 583
 
    37 postfix_expression: postfix_expression '.' COLONCOLON . id_expression
 
@@ -12429,28 +12428,28 @@ state 583
     operator_function_id     go to state 87
 
 
-state 584
+State 584
 
    38 postfix_expression: postfix_expression '.' id_expression .
 
     $default  reduce using rule 38 (postfix_expression)
 
 
-state 585
+State 585
 
    77 pm_expression: pm_expression DOTSTAR cast_expression .
 
     $default  reduce using rule 77 (pm_expression)
 
 
-state 586
+State 586
 
    78 pm_expression: pm_expression ARROWSTAR cast_expression .
 
     $default  reduce using rule 78 (pm_expression)
 
 
-state 587
+State 587
 
    77 pm_expression: pm_expression . DOTSTAR cast_expression
    78              | pm_expression . ARROWSTAR cast_expression
@@ -12462,7 +12461,7 @@ state 587
     $default  reduce using rule 82 (multiplicative_expression)
 
 
-state 588
+State 588
 
    77 pm_expression: pm_expression . DOTSTAR cast_expression
    78              | pm_expression . ARROWSTAR cast_expression
@@ -12474,7 +12473,7 @@ state 588
     $default  reduce using rule 80 (multiplicative_expression)
 
 
-state 589
+State 589
 
    77 pm_expression: pm_expression . DOTSTAR cast_expression
    78              | pm_expression . ARROWSTAR cast_expression
@@ -12486,7 +12485,7 @@ state 589
     $default  reduce using rule 81 (multiplicative_expression)
 
 
-state 590
+State 590
 
    80 multiplicative_expression: multiplicative_expression . '*' pm_expression
    81                          | multiplicative_expression . '/' pm_expression
@@ -12500,7 +12499,7 @@ state 590
     $default  reduce using rule 84 (additive_expression)
 
 
-state 591
+State 591
 
    80 multiplicative_expression: multiplicative_expression . '*' pm_expression
    81                          | multiplicative_expression . '/' pm_expression
@@ -12514,7 +12513,7 @@ state 591
     $default  reduce using rule 85 (additive_expression)
 
 
-state 592
+State 592
 
    84 additive_expression: additive_expression . '+' multiplicative_expression
    85                    | additive_expression . '-' multiplicative_expression
@@ -12526,7 +12525,7 @@ state 592
     $default  reduce using rule 87 (shift_expression)
 
 
-state 593
+State 593
 
    84 additive_expression: additive_expression . '+' multiplicative_expression
    85                    | additive_expression . '-' multiplicative_expression
@@ -12538,7 +12537,7 @@ state 593
     $default  reduce using rule 88 (shift_expression)
 
 
-state 594
+State 594
 
    87 shift_expression: shift_expression . SL additive_expression
    88                 | shift_expression . SR additive_expression
@@ -12550,7 +12549,7 @@ state 594
     $default  reduce using rule 92 (relational_expression)
 
 
-state 595
+State 595
 
    87 shift_expression: shift_expression . SL additive_expression
    88                 | shift_expression . SR additive_expression
@@ -12562,7 +12561,7 @@ state 595
     $default  reduce using rule 93 (relational_expression)
 
 
-state 596
+State 596
 
    87 shift_expression: shift_expression . SL additive_expression
    88                 | shift_expression . SR additive_expression
@@ -12574,7 +12573,7 @@ state 596
     $default  reduce using rule 90 (relational_expression)
 
 
-state 597
+State 597
 
    87 shift_expression: shift_expression . SL additive_expression
    88                 | shift_expression . SR additive_expression
@@ -12586,7 +12585,7 @@ state 597
     $default  reduce using rule 91 (relational_expression)
 
 
-state 598
+State 598
 
    90 relational_expression: relational_expression . '<' shift_expression
    91                      | relational_expression . '>' shift_expression
@@ -12602,7 +12601,7 @@ state 598
     $default  reduce using rule 95 (equality_expression)
 
 
-state 599
+State 599
 
    90 relational_expression: relational_expression . '<' shift_expression
    91                      | relational_expression . '>' shift_expression
@@ -12618,7 +12617,7 @@ state 599
     $default  reduce using rule 96 (equality_expression)
 
 
-state 600
+State 600
 
    95 equality_expression: equality_expression . EQ relational_expression
    96                    | equality_expression . NOTEQ relational_expression
@@ -12630,7 +12629,7 @@ state 600
     $default  reduce using rule 98 (and_expression)
 
 
-state 601
+State 601
 
    98 and_expression: and_expression . '&' equality_expression
   100 exclusive_or_expression: exclusive_or_expression '^' and_expression .
@@ -12640,7 +12639,7 @@ state 601
     $default  reduce using rule 100 (exclusive_or_expression)
 
 
-state 602
+State 602
 
   100 exclusive_or_expression: exclusive_or_expression . '^' and_expression
   102 inclusive_or_expression: inclusive_or_expression '|' exclusive_or_expression .
@@ -12650,7 +12649,7 @@ state 602
     $default  reduce using rule 102 (inclusive_or_expression)
 
 
-state 603
+State 603
 
   102 inclusive_or_expression: inclusive_or_expression . '|' exclusive_or_expression
   104 logical_and_expression: logical_and_expression ANDAND inclusive_or_expression .
@@ -12660,7 +12659,7 @@ state 603
     $default  reduce using rule 104 (logical_and_expression)
 
 
-state 604
+State 604
 
   104 logical_and_expression: logical_and_expression . ANDAND inclusive_or_expression
   106 logical_or_expression: logical_or_expression OROR logical_and_expression .
@@ -12670,7 +12669,7 @@ state 604
     $default  reduce using rule 106 (logical_or_expression)
 
 
-state 605
+State 605
 
   108 conditional_expression: logical_or_expression '?' expression . ':' assignment_expression
   124 expression: expression . ',' assignment_expression
@@ -12679,35 +12678,35 @@ state 605
     ':'  shift, and go to state 682
 
 
-state 606
+State 606
 
   325 member_declarator: identifier ':' constant_expression .
 
     $default  reduce using rule 325 (member_declarator)
 
 
-state 607
+State 607
 
   313 member_declaration: decl_specifier_seq member_declarator_list ';' .
 
     $default  reduce using rule 313 (member_declaration)
 
 
-state 608
+State 608
 
   326 pure_specifier: '=' '0' .
 
     $default  reduce using rule 326 (pure_specifier)
 
 
-state 609
+State 609
 
   327 constant_initializer: '=' constant_expression .
 
     $default  reduce using rule 327 (constant_initializer)
 
 
-state 610
+State 610
 
   322 member_declarator: declarator .
   323                  | declarator . pure_specifier
@@ -12721,21 +12720,21 @@ state 610
     constant_initializer  go to state 473
 
 
-state 611
+State 611
 
   321 member_declarator_list: member_declarator_list ',' member_declarator .
 
     $default  reduce using rule 321 (member_declarator_list)
 
 
-state 612
+State 612
 
   312 member_specification: access_specifier ':' member_specification_opt .
 
     $default  reduce using rule 312 (member_specification)
 
 
-state 613
+State 613
 
    31 nested_name_specifier: class_name . COLONCOLON nested_name_specifier
    33                      | class_name . COLONCOLON
@@ -12746,7 +12745,7 @@ state 613
     $default  reduce using rule 332 (base_specifier)
 
 
-state 614
+State 614
 
   331 base_specifier: COLONCOLON nested_name_specifier . class_name
 
@@ -12755,7 +12754,7 @@ state 614
     class_name  go to state 683
 
 
-state 615
+State 615
 
   337 base_specifier: VIRTUAL COLONCOLON . nested_name_specifier_opt class_name
 
@@ -12771,7 +12770,7 @@ state 615
     nested_name_specifier_opt  go to state 684
 
 
-state 616
+State 616
 
   335 base_specifier: VIRTUAL access_specifier . COLONCOLON nested_name_specifier_opt class_name
   336               | VIRTUAL access_specifier . nested_name_specifier_opt class_name
@@ -12789,7 +12788,7 @@ state 616
     nested_name_specifier_opt  go to state 686
 
 
-state 617
+State 617
 
   338 base_specifier: VIRTUAL nested_name_specifier_opt . class_name
 
@@ -12798,14 +12797,14 @@ state 617
     class_name  go to state 687
 
 
-state 618
+State 618
 
   333 base_specifier: nested_name_specifier class_name .
 
     $default  reduce using rule 333 (base_specifier)
 
 
-state 619
+State 619
 
   330 base_specifier_list: base_specifier_list ',' . base_specifier
 
@@ -12825,7 +12824,7 @@ state 619
     access_specifier         go to state 488
 
 
-state 620
+State 620
 
   341 base_specifier: access_specifier COLONCOLON . nested_name_specifier_opt class_name
 
@@ -12841,7 +12840,7 @@ state 620
     nested_name_specifier_opt  go to state 689
 
 
-state 621
+State 621
 
   339 base_specifier: access_specifier VIRTUAL . COLONCOLON nested_name_specifier_opt class_name
   340               | access_specifier VIRTUAL . nested_name_specifier_opt class_name
@@ -12859,7 +12858,7 @@ state 621
     nested_name_specifier_opt  go to state 691
 
 
-state 622
+State 622
 
   342 base_specifier: access_specifier nested_name_specifier_opt . class_name
 
@@ -12868,42 +12867,42 @@ state 622
     class_name  go to state 692
 
 
-state 623
+State 623
 
   255 direct_declarator: CLASS_NAME COLONCOLON CLASS_NAME '(' parameter_declaration_clause ')' .
 
     $default  reduce using rule 255 (direct_declarator)
 
 
-state 624
+State 624
 
   254 direct_declarator: CLASS_NAME COLONCOLON declarator_id '(' parameter_declaration_clause ')' .
 
     $default  reduce using rule 254 (direct_declarator)
 
 
-state 625
+State 625
 
   279 direct_abstract_declarator: '(' abstract_declarator ')' .
 
     $default  reduce using rule 279 (direct_abstract_declarator)
 
 
-state 626
+State 626
 
   288 parameter_declaration: decl_specifier_seq declarator '=' assignment_expression .
 
     $default  reduce using rule 288 (parameter_declaration)
 
 
-state 627
+State 627
 
   290 parameter_declaration: decl_specifier_seq abstract_declarator_opt '=' assignment_expression .
 
     $default  reduce using rule 290 (parameter_declaration)
 
 
-state 628
+State 628
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt '(' parameter_declaration_clause . ')' cv_qualifier_seq exception_specification
   275                           | direct_abstract_declarator_opt '(' parameter_declaration_clause . ')' cv_qualifier_seq
@@ -12913,63 +12912,63 @@ state 628
     ')'  shift, and go to state 693
 
 
-state 629
+State 629
 
   278 direct_abstract_declarator: direct_abstract_declarator_opt '[' constant_expression_opt . ']'
 
     ']'  shift, and go to state 694
 
 
-state 630
+State 630
 
   214 enumerator_list: enumerator_list ',' enumerator_definition .
 
     $default  reduce using rule 214 (enumerator_list)
 
 
-state 631
+State 631
 
   216 enumerator_definition: enumerator '=' constant_expression .
 
     $default  reduce using rule 216 (enumerator_definition)
 
 
-state 632
+State 632
 
   227 qualified_namespace_specifier: COLONCOLON nested_name_specifier namespace_name .
 
     $default  reduce using rule 227 (qualified_namespace_specifier)
 
 
-state 633
+State 633
 
   236 using_directive: USING NAMESPACE COLONCOLON nested_name_specifier namespace_name ';' .
 
     $default  reduce using rule 236 (using_directive)
 
 
-state 634
+State 634
 
   231 using_declaration: USING TYPENAME COLONCOLON nested_name_specifier unqualified_id ';' .
 
     $default  reduce using rule 231 (using_declaration)
 
 
-state 635
+State 635
 
    44 expression_list: expression_list ',' assignment_expression .
 
     $default  reduce using rule 44 (expression_list)
 
 
-state 636
+State 636
 
   110 assignment_expression: logical_or_expression assignment_operator assignment_expression .
 
     $default  reduce using rule 110 (assignment_expression)
 
 
-state 637
+State 637
 
   302 initializer_list: initializer_list ',' . initializer_clause
   448 COMMA_opt: ',' .
@@ -13043,14 +13042,14 @@ state 637
     throw_expression           go to state 377
 
 
-state 638
+State 638
 
   299 initializer_clause: '{' initializer_list COMMA_opt . '}'
 
     '}'  shift, and go to state 696
 
 
-state 639
+State 639
 
   404 handler: CATCH '(' . exception_declaration ')' compound_statement
 
@@ -13098,28 +13097,28 @@ state 639
     exception_declaration      go to state 699
 
 
-state 640
+State 640
 
   456 handler_seq_opt: handler_seq .
 
     $default  reduce using rule 456 (handler_seq_opt)
 
 
-state 641
+State 641
 
   403 handler_seq: handler handler_seq_opt .
 
     $default  reduce using rule 403 (handler_seq)
 
 
-state 642
+State 642
 
   352 mem_initializer: mem_initializer_id '(' expression_list_opt ')' .
 
     $default  reduce using rule 352 (mem_initializer)
 
 
-state 643
+State 643
 
   135 labeled_statement: CASE constant_expression ':' . statement
 
@@ -13268,28 +13267,28 @@ state 643
     expression_opt              go to state 418
 
 
-state 644
+State 644
 
   136 labeled_statement: DEFAULT ':' statement .
 
     $default  reduce using rule 136 (labeled_statement)
 
 
-state 645
+State 645
 
   147 iteration_statement: DO statement WHILE . '(' expression ')' ';'
 
     '('  shift, and go to state 701
 
 
-state 646
+State 646
 
   149 for_init_statement: expression_statement .
 
     $default  reduce using rule 149 (for_init_statement)
 
 
-state 647
+State 647
 
   148 iteration_statement: FOR '(' for_init_statement . condition_opt ';' expression_opt ')' statement
 
@@ -13395,21 +13394,21 @@ state 647
     condition_opt              go to state 703
 
 
-state 648
+State 648
 
   150 for_init_statement: simple_declaration .
 
     $default  reduce using rule 150 (for_init_statement)
 
 
-state 649
+State 649
 
   154 jump_statement: GOTO identifier ';' .
 
     $default  reduce using rule 154 (jump_statement)
 
 
-state 650
+State 650
 
   124 expression: expression . ',' assignment_expression
   144 condition: expression .
@@ -13419,7 +13418,7 @@ state 650
     $default  reduce using rule 144 (condition)
 
 
-state 651
+State 651
 
   141 selection_statement: IF '(' condition . ')' statement
   142                    | IF '(' condition . ')' statement ELSE statement
@@ -13427,7 +13426,7 @@ state 651
     ')'  shift, and go to state 704
 
 
-state 652
+State 652
 
   145 condition: type_specifier_seq . declarator '=' assignment_expression
 
@@ -13457,49 +13456,49 @@ state 652
     operator_function_id     go to state 87
 
 
-state 653
+State 653
 
   153 jump_statement: RETURN expression_opt ';' .
 
     $default  reduce using rule 153 (jump_statement)
 
 
-state 654
+State 654
 
   143 selection_statement: SWITCH '(' condition . ')' statement
 
     ')'  shift, and go to state 706
 
 
-state 655
+State 655
 
   401 try_block: TRY compound_statement handler_seq .
 
     $default  reduce using rule 401 (try_block)
 
 
-state 656
+State 656
 
   146 iteration_statement: WHILE '(' condition . ')' statement
 
     ')'  shift, and go to state 707
 
 
-state 657
+State 657
 
   134 labeled_statement: identifier ':' statement .
 
     $default  reduce using rule 134 (labeled_statement)
 
 
-state 658
+State 658
 
   124 expression: expression ',' assignment_expression .
 
     $default  reduce using rule 124 (expression)
 
 
-state 659
+State 659
 
   410 exception_specification: THROW '(' . type_id_list_opt ')'
 
@@ -13550,21 +13549,21 @@ state 659
     type_id_list_opt           go to state 710
 
 
-state 660
+State 660
 
   249 direct_declarator: direct_declarator '(' parameter_declaration_clause ')' cv_qualifier_seq exception_specification .
 
     $default  reduce using rule 249 (direct_declarator)
 
 
-state 661
+State 661
 
   263 cv_qualifier_seq: cv_qualifier cv_qualifier_seq .
 
     $default  reduce using rule 263 (cv_qualifier_seq)
 
 
-state 662
+State 662
 
    73 delete_expression: COLONCOLON DELETE '[' ']' . cast_expression
 
@@ -13618,7 +13617,7 @@ state 662
     operator_function_id     go to state 87
 
 
-state 663
+State 663
 
    62 new_expression: COLONCOLON NEW new_placement_opt '(' . type_id ')' new_initializer_opt
 
@@ -13665,7 +13664,7 @@ state 663
     class_key                  go to state 85
 
 
-state 664
+State 664
 
    60 new_expression: COLONCOLON NEW new_placement_opt new_type_id . new_initializer_opt
 
@@ -13677,28 +13676,28 @@ state 664
     new_initializer_opt  go to state 713
 
 
-state 665
+State 665
 
    72 delete_expression: DELETE '[' ']' cast_expression .
 
     $default  reduce using rule 72 (delete_expression)
 
 
-state 666
+State 666
 
    63 new_placement: '(' expression_list ')' .
 
     $default  reduce using rule 63 (new_placement)
 
 
-state 667
+State 667
 
    61 new_expression: NEW new_placement_opt '(' type_id . ')' new_initializer_opt
 
     ')'  shift, and go to state 714
 
 
-state 668
+State 668
 
    69 new_initializer: '(' . expression_list_opt ')'
 
@@ -13771,21 +13770,21 @@ state 668
     expression_list_opt        go to state 715
 
 
-state 669
+State 669
 
   424 new_initializer_opt: new_initializer .
 
     $default  reduce using rule 424 (new_initializer_opt)
 
 
-state 670
+State 670
 
    59 new_expression: NEW new_placement_opt new_type_id new_initializer_opt .
 
     $default  reduce using rule 59 (new_expression)
 
 
-state 671
+State 671
 
    67 direct_new_declarator: '[' . expression ']'
 
@@ -13855,14 +13854,14 @@ state 671
     throw_expression           go to state 377
 
 
-state 672
+State 672
 
   426 new_declarator_opt: new_declarator .
 
     $default  reduce using rule 426 (new_declarator_opt)
 
 
-state 673
+State 673
 
    66 new_declarator: direct_new_declarator .
    68 direct_new_declarator: direct_new_declarator . '[' constant_expression ']'
@@ -13872,7 +13871,7 @@ state 673
     $default  reduce using rule 66 (new_declarator)
 
 
-state 674
+State 674
 
    65 new_declarator: ptr_operator . new_declarator_opt
 
@@ -13897,56 +13896,56 @@ state 674
     new_declarator_opt       go to state 718
 
 
-state 675
+State 675
 
    64 new_type_id: type_specifier_seq new_declarator_opt .
 
     $default  reduce using rule 64 (new_type_id)
 
 
-state 676
+State 676
 
    52 unary_expression: SIZEOF '(' type_id ')' .
 
     $default  reduce using rule 52 (unary_expression)
 
 
-state 677
+State 677
 
    75 cast_expression: '(' type_id ')' cast_expression .
 
     $default  reduce using rule 75 (cast_expression)
 
 
-state 678
+State 678
 
    39 postfix_expression: postfix_expression ARROW COLONCOLON id_expression .
 
     $default  reduce using rule 39 (postfix_expression)
 
 
-state 679
+State 679
 
    36 postfix_expression: postfix_expression '(' expression_list_opt ')' .
 
     $default  reduce using rule 36 (postfix_expression)
 
 
-state 680
+State 680
 
    35 postfix_expression: postfix_expression '[' expression ']' .
 
     $default  reduce using rule 35 (postfix_expression)
 
 
-state 681
+State 681
 
    37 postfix_expression: postfix_expression '.' COLONCOLON id_expression .
 
     $default  reduce using rule 37 (postfix_expression)
 
 
-state 682
+State 682
 
   108 conditional_expression: logical_or_expression '?' expression ':' . assignment_expression
 
@@ -14015,14 +14014,14 @@ state 682
     throw_expression           go to state 377
 
 
-state 683
+State 683
 
   331 base_specifier: COLONCOLON nested_name_specifier class_name .
 
     $default  reduce using rule 331 (base_specifier)
 
 
-state 684
+State 684
 
   337 base_specifier: VIRTUAL COLONCOLON nested_name_specifier_opt . class_name
 
@@ -14031,7 +14030,7 @@ state 684
     class_name  go to state 720
 
 
-state 685
+State 685
 
   335 base_specifier: VIRTUAL access_specifier COLONCOLON . nested_name_specifier_opt class_name
 
@@ -14047,7 +14046,7 @@ state 685
     nested_name_specifier_opt  go to state 721
 
 
-state 686
+State 686
 
   336 base_specifier: VIRTUAL access_specifier nested_name_specifier_opt . class_name
 
@@ -14056,21 +14055,21 @@ state 686
     class_name  go to state 722
 
 
-state 687
+State 687
 
   338 base_specifier: VIRTUAL nested_name_specifier_opt class_name .
 
     $default  reduce using rule 338 (base_specifier)
 
 
-state 688
+State 688
 
   330 base_specifier_list: base_specifier_list ',' base_specifier .
 
     $default  reduce using rule 330 (base_specifier_list)
 
 
-state 689
+State 689
 
   341 base_specifier: access_specifier COLONCOLON nested_name_specifier_opt . class_name
 
@@ -14079,7 +14078,7 @@ state 689
     class_name  go to state 723
 
 
-state 690
+State 690
 
   339 base_specifier: access_specifier VIRTUAL COLONCOLON . nested_name_specifier_opt class_name
 
@@ -14095,7 +14094,7 @@ state 690
     nested_name_specifier_opt  go to state 724
 
 
-state 691
+State 691
 
   340 base_specifier: access_specifier VIRTUAL nested_name_specifier_opt . class_name
 
@@ -14104,14 +14103,14 @@ state 691
     class_name  go to state 725
 
 
-state 692
+State 692
 
   342 base_specifier: access_specifier nested_name_specifier_opt class_name .
 
     $default  reduce using rule 342 (base_specifier)
 
 
-state 693
+State 693
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt '(' parameter_declaration_clause ')' . cv_qualifier_seq exception_specification
   275                           | direct_abstract_declarator_opt '(' parameter_declaration_clause ')' . cv_qualifier_seq
@@ -14129,35 +14128,35 @@ state 693
     exception_specification  go to state 727
 
 
-state 694
+State 694
 
   278 direct_abstract_declarator: direct_abstract_declarator_opt '[' constant_expression_opt ']' .
 
     $default  reduce using rule 278 (direct_abstract_declarator)
 
 
-state 695
+State 695
 
   302 initializer_list: initializer_list ',' initializer_clause .
 
     $default  reduce using rule 302 (initializer_list)
 
 
-state 696
+State 696
 
   299 initializer_clause: '{' initializer_list COMMA_opt '}' .
 
     $default  reduce using rule 299 (initializer_clause)
 
 
-state 697
+State 697
 
   408 exception_declaration: ELLIPSIS .
 
     $default  reduce using rule 408 (exception_declaration)
 
 
-state 698
+State 698
 
   405 exception_declaration: type_specifier_seq . declarator
   406                      | type_specifier_seq . abstract_declarator
@@ -14196,21 +14195,21 @@ state 698
     direct_abstract_declarator_opt  go to state 337
 
 
-state 699
+State 699
 
   404 handler: CATCH '(' exception_declaration . ')' compound_statement
 
     ')'  shift, and go to state 730
 
 
-state 700
+State 700
 
   135 labeled_statement: CASE constant_expression ':' statement .
 
     $default  reduce using rule 135 (labeled_statement)
 
 
-state 701
+State 701
 
   147 iteration_statement: DO statement WHILE '(' . expression ')' ';'
 
@@ -14280,21 +14279,21 @@ state 701
     throw_expression           go to state 377
 
 
-state 702
+State 702
 
   432 condition_opt: condition .
 
     $default  reduce using rule 432 (condition_opt)
 
 
-state 703
+State 703
 
   148 iteration_statement: FOR '(' for_init_statement condition_opt . ';' expression_opt ')' statement
 
     ';'  shift, and go to state 732
 
 
-state 704
+State 704
 
   141 selection_statement: IF '(' condition ')' . statement
   142                    | IF '(' condition ')' . statement ELSE statement
@@ -14444,14 +14443,14 @@ state 704
     expression_opt              go to state 418
 
 
-state 705
+State 705
 
   145 condition: type_specifier_seq declarator . '=' assignment_expression
 
     '='  shift, and go to state 734
 
 
-state 706
+State 706
 
   143 selection_statement: SWITCH '(' condition ')' . statement
 
@@ -14600,7 +14599,7 @@ state 706
     expression_opt              go to state 418
 
 
-state 707
+State 707
 
   146 iteration_statement: WHILE '(' condition ')' . statement
 
@@ -14749,14 +14748,14 @@ state 707
     expression_opt              go to state 418
 
 
-state 708
+State 708
 
   411 type_id_list: type_id .
 
     $default  reduce using rule 411 (type_id_list)
 
 
-state 709
+State 709
 
   412 type_id_list: type_id_list . ',' type_id
   460 type_id_list_opt: type_id_list .
@@ -14766,35 +14765,35 @@ state 709
     $default  reduce using rule 460 (type_id_list_opt)
 
 
-state 710
+State 710
 
   410 exception_specification: THROW '(' type_id_list_opt . ')'
 
     ')'  shift, and go to state 738
 
 
-state 711
+State 711
 
    73 delete_expression: COLONCOLON DELETE '[' ']' cast_expression .
 
     $default  reduce using rule 73 (delete_expression)
 
 
-state 712
+State 712
 
    62 new_expression: COLONCOLON NEW new_placement_opt '(' type_id . ')' new_initializer_opt
 
     ')'  shift, and go to state 739
 
 
-state 713
+State 713
 
    60 new_expression: COLONCOLON NEW new_placement_opt new_type_id new_initializer_opt .
 
     $default  reduce using rule 60 (new_expression)
 
 
-state 714
+State 714
 
    61 new_expression: NEW new_placement_opt '(' type_id ')' . new_initializer_opt
 
@@ -14806,14 +14805,14 @@ state 714
     new_initializer_opt  go to state 740
 
 
-state 715
+State 715
 
    69 new_initializer: '(' expression_list_opt . ')'
 
     ')'  shift, and go to state 741
 
 
-state 716
+State 716
 
    67 direct_new_declarator: '[' expression . ']'
   124 expression: expression . ',' assignment_expression
@@ -14822,7 +14821,7 @@ state 716
     ']'  shift, and go to state 742
 
 
-state 717
+State 717
 
    68 direct_new_declarator: direct_new_declarator '[' . constant_expression ']'
 
@@ -14889,28 +14888,28 @@ state 717
     operator_function_id       go to state 87
 
 
-state 718
+State 718
 
    65 new_declarator: ptr_operator new_declarator_opt .
 
     $default  reduce using rule 65 (new_declarator)
 
 
-state 719
+State 719
 
   108 conditional_expression: logical_or_expression '?' expression ':' assignment_expression .
 
     $default  reduce using rule 108 (conditional_expression)
 
 
-state 720
+State 720
 
   337 base_specifier: VIRTUAL COLONCOLON nested_name_specifier_opt class_name .
 
     $default  reduce using rule 337 (base_specifier)
 
 
-state 721
+State 721
 
   335 base_specifier: VIRTUAL access_specifier COLONCOLON nested_name_specifier_opt . class_name
 
@@ -14919,21 +14918,21 @@ state 721
     class_name  go to state 744
 
 
-state 722
+State 722
 
   336 base_specifier: VIRTUAL access_specifier nested_name_specifier_opt class_name .
 
     $default  reduce using rule 336 (base_specifier)
 
 
-state 723
+State 723
 
   341 base_specifier: access_specifier COLONCOLON nested_name_specifier_opt class_name .
 
     $default  reduce using rule 341 (base_specifier)
 
 
-state 724
+State 724
 
   339 base_specifier: access_specifier VIRTUAL COLONCOLON nested_name_specifier_opt . class_name
 
@@ -14942,14 +14941,14 @@ state 724
     class_name  go to state 745
 
 
-state 725
+State 725
 
   340 base_specifier: access_specifier VIRTUAL nested_name_specifier_opt class_name .
 
     $default  reduce using rule 340 (base_specifier)
 
 
-state 726
+State 726
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt '(' parameter_declaration_clause ')' cv_qualifier_seq . exception_specification
   275                           | direct_abstract_declarator_opt '(' parameter_declaration_clause ')' cv_qualifier_seq .
@@ -14961,28 +14960,28 @@ state 726
     exception_specification  go to state 746
 
 
-state 727
+State 727
 
   276 direct_abstract_declarator: direct_abstract_declarator_opt '(' parameter_declaration_clause ')' exception_specification .
 
     $default  reduce using rule 276 (direct_abstract_declarator)
 
 
-state 728
+State 728
 
   405 exception_declaration: type_specifier_seq declarator .
 
     $default  reduce using rule 405 (exception_declaration)
 
 
-state 729
+State 729
 
   406 exception_declaration: type_specifier_seq abstract_declarator .
 
     $default  reduce using rule 406 (exception_declaration)
 
 
-state 730
+State 730
 
   404 handler: CATCH '(' exception_declaration ')' . compound_statement
 
@@ -14991,7 +14990,7 @@ state 730
     compound_statement  go to state 747
 
 
-state 731
+State 731
 
   124 expression: expression . ',' assignment_expression
   147 iteration_statement: DO statement WHILE '(' expression . ')' ';'
@@ -15000,7 +14999,7 @@ state 731
     ','  shift, and go to state 557
 
 
-state 732
+State 732
 
   148 iteration_statement: FOR '(' for_init_statement condition_opt ';' . expression_opt ')' statement
 
@@ -15073,7 +15072,7 @@ state 732
     expression_opt             go to state 749
 
 
-state 733
+State 733
 
   141 selection_statement: IF '(' condition ')' statement .
   142                    | IF '(' condition ')' statement . ELSE statement
@@ -15084,7 +15083,7 @@ state 733
     $default  reduce using rule 141 (selection_statement)
 
 
-state 734
+State 734
 
   145 condition: type_specifier_seq declarator '=' . assignment_expression
 
@@ -15153,21 +15152,21 @@ state 734
     throw_expression           go to state 377
 
 
-state 735
+State 735
 
   143 selection_statement: SWITCH '(' condition ')' statement .
 
     $default  reduce using rule 143 (selection_statement)
 
 
-state 736
+State 736
 
   146 iteration_statement: WHILE '(' condition ')' statement .
 
     $default  reduce using rule 146 (iteration_statement)
 
 
-state 737
+State 737
 
   412 type_id_list: type_id_list ',' . type_id
 
@@ -15214,14 +15213,14 @@ state 737
     class_key                  go to state 85
 
 
-state 738
+State 738
 
   410 exception_specification: THROW '(' type_id_list_opt ')' .
 
     $default  reduce using rule 410 (exception_specification)
 
 
-state 739
+State 739
 
    62 new_expression: COLONCOLON NEW new_placement_opt '(' type_id ')' . new_initializer_opt
 
@@ -15233,77 +15232,77 @@ state 739
     new_initializer_opt  go to state 753
 
 
-state 740
+State 740
 
    61 new_expression: NEW new_placement_opt '(' type_id ')' new_initializer_opt .
 
     $default  reduce using rule 61 (new_expression)
 
 
-state 741
+State 741
 
    69 new_initializer: '(' expression_list_opt ')' .
 
     $default  reduce using rule 69 (new_initializer)
 
 
-state 742
+State 742
 
    67 direct_new_declarator: '[' expression ']' .
 
     $default  reduce using rule 67 (direct_new_declarator)
 
 
-state 743
+State 743
 
    68 direct_new_declarator: direct_new_declarator '[' constant_expression . ']'
 
     ']'  shift, and go to state 754
 
 
-state 744
+State 744
 
   335 base_specifier: VIRTUAL access_specifier COLONCOLON nested_name_specifier_opt class_name .
 
     $default  reduce using rule 335 (base_specifier)
 
 
-state 745
+State 745
 
   339 base_specifier: access_specifier VIRTUAL COLONCOLON nested_name_specifier_opt class_name .
 
     $default  reduce using rule 339 (base_specifier)
 
 
-state 746
+State 746
 
   274 direct_abstract_declarator: direct_abstract_declarator_opt '(' parameter_declaration_clause ')' cv_qualifier_seq exception_specification .
 
     $default  reduce using rule 274 (direct_abstract_declarator)
 
 
-state 747
+State 747
 
   404 handler: CATCH '(' exception_declaration ')' compound_statement .
 
     $default  reduce using rule 404 (handler)
 
 
-state 748
+State 748
 
   147 iteration_statement: DO statement WHILE '(' expression ')' . ';'
 
     ';'  shift, and go to state 755
 
 
-state 749
+State 749
 
   148 iteration_statement: FOR '(' for_init_statement condition_opt ';' expression_opt . ')' statement
 
     ')'  shift, and go to state 756
 
 
-state 750
+State 750
 
   142 selection_statement: IF '(' condition ')' statement ELSE . statement
 
@@ -15452,42 +15451,42 @@ state 750
     expression_opt              go to state 418
 
 
-state 751
+State 751
 
   145 condition: type_specifier_seq declarator '=' assignment_expression .
 
     $default  reduce using rule 145 (condition)
 
 
-state 752
+State 752
 
   412 type_id_list: type_id_list ',' type_id .
 
     $default  reduce using rule 412 (type_id_list)
 
 
-state 753
+State 753
 
    62 new_expression: COLONCOLON NEW new_placement_opt '(' type_id ')' new_initializer_opt .
 
     $default  reduce using rule 62 (new_expression)
 
 
-state 754
+State 754
 
    68 direct_new_declarator: direct_new_declarator '[' constant_expression ']' .
 
     $default  reduce using rule 68 (direct_new_declarator)
 
 
-state 755
+State 755
 
   147 iteration_statement: DO statement WHILE '(' expression ')' ';' .
 
     $default  reduce using rule 147 (iteration_statement)
 
 
-state 756
+State 756
 
   148 iteration_statement: FOR '(' for_init_statement condition_opt ';' expression_opt ')' . statement
 
@@ -15636,14 +15635,14 @@ state 756
     expression_opt              go to state 418
 
 
-state 757
+State 757
 
   142 selection_statement: IF '(' condition ')' statement ELSE statement .
 
     $default  reduce using rule 142 (selection_statement)
 
 
-state 758
+State 758
 
   148 iteration_statement: FOR '(' for_init_statement condition_opt ';' expression_opt ')' statement .
 
