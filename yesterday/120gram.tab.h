@@ -244,7 +244,7 @@
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 75 "120gram.y"
+#line 71 "120gram.y"
 {
   struct tree *tptr;
 }
