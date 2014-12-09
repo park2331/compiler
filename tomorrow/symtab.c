@@ -29,8 +29,9 @@ tableptr new_table(char* n) {
   tableptr t = calloc(1, sizeof(tableptr));
 
   memset(t->entry, 0, 10000);
-
+  //t->entry[10000] = NULL;
   t->name = strdup(n);
+
 
 
   return t;

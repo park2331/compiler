@@ -47,8 +47,8 @@ static void skip_until_eol(void);
 static void skip_comment(void);
 static int check_identifier( char * , tableptr );
 
-//int typenametable_insert(char*, int);
-void typenametable_insert( treeptr, tableptr );
+void typenametable_insert(char*, tableptr);
+void classnametable_insert( treeptr, tableptr );
 
 /* extern */
 extern int yychar;
@@ -72,6 +72,8 @@ int cstring = 0;
 int fstream = 0;
 int string = 0;
 int usingnamespacestd = 0;
+int ofstream = 0;
+int ifstream = 0;
 
 int tokenize(int);
 void handle_include();
@@ -91,16 +93,32 @@ chartext				([^'])|(\\.)
 stringtext				([^"])|(\\.)
 
 %%
-"#include <iostream>"   { iostream = 1;}
-"#include <ctime>"      { ctime = 1; }
-"#include <iomanip>"    { iomanip = 1; }
-"#include <cmath>"      { cmath = 1; }
-"#include <cstdlib>"    { cstdlib = 1; }
-"#include <cstring>"    { cstring = 1; }
-"#include <fstream>"    { fstream = 1; }
-"#include <string>"     { string  = 1; }
-"#include"[ ]*\"[^\\"]+\" {handle_include(); }
-"using namespace std;"                  { usingnamespacestd = 1; }
+"#include <iostream>"                   { iostream = 1;}
+"#include <ctime>"                      { ctime = 1; }
+"#include <iomanip>"                    { iomanip = 1; }
+"#include <cmath>"                      { cmath = 1; }
+"#include <cstdlib>"                    { cstdlib = 1; }
+"#include <cstring>"                    { cstring = 1; }
+"#include <fstream>"                    { fstream = 1; }
+"#include <ofstream>"                   { ofstream = 1; }
+"#include <ifstrem>"                    { ifstream = 1; }
+"#include <string>"                     { string  = 1; }
+"#include"[ ]*\"[^\\"]+\"               { handle_include(); }
+"using namespace std;"                  { usingnamespacestd = 1; 
+               if ( string == 1 ) {
+
+                  typenametable_insert( "string" , classtable );
+
+                  };
+
+               if ( iostream == 1 ) {
+
+                  typenametable_insert( "ifstream" , classtable );
+                  typenametable_insert( "ofstream" , classtable );
+                  };
+
+              }
+
 "\n"					{ ++lineno; }
 [\t\f\v\r ]+				{ /* Ignore whitespace. */ }
 
@@ -339,6 +357,26 @@ void classnametable_insert(treeptr tp, tableptr t) {
 
    }
 };
+
+void typenametable_insert( char * s , tableptr t ) {
+
+   if ( lookup( s, t ) == true ) {
+
+        fprintf(stderr,
+	    "warning, %s is already in the typename table as a %s\n",
+            s, s );
+   } else {
+
+     printf("INSERTED %s: #include\n", s);
+     insert_entry( s, t );
+
+   }
+
+
+}
+
+
+
 
 
 static int check_identifier( char *s , tableptr t ) {
