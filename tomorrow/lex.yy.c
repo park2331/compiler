@@ -1883,7 +1883,7 @@ YY_RULE_SETUP
 case 142:
 YY_RULE_SETUP
 #line 239 "120lex.l"
-{ return tokenize( IDENTIFIER ); }
+{ return tokenize( check_identifier( yytext , classtable ) ); }
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
@@ -3037,6 +3037,7 @@ void classnametable_insert(treeptr tp, tableptr t) {
             tp->leaf->text, tp->leaf->category );
    } else {
 
+     printf("INSERTED %s: %d\n ",tp->leaf->text, tp->leaf->category);
      insert_entry( tp->leaf->text , t );
 
    }
@@ -3048,12 +3049,13 @@ static int check_identifier( char *s , tableptr t ) {
 
         if ( lookup( s , t ) == true ) {
  
-        printf( "\"%s\" is a class member\n", s );
+        printf( "\"%s\" is in class table\n", s );
             
             return CLASS_NAME;
 
          } else {
 
+        printf( "\"%s\" is a not in class table\n", s );
             return IDENTIFIER;
 
         }

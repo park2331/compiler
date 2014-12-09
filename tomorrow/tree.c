@@ -16,7 +16,7 @@ treeptr alctree(char *gram_prod_name, int label, int nkids, ...)
   va_list ap;
   treeptr ptr = malloc(sizeof(struct tree) + (nkids-1)*sizeof(treeptr));
 
-  fprintf(stdout, "%s\n", gram_prod_name);
+  fprintf(stdout, "%s, %d\n", gram_prod_name, label);
   
   if (ptr == NULL) {fprintf(stderr, "alctree out of memory\n"); exit(1); }
 

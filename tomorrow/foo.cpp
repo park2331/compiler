@@ -15,7 +15,7 @@ int main() {
 
 
   int doit;
-  int doit;
+
   foo test;
 
   test.x = 3;

@@ -560,8 +560,8 @@ simple_declaration:
 	;
 
 decl_specifier:
-	storage_class_specifier {$$ = $1;}
-	| type_specifier {$$ = $1;}
+	storage_class_specifier { $$ = $1; }
+        | type_specifier {printf("HERE?\n");$$ = $1;}
 	| function_specifier {$$ = $1;}
 	| FRIEND {$$ = $1;}
 	| TYPEDEF {$$ = $1;}
@@ -587,15 +587,15 @@ function_specifier:
 	;
 
 type_specifier:
-	simple_type_specifier {$$ = $1;}
-	| class_specifier {$$ = $1;}
+        simple_type_specifier { $$ = $1;}
+        | class_specifier {$$ = $1;}
 	| enum_specifier {$$ = $1;}
 	| elaborated_type_specifier {$$ = $1;}
 	| cv_qualifier {$$ = $1;}
 	;
 
 simple_type_specifier:
-	type_name {$$ = $1;}
+	type_name { $$ = $1;}
 	| nested_name_specifier type_name {$$ = alctree("simple_type_specifier_567", 565, 2, $1, $2);}
 	| COLONCOLON nested_name_specifier_opt type_name {$$ = alctree("simple_type_specifier_568", 565, 3, $1, $2, $3);}
 	| CHAR {$$ = $1;}
@@ -612,7 +612,7 @@ simple_type_specifier:
 	;
 
 type_name:
-	class_name {$$ = $1;}
+        class_name {printf("MAEDIT\n");$$ = $1;}
 	| enum_name {$$ = $1;}
 	| typedef_name {$$ = $1;}
 	;
@@ -871,8 +871,8 @@ class_head:
         /* class_key identifier { typenametable_insert($2, CLASS_NAME); } */
         class_key identifier { classnametable_insert( $2, classtable ); $$ = alctree("class_head_836", 837, 2, $1, $2); } 
 	| class_key identifier base_clause {$$ = alctree("class_head_839", 837, 3, $1, $2, $3);}
-	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
-        | class_key nested_name_specifier identifier base_clause { classnametable_insert( $3, classtable ) ; $$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
+//	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
+//        | class_key nested_name_specifier identifier base_clause { classnametable_insert( $3, classtable ) ; $$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
 	;
 
 class_key:

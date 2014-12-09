@@ -31,7 +31,7 @@ lex.yy.c: 120lex.l 120gram.tab.c
 120gram.tab.c: 120gram.y
 	bison -dtv 120gram.y
 
-clean:
+clean: 
 	rm lex.yy.c
 	rm 120gram.tab.c
 	rm 120gram.output

@@ -17,7 +17,7 @@ unsigned long sdbm (char *str) {
 /* wrapper */
 int get_key(char* str) {
   unsigned long k;
-  k = sdbm( str ) % 900;
+  k = sdbm( str ) % 10000;
 
   return k;
 };

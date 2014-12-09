@@ -25,8 +25,16 @@ entryptr new_entry(char* n) {
 /* Initialize new table for use; init mem and store name. */
 tableptr new_table(char* n) {
 
+  int i;
   tableptr t = calloc(1, sizeof(tableptr));
+
+
+  for (i = 0; i < 10000; i++) {
+    t->entry[i] = NULL;
+  }
+
   t->name = strdup(n);
+
 
   return t;
 };
@@ -104,8 +112,9 @@ bool lookup(char *n, tableptr t) {
   //  unsigned long key = sdbm(n) % 900;  
   int key = get_key(n);
 
+
   if (t->entry[key]) {
-    
+
     fprintf(stdout, "Entry: \"%s\" found in table \"%s\" at location %d\n", n, t->name , key );
     return true;
     

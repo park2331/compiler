@@ -21,8 +21,8 @@ extern treeptr t_unit;
 
 
 nodeptr filestack = NULL;
-tableptr classtable = NULL;
-tableptr globaltable = NULL;
+tableptr classtable;
+tableptr globaltable;
 
 int main(int argc, char **argv) {
 
@@ -34,6 +34,10 @@ int main(int argc, char **argv) {
 
   globaltable = new_table( "globaltable" );
   classtable = new_table( "classtable " );
+
+  for (i = 0; i < 10000; i++) {
+    classtable->entry[i] = NULL;
+  }
   
   if(argc == 1) {
     printf("No files to (F)lex!\n");

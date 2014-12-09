@@ -236,7 +236,7 @@ stringtext				([^"])|(\\.)
 "wchar_t"				{ return tokenize(WCHAR_T); }
 "while"					{ return tokenize(WHILE); }
 
-[a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize( IDENTIFIER ); }
+[a-zA-Z_][a-zA-Z_0-9]*			{ return tokenize( check_identifier( yytext , classtable ) ); }
 
 "0"[xX][0-9a-fA-F]+{intsuffix}?		{ return tokenize(INTEGER); }
 "0"[0-7]+{intsuffix}?			{ return tokenize(INTEGER); }
@@ -334,6 +334,7 @@ void classnametable_insert(treeptr tp, tableptr t) {
             tp->leaf->text, tp->leaf->category );
    } else {
 
+     printf("INSERTED %s: %d\n ",tp->leaf->text, tp->leaf->category);
      insert_entry( tp->leaf->text , t );
 
    }
@@ -345,12 +346,13 @@ static int check_identifier( char *s , tableptr t ) {
 
         if ( lookup( s , t ) == true ) {
  
-        printf( "\"%s\" is a class member\n", s );
+        printf( "\"%s\" is in class table\n", s );
             
             return CLASS_NAME;
 
          } else {
 
+        printf( "\"%s\" is a not in class table\n", s );
             return IDENTIFIER;
 
         }
