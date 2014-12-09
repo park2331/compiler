@@ -39,7 +39,8 @@ typedef struct entry {
 typedef struct table {
 
   char *name;
-  entryptr entry[10000];
+  entryptr entry[];
+  //  entryptr *entry;
     
 } * tableptr;
 

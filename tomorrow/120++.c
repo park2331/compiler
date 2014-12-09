@@ -32,13 +32,8 @@ int main(int argc, char **argv) {
   int code = -1;
   const char *filelist[argc];
 
-  globaltable = new_table( "globaltable" );
-  classtable = new_table( "classtable " );
+  classtable = new_table( "classtable" );
 
-  for (i = 0; i < 10000; i++) {
-    classtable->entry[i] = NULL;
-  }
-  
   if(argc == 1) {
     printf("No files to (F)lex!\n");
     return 0;

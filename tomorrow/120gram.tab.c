@@ -3508,7 +3508,7 @@ yyreduce:
 
   case 185:
 #line 590 "120gram.y" /* yacc.c:1646  */
-    {printf("GYES\n"); (yyval.tptr) = (yyvsp[0].tptr);}
+    { (yyval.tptr) = (yyvsp[0].tptr);}
 #line 3513 "120gram.tab.c" /* yacc.c:1646  */
     break;
 
@@ -3538,7 +3538,7 @@ yyreduce:
 
   case 190:
 #line 598 "120gram.y" /* yacc.c:1646  */
-    {printf("SURELY?\n");(yyval.tptr) = (yyvsp[0].tptr);}
+    { (yyval.tptr) = (yyvsp[0].tptr);}
 #line 3543 "120gram.tab.c" /* yacc.c:1646  */
     break;
 
