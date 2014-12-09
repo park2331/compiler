@@ -50,8 +50,6 @@ entryptr new_scope(char *n) {
   e->name = strdup(n);
   e->entrytable = new_table(n);
 
-  /* not needed, as this is a scope table entry */
-  free(e->entrytype);
 
   return e;
  
