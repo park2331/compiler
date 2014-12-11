@@ -1,0 +1,11 @@
+#ifndef TYPECHECK_H
+#define TYPECHECK_H
+
+typedef enum { 
+
+  function_definition_803 = 1942
+
+} prodrule_t;
+
+
+#endif /* TYPECHECK_H */

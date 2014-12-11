@@ -50,6 +50,7 @@ void treeprint(struct tree *t, int depth)
 
       printf("%*s SYM: \"%s\": CODE: %d\n", depth*2, " ", t->leaf->text, t->leaf->category);
       
+      
     } else {
     
       printf("%*s %s: %d children\n", depth*2, " ", t->name, t->num_of_children);

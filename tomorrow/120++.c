@@ -32,7 +32,9 @@ int main(int argc, char **argv) {
   int code = -1;
   const char *filelist[argc];
 
+  /* Declaring Scopes */
   classtable = new_table( "classtable" );
+  globaltable = new_table( "globaltable" );
 
   if(argc == 1) {
     printf("No files to (F)lex!\n");
@@ -73,6 +75,9 @@ int main(int argc, char **argv) {
   
   printf("Result: %d\n", parse_code);
   //      printf("%s\n",yylval.tptr->name);
-  treeprint(t_unit, 0);
+  treeprint( t_unit , 0 );
+
+  //  populatesymtab( t_unit )
+
   return 0;
 }
