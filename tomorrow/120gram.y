@@ -483,7 +483,7 @@ labeled_statement:
 
 expression_statement:
 //	expression_opt ';' {$$ = alctree("expression_statement_453", 452, 2, $1, $2);}
-        expression_opt ';' { $$ = $1 }
+        expression_opt ';' { $$ = $1; }
 	;
 
 compound_statement:
@@ -557,7 +557,7 @@ block_declaration:
 
 simple_declaration:
 	decl_specifier_seq init_declarator_list ';' {$$ = alctree("simple_declaration_526", 525, 2, $1, $2 );}
-        |  decl_specifier_seq ';' { $$ = $1 }
+        |  decl_specifier_seq ';' { $$ = $1; }
 	;
 
 decl_specifier:
@@ -893,7 +893,7 @@ member_declaration:
         | member_declarator_list ';' { $$ = $1; }
 	| ';' { $$ = NULL; }
         | function_definition SEMICOLON_opt { $$ = $1; }
-        | qualified_id ';' { $$ = $1 };
+        | qualified_id ';' { $$ = $1; };
         | using_declaration { $$ = $1; }
 	;
 
