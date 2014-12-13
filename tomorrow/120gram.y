@@ -297,8 +297,8 @@ postfix_expression:
 	;
 
 expression_list:
-	assignment_expression {$$ = $1;}
-	| expression_list ',' assignment_expression {$$ = alctree("expression_list_269", 267, 3, $1, $2, $3); }
+	assignment_expression { $$ = $1; }
+        | expression_list ',' assignment_expression {$$ = alctree("expression_list_269", 267, 2, $1 , $3); }
 	;
 
 unary_expression:
@@ -453,7 +453,7 @@ assignment_operator:
 
 expression:
 	assignment_expression {$$ = $1;}
-	| expression ',' assignment_expression {$$ = alctree("expression_424", 422, 3, $1, $2, $3);}
+	| expression ',' assignment_expression {$$ = alctree("expression_424", 422, 2, $1 , $3);}
 	;
 
 constant_expression:
@@ -482,7 +482,8 @@ labeled_statement:
 	;
 
 expression_statement:
-	expression_opt ';' {$$ = alctree("expression_statement_453", 452, 2, $1, $2);}
+//	expression_opt ';' {$$ = alctree("expression_statement_453", 452, 2, $1, $2);}
+        expression_opt ';' { $$ = $1 }
 	;
 
 compound_statement:
@@ -532,7 +533,7 @@ declaration_statement:
  *----------------------------------------------------------------------*/
 
 declaration_seq:
-        declaration {$$ = $1;}
+        declaration { $$ = $1; }
 	| declaration_seq declaration {$$ = alctree("declaration_seq_504", 502, 2, $1, $2);}
 	;
 
@@ -547,21 +548,21 @@ declaration:
 	;
 
 block_declaration:
-        simple_declaration {$$ = $1; }
-	| asm_definition {$$ = $1;}
-        | namespace_alias_definition {$$ = $1;}
-	| using_declaration {$$ = $1;}
-	| using_directive {$$ = $1;} 
+        simple_declaration { $$ = $1; }
+	| asm_definition { $$ = $1; }
+        | namespace_alias_definition { $$ = $1; }
+	| using_declaration { $$ = $1; }
+	| using_directive { $$ = $1; } 
 	;
 
 simple_declaration:
-	decl_specifier_seq init_declarator_list ';' {$$ = alctree("simple_declaration_526", 525, 3, $1, $2, $3);}
-	|  decl_specifier_seq ';' {$$ = alctree("simple_declaration_527", 525, 2, $1, $2);}
+	decl_specifier_seq init_declarator_list ';' {$$ = alctree("simple_declaration_526", 525, 2, $1, $2 );}
+        |  decl_specifier_seq ';' { $$ = $1 }
 	;
 
 decl_specifier:
 	storage_class_specifier { $$ = $1; }
-        | type_specifier {printf("HERE?\n");$$ = $1;}
+        | type_specifier { $$ = $1; }
 	| function_specifier {$$ = $1;}
 	| FRIEND {$$ = $1;}
 	| TYPEDEF {$$ = $1;}
@@ -737,7 +738,7 @@ linkage_specification:
 
 init_declarator_list:
 	init_declarator {$$ = $1;}
-	| init_declarator_list ',' init_declarator {$$ = alctree("init_declarator_list_708", 706, 3, $1, $2, $3);}
+	| init_declarator_list ',' init_declarator {$$ = alctree("init_declarator_list_708", 706, 2, $1 , $3);}
 	;
 
 init_declarator:
@@ -754,18 +755,18 @@ direct_declarator:
 	| direct_declarator '('parameter_declaration_clause ')' cv_qualifier_seq exception_specification {$$ = alctree("direct_declarator_722", 720, 5, $1, $2, $3, $4, $5);}
 	| direct_declarator '('parameter_declaration_clause ')' cv_qualifier_seq {$$ = alctree("direct_declarator_723", 720, 4, $1, $2, $3, $4);}
 	| direct_declarator '('parameter_declaration_clause ')' exception_specification {$$ = alctree("direct_declarator_724", 720, 4, $1, $2, $3, $4);}
-        | direct_declarator '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_725", 720, 4, $1, $2, $3, $4);}
+        | direct_declarator '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_725", 720, 2, $1 , $3 );}
 	| CLASS_NAME '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_726", 720, 3, $1, $2, $3);}
-	| CLASS_NAME COLONCOLON declarator_id '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_727", 720, 5, $1, $2, $3, $4, $5);}
+	| CLASS_NAME COLONCOLON declarator_id '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_727", 720, 3, $1, $3, $5);}
 	| CLASS_NAME COLONCOLON CLASS_NAME '('parameter_declaration_clause ')' {$$ = alctree("direct_declarator_728", 720, 5, $1, $2, $3, $4, $5);}
 	| direct_declarator '[' constant_expression_opt ']' {$$ = alctree("direct_declarator_729", 720, 4, $1, $2, $3, $4);}
 	| '(' declarator ')' {$$ = alctree("direct_declarator_730", 720, 3, $1, $2, $3);}
 	;
 
 ptr_operator:
-	'*' {$$ = $1;}
+	'*' { $$ = $1; }
 //	| '*' cv_qualifier_seq {$$ = alctree("ptr_operator_735", 733, 2, $1, $2);}
-	| '&' {$$ = $1;}
+	| '&' { $$ = $1; }
 	| nested_name_specifier '*' {$$ = alctree("ptr_operator_737", 733, 2, $1, $2);}
 //	| nested_name_specifier '*' cv_qualifier_seq {$$ = alctree("ptr_operator_738", 733, 3, $1, $2, $3);}
 	| COLONCOLON nested_name_specifier '*' {$$ = alctree("ptr_operator_739", 733, 3, $1, $2, $3);}
@@ -821,7 +822,7 @@ parameter_declaration_clause:
 
 parameter_declaration_list:
 	parameter_declaration {$$ = $1;}
-	| parameter_declaration_list ',' parameter_declaration {$$ = alctree("parameter_declaration_list_792", 790, 3, $1, $2, $3);}
+	| parameter_declaration_list ',' parameter_declaration {$$ = alctree("parameter_declaration_list_792", 790, 2, $1 , $3);}
 	;
 
 parameter_declaration:
@@ -839,7 +840,7 @@ function_definition:
 	;
 
 function_body:
-	compound_statement {$$ = $1;}
+	compound_statement { $$ = $1; }
 	;
 
 initializer:
@@ -863,16 +864,16 @@ initializer_list:
  *----------------------------------------------------------------------*/
 
 class_specifier:
-        class_head '{' member_specification_opt '}' { $$ = alctree("class_specifier_832", 831, 4, $1, $2, $3, $4); }
+        class_head '{' member_specification_opt '}' { $$ = alctree("class_specifier_832", 831, 4, $1, $2, $3 , $4); }
 	;
 
 class_head:
         /* Previously was a hashtable implementation; will reimplement */
         /* class_key identifier { typenametable_insert($2, CLASS_NAME); } */
         class_key identifier { classnametable_insert( $2, classtable ); $$ = alctree("class_head_836", 837, 2, $1, $2); } 
-	| class_key identifier base_clause {$$ = alctree("class_head_839", 837, 3, $1, $2, $3);}
-//	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
-//        | class_key nested_name_specifier identifier base_clause { classnametable_insert( $3, classtable ) ; $$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
+	| class_key identifier base_clause { classnametable_insert( $2, classtable ); $$ = alctree("class_head_839", 837, 3, $1, $2, $3); }
+	| class_key nested_name_specifier identifier {$$ = alctree("class_head_840", 837, 3, $1, $2, $3);}
+        | class_key nested_name_specifier identifier base_clause { classnametable_insert( $3, classtable ) ; $$ = alctree("class_head_841", 837, 4, $1, $2, $3, $4);}
 	;
 
 class_key:
@@ -887,25 +888,25 @@ member_specification:
 	;
 
 member_declaration:
-	decl_specifier_seq member_declarator_list ';' {$$ = alctree("member_declaration_856", 855, 3, $1, $2, $3);}
-	| decl_specifier_seq ';' {$$ = alctree("member_declaration_857", 855, 2, $1, $2);}
-	| member_declarator_list ';' {$$ = alctree("member_declaration_858", 855, 2, $1, $2);}
-	| ';' {$$ = $1;}
-	| function_definition SEMICOLON_opt {$$ = alctree("member_declaration_860", 855, 2, $1, $2);}
-	| qualified_id ';' {$$ = alctree("member_declaration_861", 855, 2, $1, $2);}
+	decl_specifier_seq member_declarator_list ';' {$$ = alctree("member_declaration_856", 855, 2, $1, $2);}
+        | decl_specifier_seq ';' { $$ = $1; }
+        | member_declarator_list ';' { $$ = $1; }
+	| ';' { $$ = NULL; }
+        | function_definition SEMICOLON_opt { $$ = $1; }
+        | qualified_id ';' { $$ = $1 };
         | using_declaration { $$ = $1; }
 	;
 
 member_declarator_list:
-        member_declarator {$$ = $1;}
-	| member_declarator_list ',' member_declarator {$$ = alctree("member_declarator_list_867", 865, 3, $1, $2, $3);}
+        member_declarator { $$ = $1; }
+	| member_declarator_list ',' member_declarator {$$ = alctree("member_declarator_list_867", 865, 2, $1 , $3);}
 	;
 
 member_declarator:
 	declarator { $$ = $1; }
 	| declarator pure_specifier {$$ = alctree("member_declarator_872", 870, 2, $1, $2);}
 	| declarator constant_initializer {$$ = alctree("member_declarator_873", 870, 2, $1, $2);}
-	| identifier ':' constant_expression {$$ = alctree("member_declarator_874", 870, 3, $1, $2, $3);}
+	| identifier ':' constant_expression {$$ = alctree("member_declarator_874", 870, 2, $1, $3);}
 	;
 
 /*
@@ -1227,7 +1228,7 @@ ctor_initializer_opt:
 
 COMMA_opt:
 	{$$ = NULL;}
-	| ',' {$$ = $1;}
+	| ',' {$$ = NULL;}
 	;
 
 member_specification_opt:
@@ -1237,7 +1238,7 @@ member_specification_opt:
 
 SEMICOLON_opt:
 	{$$ = NULL;}
-	| ';' {$$ = $1;}
+	| ';' {$$ = NULL;}
 	;
 
 conversion_declarator_opt:

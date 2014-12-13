@@ -49,7 +49,6 @@ typedef struct table {
 typedef struct type {
 
   int basetype;
-  int code;
   
   union {
     
@@ -82,6 +81,7 @@ typedef struct type {
 tableptr new_table( char* );
 entryptr new_entry( char* );
 entryptr new_scope( char* );
+entryptr get_entry( char* , tableptr );
 void insert( entryptr, tableptr );
 void insert_entry( char* , tableptr );
 tableptr get_scope(char* , tableptr );

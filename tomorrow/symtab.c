@@ -11,7 +11,9 @@
 entryptr new_entry(char* n) {
 
   entryptr e = calloc(1, sizeof(entryptr));
+  //entryptr e = calloc(1, sizeof(struct entry));
   typeptr t = calloc(1, sizeof(typeptr));
+  //typeptr t = calloc(1, sizeof(struct type));
 
   e->name = strdup(n);
 
@@ -27,9 +29,10 @@ tableptr new_table(char* n) {
 
   int i;
   tableptr t = calloc(1, sizeof(tableptr));
+  //tableptr t = calloc(1, sizeof(struct table));
 
-  memset(t->entry, 0, 10000);
-  //t->entry[10000] = NULL;
+  //memset(t->entry, 0, 10000);
+  t->entry[10000] = NULL;
   t->name = strdup(n);
 
 
@@ -47,7 +50,6 @@ entryptr new_scope(char *n) {
   
   e->name = strdup(n);
   e->entrytable = new_table(n);
-
 
   return e;
  

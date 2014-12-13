@@ -11,6 +11,7 @@
 #include "120gram.tab.h"
 #include "hasht.h"
 #include "symtab.h"
+#include "typecheck.h"
 
 extern FILE *yyin;
 extern char *yytext;
@@ -22,6 +23,8 @@ extern treeptr t_unit;
 
 nodeptr filestack = NULL;
 tableptr classtable;
+tableptr classfunctable;
+tableptr functable;
 tableptr globaltable;
 
 int main(int argc, char **argv) {
@@ -32,8 +35,12 @@ int main(int argc, char **argv) {
   int code = -1;
   const char *filelist[argc];
 
+  t_unit = NULL;
+  
   /* Declaring Scopes */
   classtable = new_table( "classtable" );
+  classfunctable = new_table( "classfunctable" );
+  functable = new_table( "functable" );
   globaltable = new_table( "globaltable" );
 
   if(argc == 1) {
@@ -77,7 +84,7 @@ int main(int argc, char **argv) {
   //      printf("%s\n",yylval.tptr->name);
   treeprint( t_unit , 0 );
 
-  //  populatesymtab( t_unit )
+  populatesymtab( t_unit , globaltable );
 
   return 0;
 }

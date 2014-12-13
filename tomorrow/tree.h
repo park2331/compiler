@@ -12,6 +12,7 @@ typedef struct tree {
   int num_of_children;
   struct tree *child[9];
   struct token *leaf;
+
 } * treeptr;
 
 void treeprint(treeptr, int);

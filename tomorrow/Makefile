@@ -1,8 +1,11 @@
 CC=gcc
 CFLAGS=-c -g
 
-120++: 120++.o token.o tlist.o tree.o 120gram.tab.o lex.yy.o hasht.o symtab.o
-	$(CC) -o 120 120++.o lex.yy.o token.o tlist.o 120gram.tab.o tree.o hasht.o symtab.o
+120++: 120++.o token.o tlist.o tree.o 120gram.tab.o lex.yy.o hasht.o symtab.o typecheck.o
+	$(CC) -o 120 120++.o lex.yy.o token.o tlist.o 120gram.tab.o tree.o hasht.o symtab.o typecheck.o
+
+typecheck.o: typecheck.c
+	$(CC) $(CFLAGS) typecheck.c
 
 hasht.o: hasht.c
 	$(CC) $(CFLAGS) hasht.c
