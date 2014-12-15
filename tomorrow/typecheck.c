@@ -14,116 +14,82 @@
 #include "typecheck.h"
 
 
-void populatesymtab( treeptr t , tableptr scope ) {
+treeptr handlefuncdef( treeptr t, tableptr scope ) {
 
-  int i, key;
+  int i;
 
+  if ( t->num_of_children == 0 ) {
+
+    if ( t->leaf );
+      return t;
   
-  if (!t) {
-    
-    /* Do nothing */
-    
+  } else if( t->num_of_children > 0 ) {
+
+    for(i=0; i < t->num_of_children; i++) {
+
+      return populatesymtab( t->child[i] , scope );
+
+    }
+
   } else {
 
-    /* Its a leaf, get type info */
-    if ( t->num_of_children == 0 ) {
+    return NULL;
 
-      if ( t->leaf->category == IDENTIFIER )  {
+  }
 
-	insert_entry( t->leaf->text , scope );
-	
-      }
+}
+
+treeptr populatesymtab( treeptr t , tableptr scope ) {
+
+  int i,j, key;
+  treeptr temp;
+  entryptr local;
+
+  if ( !t ) {
+    return NULL;
+
+  } else if (t->num_of_children == 0 ) {
+
+    if (t->leaf->category == IDENTIFIER) {
+      insert_entry(t->leaf->text , scope);
       
+      return t;
+
     } else {
-
-      /* Its type */
-      key = get_key(t->name);
-      entryptr local;
-	
-      switch(key) {
-
-
-      case class_head_836:
-
-	printf("%s\n" , t->child[0]->leaf->text);
-	scope->name = strdup(t->child[1]->leaf->text);
-
-	break;
-	
-      case direct_declarator_725:
-
-	
-	printf("%s\n" , t->child[0]->leaf->text);
-	scope->name = strdup(t->child[0]->leaf->text);
-	  
-	break;
-
-
-      case function_definition_804:
-      case class_specifier_832:
-	
-	local = new_scope("local");
-	
-	for(i=0; i < t->num_of_children; i++) {
-	  populatesymtab( t->child[i] , local->entrytable );
-	}
-
-	break;
-
-	/*
-      case init_declarator_712:
-	
-
-	
-	break;
-	*/
-      default:
-	
-	for(i=0; i < t->num_of_children; i++) {
-	  populatesymtab( t->child[i] , scope );
-	}
-	
-      }
+      return NULL;
     }
+  } else if( t->num_of_children > 0 ) {
+
+    key = get_key( t->name );
+    printf( "%s = %d\n",t->name, key );
+
+    switch(key) {
+
+
+    case function_definition_804:
+      local = new_scope("local");
+      for (j=0; j < t->num_of_children; j++) {
+	populatesymtab( t->child[j] , local->entrytable );
+      }
+      insert_entry( local->entrytable->name, scope );
+
+    case direct_declarator_725:
+
+      scope->name = strdup(t->child[0]->leaf->text);
+
+      break;
+
+    default:
+
+      for (i=0; i < t->num_of_children; i++) {
+	populatesymtab( t->child[i] , scope );
+      }
+      break;
+    }
+
+  } else {
+    return NULL;
   }
 };
 
 
-
-/*
-  switch(key) {
-
-  case declaration_seq_504:
-    printf( "SUCESS; key: %d\n" , key );
-    break;
-    
-  case function_definition_803:
-    printf( "function_definition_803!\n");:
-    break;
-
-  case DEFAULT:
-    printf( "SUCESS; key: %d\n" , key );
-    break;
-    
-  }
-
-};
-  
-int print_key() {
-  //  int main() {
-
-  char *name;
-  int key;
-  prodrule_t rule;
-
-  name = strdup("declaration_seq_504");
-
-
-  key = get_key( name );
-  printf( "key: %d\n" , key );
-
-
-  return 0;
-
-};
-*/

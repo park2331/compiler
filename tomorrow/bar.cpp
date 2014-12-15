@@ -4,7 +4,8 @@ using namespace std;
 
 int main() {
 
-  int x;
+  int fuzz, hot;
+  int x, y;
   
   return 0;
 }

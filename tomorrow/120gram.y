@@ -518,10 +518,10 @@ for_init_statement:
 	;
 
 jump_statement:
-	BREAK ';' {$$ = alctree("jump_statement_488", 487, 2, $1, $2);}
-	| CONTINUE ';' {$$ = alctree("jump_statement_489", 487, 2, $1, $2);}
-	| RETURN expression_opt ';' {$$ = alctree("jump_statement_490", 487, 3, $1, $2, $3);}
-	| GOTO identifier ';' {$$ = alctree("jump_statement_491", 487, 3, $1, $2, $3);}
+        BREAK ';' { $$ = $1; }
+        | CONTINUE ';' { $$ = $1; }
+	| RETURN expression_opt ';' {$$ = alctree("jump_statement_490", 487, 2, $1, $2 );}
+	| GOTO identifier ';' {$$ = alctree("jump_statement_491", 487, 2, $1, $2 );}
 	;
 
 declaration_statement:
@@ -540,9 +540,9 @@ declaration_seq:
 declaration:
 	block_declaration {$$ = $1;}
 	| function_definition {$$ = $1;}
-/*        | template_declaration {$$ = $1;}*/
-/*	| explicit_instantiation {$$ = $1;} */
-/*	| explicit_specialization {$$ = $1;} */
+//        | template_declaration {$$ = $1;}
+//	| explicit_instantiation {$$ = $1;} 
+//	| explicit_specialization {$$ = $1;} 
 	| linkage_specification {$$ = $1;}
         | namespace_definition {$$ = $1;}
 	;

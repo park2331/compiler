@@ -32,7 +32,8 @@ tableptr new_table(char* n) {
   //tableptr t = calloc(1, sizeof(struct table));
 
   //memset(t->entry, 0, 10000);
-  t->entry[10000] = NULL;
+  t->entry[10000] = calloc(10000, sizeof(entryptr));
+
   t->name = strdup(n);
 
 
@@ -85,7 +86,11 @@ void insert_scope(char* n, tableptr t) {
 
   entryptr e = new_scope(n);
 
+  int key = get_key(e->name);
+
   insert(e, t);
+
+  fprintf( stdout , "%s was INSERTED into scope %s at location %d.\n" , e->name , t->name , key );
   
 };
 
@@ -109,7 +114,7 @@ bool lookup(char *n, tableptr t) {
 
   //  unsigned long key = sdbm(n) % 900;  
   int key = get_key(n);
-
+  
 
   if (t->entry[key]) {
 
